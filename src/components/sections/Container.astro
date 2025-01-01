@@ -1,0 +1,42 @@
+---
+import type { SectionProps } from '../../types';
+import Heading from '../blocks/Heading.astro';
+
+interface Props extends SectionProps {
+  columns: number
+}
+
+const { title, titleTag = 'h2', description, primaryButtonProps, secondaryButtonProps, columns, class: className }: Partial<Props> = Astro.props;
+
+let columnsCSS;
+switch (columns) {
+  case 1:
+    columnsCSS = 'grid-cols-1';
+    break;
+  case 2:
+    columnsCSS = 'grid-cols-1 md:grid-cols-2';
+    break;
+  case 3:
+    columnsCSS = 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:[&>:last-child]:justify-self-center md:[&>:last-child]:col-span-2 md:[&>:last-child]:w-[50%] lg:[&>:last-child]:col-span-1 lg:[&>:last-child]:w-full';
+    break;
+  default:
+    columnsCSS = 'grid-cols-1';
+    break;
+}
+---
+
+<section class:list={['not-prose flex flex-col mb-8', className]}>
+
+  <Heading
+    title={title}
+    titleTag={titleTag}
+    description={description}
+    primaryButtonProps={primaryButtonProps}
+    secondaryButtonProps={secondaryButtonProps}
+  />
+
+  <div class:list={['grid gap-4', columnsCSS]}>
+    <slot />
+  </div>
+
+</section>
