@@ -1,0 +1,75 @@
+---
+import type { ComponentProps } from '../../types';
+import { Image, Picture } from 'astro:assets';
+import Title from '../ui/Title.astro';
+import Date from '../ui/Date.astro';
+import Button from '../ui/Button.astro';
+
+interface Props extends ComponentProps {
+  title: string,
+  titleTag?: 'h3' | 'h4',
+  date: Date,
+  href: string
+};
+
+const uniqueId = Math.random().toString(36).slice(2, 11);
+
+const { title, titleTag = 'h3', description, date, image, alt = '', href }: Partial<Props> = Astro.props;
+---
+
+<li
+  class="group/card h-full flex flex-col-reverse hover:shadow-md dark:shadow-black brightness-90 hover:brightness-100 focus:brightness-100 transition duration-300"
+  tabindex="0"
+  aria-label={title}
+  :class="{'cursor-pointer': !preventClick}"
+  x-data="{ clickTimeout: null, preventClick: false }"
+  @mouseleave="clearTimeout(clickTimeout); preventClick = false"
+  @mousedown="event.preventClick = false; event.button === 2 ? preventClick = true : clickTimeout = setTimeout(() => preventClick = true, 200);"
+  @mouseup=" clearTimeout(clickTimeout); if (!preventClick) { window.location = $refs.link.href; } preventClick = false;"
+  @keydown.enter="window.location = $refs.link.href"
+>
+  <article class="flex flex-col flex-grow gap-2 p-4 mb-auto">
+    <Title id={uniqueId} titleTag={titleTag} class="md:text-xl hover:text-theme-900 dark:hover:text-theme-100 underline underline-offset-8 decoration-transparent hover:decoration-theme-900 dark:hover:decoration-theme-100 transition duration-300">
+      {title}
+    </Title>
+
+    <Date date={date} description="Published on" />
+
+    <p class="text-theme-800 dark:text-theme-200">{description}</p>
+
+    <Button
+      class="mt-auto mr-auto pl-0"
+      buttonStyle="link"
+      text="Read more"
+      href={href}
+      icon="iconoir:arrow-right"
+      iconSize={16}
+      iconRotate={true}
+      aria-describedby={uniqueId}
+      x-ref="link"
+    />
+  </article>
+
+  { !image ?
+    (
+      <Image
+          src="/opengraph.webp"
+          height={480}
+          width={320}
+          format="webp"
+          class="h-full md:min-h-[216px] md:max-h-[216px] lg:max-h-56 min-w-full object-cover aspect-[4/3]"
+          alt={alt}
+      />
+    ) : (
+      <Picture
+          src={image}
+          widths={[480]}
+          sizes={`480px`}
+          inferSize={true}
+          formats={['webp']}
+          class="h-full md:min-h-[216px] md:max-h-[216px] lg:max-h-56 min-w-full object-cover aspect-[4/3]"
+          alt={alt}
+      />
+    )
+  }
+</li>
