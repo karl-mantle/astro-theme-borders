@@ -1,0 +1,66 @@
+---
+import { getImage } from 'astro:assets';
+import { SITE_TITLE, SITE_TITLE_SEPARATOR } from '../../consts';
+import faviconSrc from '../../../public/favicon.png';
+
+interface Props {
+	title: string;
+	description: string;
+	image?: string;
+    pageType?: 'website' | 'article';
+};
+
+const { title, description, image = '/opengraph.webp' } = Astro.props;
+
+const metaTitle = `${title} ${SITE_TITLE_SEPARATOR} ${SITE_TITLE}`;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const favicon = await getImage({ src: faviconSrc, format: 'png' });
+const appleTouchIcon = await getImage({
+  src: faviconSrc,
+  width: 180,
+  height: 180,
+  format: 'png'
+});
+---
+
+<!-- Global Metadata -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<meta name="generator" content={Astro.generator} />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Primary Meta Tags -->
+<title>{metaTitle}</title>
+<meta name="title" content={metaTitle} />
+<meta name="description" content={description} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={new URL(image, Astro.url)} />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={Astro.url} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+<!-- Favicons -->
+<link rel="icon" href="/favicon.ico" />
+<link rel="icon" href="/favicon.ico" sizes="32x32, 16x16" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href={favicon.src} type="image/png" />
+
+<!-- Mobile  -->
+<link rel="apple-touch-icon" href={appleTouchIcon.src} />
+<meta name="apple-mobile-web-app-title" content=`${SITE_TITLE}`>
+<link rel="manifest" href="/manifest.json" />
+
+<!-- Resources -->
