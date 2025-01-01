@@ -1,0 +1,19 @@
+---
+import type { ComponentProps } from '../../types';
+import { getFormattedDate } from '../../i18n/formatDateTime';
+import { Icon } from 'astro-icon/components';
+
+interface Props extends ComponentProps {
+  date: Date,
+};
+
+const { class: className, date, description }: Partial<Props> = Astro.props;
+
+const formattedDate = getFormattedDate(date.toISOString());
+---
+
+<div class="inline-flex gap-2">
+  <Icon name="iconoir:calendar" height={21} width={21} class="self-center"/>
+  <span class="sr-only">{description}</span>
+  <time class="text-theme-800 dark:text-theme-200" datetime={date.toISOString()}>{formattedDate}</time>
+</div>
