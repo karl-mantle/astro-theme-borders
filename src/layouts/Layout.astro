@@ -1,0 +1,43 @@
+---
+import Head from '../components/metadata/Head.astro';
+import Header from '../components/header/Header.astro';
+import Footer from '../components/footer/Footer.astro';
+
+const { title, description, image } = Astro.props;
+---
+
+<!doctype html>
+<html
+  lang="en"
+  x-data="{
+    darkMode: false, 
+    init() {
+      if (localStorage.getItem('darkMode')) {
+        this.darkMode = JSON.parse(localStorage.getItem('darkMode'));
+      }
+      else {
+        this.darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+
+      document.documentElement.classList.toggle('dark', this.darkMode);
+    },
+    toggleDarkMode() {
+      this.darkMode = !this.darkMode;
+      document.documentElement.classList.toggle('dark', this.darkMode);
+      localStorage.setItem('darkMode', JSON.stringify(this.darkMode));
+    }
+  }"
+  x-init="init"
+>
+  <head>
+    <Head title={title} description={description} image={image} />
+  </head>
+
+  <body class="bg-theme-100 dark:bg-theme-900 m-auto max-w-7xl">
+    <Header />
+    <main class="prose dark:prose-invert prose-theme m-auto px-4 max-w-7xl xl:px-0">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
