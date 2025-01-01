@@ -1,0 +1,67 @@
+---
+import Button from '../ui/Button.astro';
+
+const iconSize = 21;
+const { page } = Astro.props;
+---
+
+<nav class="flex justify-center pt-8 md:pt-12" aria-label="pagination">
+  <ul class="flex items-center">
+    <li class="flex justify-end w-1/4">
+      {page.url.prev ?
+        <Button
+          buttonStyle="link"
+          href={page.url.prev}
+          text="Previous"
+          icon="iconoir:arrow-left"
+          iconSize={iconSize}
+          iconReverse={true}
+          iconRotate={false}
+          aria-label="Go to the previous page"
+        />
+        :
+        <Button
+          buttonStyle="disabled"
+          href="javascript:void(0)"
+          text="Previous"
+          icon="iconoir:arrow-left"
+          iconSize={iconSize}
+          iconReverse={true}
+          iconRotate={false}
+          aria-label="Go to the previous page"
+          aria-disabled="true"
+        />
+      }
+    </li>
+
+    <li class="flex justify-center w-1/2">
+      <span class="px-4 pb-1 border-l-2 border-r-2 border-theme-300 dark:border-theme-700" aria-label="Current page indicator">
+        Page {page.currentPage} of {page.lastPage}
+      </span>
+    </li>
+
+    <li class="flex justify-end w-1/4">
+      {page.url.next ?
+        <Button
+          buttonStyle="link"
+          href={page.url.next}
+          text="Next"
+          icon="iconoir:arrow-right"
+          iconSize={iconSize}
+          iconRotate={false}
+          aria-label="Go to the next page"
+        />
+        :
+        <Button
+          buttonStyle="disabled"
+          href="javascript:void(0)"
+          text="Next"
+          icon="iconoir:arrow-right"
+          iconSize={iconSize}
+          iconRotate={false}
+          aria-disabled="true"
+        />
+      }
+    </li>
+  </ul>
+</nav>
