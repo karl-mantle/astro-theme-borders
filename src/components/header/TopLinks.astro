@@ -1,0 +1,75 @@
+---
+import { Icon } from 'astro-icon/components';
+import Button from '../ui/Button.astro';
+
+const iconSize = 28;
+const listClasses = 'text-theme-800 hover:text-theme-900 dark:text-theme-200 dark:hover:text-theme-100 transition duration-300';
+---
+<ul class="inline-flex gap-4 justify-end items-center px-5 my-auto md:my-0 pb-2 md:pb-0 leading-none" aria-label="toolbar">
+
+  <li class=`${listClasses} md:border-r-2 border-theme-300 dark:border-theme-700`>
+    <Button
+      class="md:mr-4"
+      aria-label="open tags archive"
+      text="Tags"
+      textClass="hidden md:inline-block"
+      href="/blog/tags/"
+      icon="iconoir:hashtag"
+      iconSize={iconSize}
+      iconReverse={true}
+    />
+  </li>
+
+  <li class=`${listClasses}`>
+    <button
+      class="m-auto"
+      aria-label="open search"
+    >
+      <Icon name="iconoir:search" height={iconSize} width={iconSize}/>
+    </button>
+  </li>
+
+  <li class=`${listClasses}`>
+    <button
+      aria-label="subscribe to RSS feed"
+    >
+      <Icon name="iconoir:rss-feed" height={iconSize} width={iconSize}/>
+    </button>
+  </li>
+
+  <li class=`${listClasses}`>
+    <button
+      aria-label="open GitHub repository in new tab"
+      x-on:click="window.open('https://github.com/karl-mantle/astro-wordpress-blog/', '_blank', 'noopener,noreferrer')"
+    >
+      <Icon name="iconoir:github" height={iconSize} width={iconSize}/>
+    </button>
+  </li>
+
+  <li class=`${listClasses}`>
+    <button 
+      aria-label="toggle dark mode"
+      :aria-pressed="darkMode"
+      @click="toggleDarkMode"
+    >
+      <Icon name="iconoir:sun-light" height={iconSize} width={iconSize} class="hidden dark:block"/>
+      <Icon name="iconoir:half-moon" height={iconSize} width={iconSize} class="dark:hidden"/>
+    </button>
+  </li>
+
+  <li class=`md:hidden ${listClasses}`>
+    <button
+      aria-label="toggle site navigation"
+      :aria-pressed="siteNavigationOpen"
+      @click="siteNavigationOpen = !siteNavigationOpen" 
+      @keydown.window.escape="siteNavigationOpen = false"
+    >
+      <div x-show="!siteNavigationOpen">
+        <Icon name="iconoir:menu" height={iconSize} width={iconSize}/>
+      </div>
+      <div x-show="siteNavigationOpen">
+        <Icon name="iconoir:xmark" height={iconSize} width={iconSize}/>
+      </div>
+    </button>
+  </li>
+</ul>
