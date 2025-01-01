@@ -1,0 +1,52 @@
+---
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+import { PERMALINK_BLOG } from '../../consts';
+import { sortMostRecent } from '../../utils/sortingHat';
+import Layout from '../../layouts/Layout.astro';
+import Banner from '../../components/sections/Banner.astro';
+
+export async function getStaticPaths() {
+    const posts = (await getCollection('blog')).sort(sortMostRecent);
+    const postCount = posts.length;
+    return posts.map((post, index) => ({
+        params: { blog: PERMALINK_BLOG, post: post.id },
+        props: {
+            post,
+            prevPost: index + 1 !== postCount ? posts[index + 1] : null,
+            nextPost: index !== 0 ? posts[index - 1] : null
+        }
+    }));
+}
+
+type Props = { post: CollectionEntry<'blog'>; prevPost: CollectionEntry<'blog'>; nextPost: CollectionEntry<'blog'> };
+
+const { href } = Astro.url;
+const { post, prevPost, nextPost } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout title={post.data.seo?.title || post.data.title} metaDesc={post.data.seo?.description || post.data.description}>
+  <article>
+    <header>
+      <Banner
+        title={post.data.title}
+        titleTag="h1"
+        description={post.data.description}
+        date={post.data.date}
+        image={post.data.image?.src}
+        alt={post.data.image?.alt}
+      />
+    </header>
+
+    <div class="flex flex-col md:flex-row gap-8 md:gap-16 md:mb-8">
+      <article class="md:py-8">
+        <Content />
+      </article>
+
+      <aside class="flex-shrink-0 md:w-72 md:py-8">
+        <!-- <AuthorCard name={node.author.node.name} description={node.author.node.description} avatarUrl={node.author.node.avatar.url} />
+        <RecentPosts orientation='column' quantity={3} filteredBy='recent'/> -->
+      </aside>
+    </div>
+  </article>
+</Layout>
