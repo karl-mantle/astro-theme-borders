@@ -1,0 +1,43 @@
+---
+import type { ComponentProps } from '../../types';
+import { Picture } from 'astro:assets';
+
+interface Props extends ComponentProps {
+  aspectRatio?: string,
+  contained?: boolean
+};
+
+const { image, alt = '', class: className, aspectRatio, contained }: Partial<Props> = Astro.props;
+
+let aspectRatioCSS;
+switch (aspectRatio) {
+  case 'square':
+    aspectRatioCSS = 'aspect-square';
+    break;
+  case 'video':
+    aspectRatioCSS = 'aspect-video';
+    break;
+  case 'landscape':
+    aspectRatioCSS = 'aspect-[4/3]';
+    break;
+  case 'portrait':
+    aspectRatioCSS = 'aspect-[3/4]';
+    break;
+  default:
+    aspectRatioCSS = 'aspect-auto';
+    break;
+};
+---
+
+<div class:list={[className, contained ? 'p-12 mb-auto' : '' ]}>
+  <Picture
+    src={image}
+    widths={[480, 900, 1600]}
+    sizes={`(max-width: 768px) 480px, (max-width: 1280px) 900px`}
+    inferSize
+    formats={['webp']}
+    loading="eager"
+    class:list={['h-full w-full object-cover', aspectRatioCSS]}
+    alt={alt}
+    />
+</div>
