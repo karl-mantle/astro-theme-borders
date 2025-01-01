@@ -1,0 +1,36 @@
+---
+import type { ButtonProps } from '../../types';
+import { Icon } from 'astro-icon/components';
+
+const { buttonStyle, text, textClass, href, icon, iconSize = 21, iconRotate, iconReverse, class: className }: Partial<ButtonProps> = Astro.props;
+
+let buttonCSS;
+switch (buttonStyle) {
+  case 'primary':
+    buttonCSS = 'py-2 px-4 border-2 border-theme-800 dark:border-theme-200 bg-theme-800 hover:bg-transparent dark:bg-transparent dark:hover:bg-theme-200 text-theme-100 dark:text-theme-100 hover:text-theme-900 dark:hover:text-theme-900';
+    break;
+  case 'link':
+    buttonCSS = 'mx-auto lg:mx-0 w-fit p-2 text-theme-800 hover:text-theme-900 dark:text-theme-200 dark:hover:text-theme-100 border-transparent border-b-2 hover:border-theme-900 dark:hover:border-theme-100';
+    break;
+  case 'disabled':
+    buttonCSS = 'p-2 text-theme-200 dark:text-theme-800 border-transparent border-b-2 cursor-not-allowed';
+    break;
+  default:
+    buttonCSS = '';
+    break;
+}
+---
+
+<a href={href} class:list={['group/btn flex gap-2 justify-center items-center transition ease-in-out duration-300', buttonCSS, iconReverse ? 'flex-row-reverse' : '', className]}>
+  <span class:list={['font-medium', textClass ? textClass : '']}>
+    {text}
+  </span>
+  { icon && (
+    <Icon
+      name={icon}
+      height={iconSize}
+      width={iconSize}
+      class:list={['self-center', iconRotate ? 'group-hover/btn:-rotate-45 transition duration-300' : '']}
+    />
+  )}
+</a>
