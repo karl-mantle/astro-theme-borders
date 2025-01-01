@@ -9,9 +9,18 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/alpinejs": "^0.4.1",
     "@astrojs/mdx": "^4.0.3",
     "@astrojs/rss": "^4.0.10",
     "@astrojs/sitemap": "^3.2.1",
-    "astro": "^5.1.1"
+    "@astrojs/tailwind": "^5.1.4",
+    "@iconify-json/iconoir": "^1.2.7",
+    "@tailwindcss/typography": "^0.5.15",
+    "@types/alpinejs": "^3.13.11",
+    "alpinejs": "^3.14.8",
+    "astro": "^5.1.1",
+    "astro-icon": "^1.1.5",
+    "sharp-ico": "^0.1.5",
+    "tailwindcss": "^3.4.17"
   }
 }
