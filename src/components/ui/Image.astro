@@ -4,10 +4,10 @@ import { Picture } from 'astro:assets';
 
 interface Props extends ComponentProps {
   aspectRatio?: string,
-  contained?: boolean
+  containImage?: boolean
 };
 
-const { image, alt = '', class: className, aspectRatio, contained }: Partial<Props> = Astro.props;
+const { image, alt = '', class: className, aspectRatio, containImage }: Partial<Props> = Astro.props;
 
 let aspectRatioCSS;
 switch (aspectRatio) {
@@ -29,7 +29,7 @@ switch (aspectRatio) {
 };
 ---
 
-<div class:list={[className, contained ? 'p-12 mb-auto' : '' ]}>
+<div class:list={[className, containImage ? 'p-12 mb-auto' : '' ]}>
   <Picture
     src={image}
     widths={[480, 900, 1600]}
