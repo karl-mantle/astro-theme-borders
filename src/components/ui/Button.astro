@@ -2,7 +2,7 @@
 import type { ButtonProps } from '../../types';
 import { Icon } from 'astro-icon/components';
 
-const { buttonStyle, text, textClass, href, icon, iconSize = 21, iconRotate, iconReverse, class: className }: Partial<ButtonProps> = Astro.props;
+const { buttonStyle, text, textClass, href, icon, iconSize = 21, iconRotate, iconReverse, class: className, ...rest }: Partial<ButtonProps> = Astro.props;
 
 let buttonCSS;
 switch (buttonStyle) {
@@ -21,7 +21,7 @@ switch (buttonStyle) {
 }
 ---
 
-<a href={href} class:list={['group/btn flex gap-2 justify-center items-center transition ease-in-out duration-300', buttonCSS, iconReverse ? 'flex-row-reverse' : '', className]}>
+<a href={href} class:list={['group/btn flex gap-2 justify-center items-center transition ease-in-out duration-300', buttonCSS, iconReverse ? 'flex-row-reverse' : '', className]} {...rest} >
   <span class:list={['font-medium', textClass ? textClass : '']}>
     {text}
   </span>
