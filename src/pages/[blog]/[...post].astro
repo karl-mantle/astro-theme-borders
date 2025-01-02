@@ -4,6 +4,8 @@ import { PERMALINK_BLOG } from '../../consts';
 import { sortMostRecent } from '../../utils/sortingHat';
 import Layout from '../../layouts/Layout.astro';
 import Banner from '../../components/sections/Banner.astro';
+import Title from '../../components/ui/Title.astro';
+import AuthorProfile from '../../components/blocks/AuthorProfile.astro';
 
 export async function getStaticPaths() {
     const posts = (await getCollection('blog')).sort(sortMostRecent);
@@ -35,6 +37,7 @@ const { Content } = await render(post);
         date={post.data.date}
         image={post.data.image?.src}
         alt={post.data.image?.alt}
+        aspectRatio='video'
       />
     </header>
 
@@ -43,9 +46,18 @@ const { Content } = await render(post);
         <Content />
       </article>
 
-      <aside class="flex-shrink-0 md:w-72 md:py-8">
-        <!-- <AuthorCard name={node.author.node.name} description={node.author.node.description} avatarUrl={node.author.node.avatar.url} />
-        <RecentPosts orientation='column' quantity={3} filteredBy='recent'/> -->
+      <aside class="not-prose flex flex-col flex-shrink-0 md:w-72 md:py-8">
+        <div class="relative flex flex-col mb-8">
+          <Title titleTag='h2' class="md:text-xl mb-2">About this post</Title>
+          <div class="absolute bottom-0 -z-40 block w-full border-b-2 border-theme-300 dark:border-theme-700" aria-hidden="true"></div>
+        </div>
+
+        <AuthorProfile />
+
+        <div class="relative flex flex-col mb-8">
+          <Title titleTag='h2' class="md:text-xl mb-2">Recent Posts</Title>
+          <div class="absolute bottom-0 -z-40 block w-full border-b-2 border-theme-300 dark:border-theme-700" aria-hidden="true"></div>
+        </div>
       </aside>
     </div>
   </article>
