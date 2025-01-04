@@ -14,7 +14,7 @@
     "@astrojs/rss": "^4.0.10",
     "@astrojs/sitemap": "^3.2.1",
     "@astrojs/tailwind": "^5.1.4",
-    "@iconify-json/iconoir": "^1.2.7",
+    "@iconify-json/tabler": "^1.2.13",
     "@tailwindcss/typography": "^0.5.15",
     "@types/alpinejs": "^3.13.11",
     "alpinejs": "^3.14.8",

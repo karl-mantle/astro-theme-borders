@@ -14,7 +14,7 @@ const listClasses = 'text-theme-800 hover:text-theme-900 dark:text-theme-200 dar
       text="Tags"
       textClass="hidden md:inline-block"
       href="/blog/tags/"
-      icon="iconoir:hashtag"
+      icon="tabler:tags"
       iconSize={iconSize}
       iconReverse={true}
     />
@@ -25,7 +25,7 @@ const listClasses = 'text-theme-800 hover:text-theme-900 dark:text-theme-200 dar
       class="m-auto"
       aria-label="open search"
     >
-      <Icon name="iconoir:search" height={iconSize} width={iconSize}/>
+      <Icon name="tabler:search" height={iconSize} width={iconSize}/>
     </button>
   </li>
 
@@ -33,7 +33,7 @@ const listClasses = 'text-theme-800 hover:text-theme-900 dark:text-theme-200 dar
     <button
       aria-label="subscribe to RSS feed"
     >
-      <Icon name="iconoir:rss-feed" height={iconSize} width={iconSize}/>
+      <Icon name="tabler:rss" height={iconSize} width={iconSize}/>
     </button>
   </li>
 
@@ -42,7 +42,7 @@ const listClasses = 'text-theme-800 hover:text-theme-900 dark:text-theme-200 dar
       aria-label="open GitHub repository in new tab"
       x-on:click="window.open('https://github.com/karl-mantle/astro-wordpress-blog/', '_blank', 'noopener,noreferrer')"
     >
-      <Icon name="iconoir:github" height={iconSize} width={iconSize}/>
+      <Icon name="tabler:brand-github" height={iconSize} width={iconSize}/>
     </button>
   </li>
 
@@ -52,8 +52,8 @@ const listClasses = 'text-theme-800 hover:text-theme-900 dark:text-theme-200 dar
       :aria-pressed="darkMode"
       @click="toggleDarkMode"
     >
-      <Icon name="iconoir:sun-light" height={iconSize} width={iconSize} class="hidden dark:block"/>
-      <Icon name="iconoir:half-moon" height={iconSize} width={iconSize} class="dark:hidden"/>
+      <Icon name="tabler:sun" height={iconSize} width={iconSize} class="hidden dark:block"/>
+      <Icon name="tabler:moon" height={iconSize} width={iconSize} class="dark:hidden"/>
     </button>
   </li>
 
@@ -65,10 +65,10 @@ const listClasses = 'text-theme-800 hover:text-theme-900 dark:text-theme-200 dar
       @keydown.window.escape="siteNavigationOpen = false"
     >
       <div x-show="!siteNavigationOpen">
-        <Icon name="iconoir:menu" height={iconSize} width={iconSize}/>
+        <Icon name="tabler:menu" height={iconSize} width={iconSize}/>
       </div>
       <div x-show="siteNavigationOpen">
-        <Icon name="iconoir:xmark" height={iconSize} width={iconSize}/>
+        <Icon name="tabler:x" height={iconSize} width={iconSize}/>
       </div>
     </button>
   </li>

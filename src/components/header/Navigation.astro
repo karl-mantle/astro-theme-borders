@@ -57,7 +57,7 @@ const menuTree = createMenuTree((menuData as MenuDataType).menuItems);
               @click="subMenuOpen = !subMenuOpen"
               @keydown.window.escape="subMenuOpen = false"
             >
-              <Icon name="iconoir:nav-arrow-down" height={32} width={32} :class="{'rotate-180': subMenuOpen}" class="w-8 md:w-4 transition duration-300"/>
+              <Icon name="tabler:chevron-down" height={32} width={32} :class="{'rotate-180': subMenuOpen}" class="w-8 md:w-4 transition duration-300"/>
             </button>
           )}
         </div>
@@ -78,7 +78,7 @@ const menuTree = createMenuTree((menuData as MenuDataType).menuItems);
                 >
                   {child.label}
                 </a>
-                <Icon name="iconoir:arrow-right" height={26} width={26} class="w-8 md:hidden" />
+                <Icon name="tabler:arrow-right" height={26} width={26} class="w-8 md:hidden" />
               </li>
             ))}
           </ul>
