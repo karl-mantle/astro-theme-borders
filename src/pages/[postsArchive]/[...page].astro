@@ -1,28 +1,28 @@
 ---
 import type { GetStaticPathsOptions, Page } from 'astro';
 import { type CollectionEntry, getCollection } from 'astro:content';
-import { PERMALINK_BLOG, POSTS_PER_PAGE } from '../../consts.ts';
-import { sortMostRecent } from '../../utils/sortingHat.ts';
+import { PERMALINK_POSTS, PERMALINK_POSTS_SINGLE, POSTS_PER_PAGE } from '../../consts';
+import { sortMostRecent } from '../../utils/sortingHat';
 import Layout from '../../layouts/Layout.astro';
-import BlogCard from '../../components/cards/BlogCard.astro';
+import PostsCard from '../../components/cards/PostsCard.astro';
 import Pagination from '../../components/ui/Pagination.astro';
 import Heading from '../../components/blocks/Heading.astro';
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-    const posts = (await getCollection('blog')).sort(sortMostRecent);
-    return paginate(posts, { params: { blog: PERMALINK_BLOG }, pageSize: POSTS_PER_PAGE || 9 });
+    const posts = (await getCollection('posts')).sort(sortMostRecent);
+    return paginate(posts, { params: { postsArchive: PERMALINK_POSTS }, pageSize: POSTS_PER_PAGE || 9 });
 };
 
 interface Props { 
-  page: Page<CollectionEntry<'blog'>>
+  page: Page<CollectionEntry<'posts'>>
 };
 
 const { page }: Partial<Props> = Astro.props;
 ---
 
 <Layout
-  title="All Blog Posts"
-  description="An archive of all blog posts"
+  title="All Posts"
+  description="An archive of all posts"
 >
   <section class="not-prose flex flex-col py-8">
 
@@ -35,14 +35,14 @@ const { page }: Partial<Props> = Astro.props;
 
     <div class="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
       {page.data.map((post) =>
-        <BlogCard
+        <PostsCard
           title={post.data.title}
           titleTag="h3"
           description={post.data.description}
-          date={post.data.date}
+          date={post.data.pubDate}
           image={post.data.image?.src}
           alt={post.data.image?.alt}
-          href={post.id}
+          href={`/${PERMALINK_POSTS_SINGLE}/${post.id}/`}
         />
       )}
     </div>

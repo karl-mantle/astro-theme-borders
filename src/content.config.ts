@@ -13,26 +13,12 @@ const seoSchema = z.object({
   pageType: z.enum(['website', 'article']).default('website')
 });
 
-const projects = defineCollection({
-  loader: glob({ base: './src/content/projects', pattern: '**/*.{md,mdx}' }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string().optional(),
-    pubDate: z.coerce.date(),
-    updatedDate: z.coerce.date().optional(),
-    featuredImage: z.string().optional(),
-    isFeatured: z.boolean().default(false),
-    tags: z.array(z.string()).default([]),
-    seo: seoSchema.optional()
-  })
-});
-
-const blog = defineCollection({
-  loader: glob({ base: './src/content/blog', pattern: '**/*.{md,mdx}' }),
+const customPosts = defineCollection({
+  loader: glob({ base: './src/content/customPosts', pattern: '**/*.{md,mdx}' }),
   schema: ({ image }) => z.object({
     title: z.string(),
     description: z.string().optional(),
-    date: z.coerce.date(),
+    pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
     image: z
       .object({
@@ -46,4 +32,23 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { blog, projects };
+const posts = defineCollection({
+  loader: glob({ base: './src/content/posts', pattern: '**/*.{md,mdx}' }),
+  schema: ({ image }) => z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    pubDate: z.coerce.date(),
+    updatedDate: z.coerce.date().optional(),
+    image: z
+      .object({
+        src: image(),
+        alt: z.string().optional()
+      })
+      .optional(),
+    isFeatured: z.boolean().default(false),
+    tags: z.array(z.string()).default([]),
+    seo: seoSchema.optional()
+  }),
+});
+
+export const collections = { posts, customPosts };

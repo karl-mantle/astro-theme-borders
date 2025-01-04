@@ -1,6 +1,7 @@
 ---
-import type { ComponentProps } from '../../types';
-import { Image, Picture } from 'astro:assets';
+import type { ComponentProps } from '../../types.ts';
+import { Picture } from 'astro:assets';
+import { SITE_OG_IMAGE } from '../../consts.ts';
 import Title from '../ui/Title.astro';
 import Date from '../ui/Date.astro';
 import Button from '../ui/Button.astro';
@@ -12,9 +13,8 @@ interface Props extends ComponentProps {
   href: string
 };
 
-const uniqueId = Math.random().toString(36).slice(2, 11);
-
 const { title, titleTag = 'h3', description, date, image, alt = '', href }: Partial<Props> = Astro.props;
+const uniqueId = Math.random().toString(36).slice(2, 11);
 ---
 
 <li
@@ -33,7 +33,7 @@ const { title, titleTag = 'h3', description, date, image, alt = '', href }: Part
       {title}
     </Title>
 
-    <Date date={date} description="Published on" />
+    <Date date={date} description="Blog published on" />
 
     <p class="text-theme-800 dark:text-theme-200">{description}</p>
 
@@ -49,27 +49,14 @@ const { title, titleTag = 'h3', description, date, image, alt = '', href }: Part
       x-ref="link"
     />
   </article>
-
-  { !image ?
-    (
-      <Image
-          src="/opengraph.webp"
-          height={480}
-          width={320}
-          format="webp"
-          class="h-full md:min-h-[216px] md:max-h-[216px] lg:max-h-56 min-w-full object-cover aspect-[4/3]"
-          alt={alt}
-      />
-    ) : (
-      <Picture
-          src={image}
-          widths={[480]}
-          sizes={`480px`}
-          inferSize={true}
-          formats={['webp']}
-          class="h-full md:min-h-[216px] md:max-h-[216px] lg:max-h-56 min-w-full object-cover aspect-[4/3]"
-          alt={alt}
-      />
-    )
-  }
+  
+  <Picture
+    src={image ? image : SITE_OG_IMAGE}
+    widths={[480]}
+    sizes={`480px`}
+    inferSize={true}
+    formats={['webp']}
+    class="h-full md:min-h-[216px] md:max-h-[216px] lg:max-h-56 min-w-full object-cover aspect-[4/3]"
+    alt={alt}
+  />
 </li>

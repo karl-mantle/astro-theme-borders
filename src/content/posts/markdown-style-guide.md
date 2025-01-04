@@ -1,7 +1,7 @@
 ---
 title: 'Markdown Style Guide'
 description: 'Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.'
-date: 'Jun 19 2024'
+pubDate: 'Jun 19 2024'
 image:
   src: './images/blog-placeholder-4.jpg'
   alt: 'placeholder'
@@ -41,7 +41,7 @@ Itatur? Quiatae cullecum rem ent aut odis in re eossequodi nonsequ idebis ne sap
 
 ### Output
 
-![blog placeholder](/blog-placeholder-about.jpg)
+![blog placeholder](/opengraph.webp)
 
 ## Blockquotes
 

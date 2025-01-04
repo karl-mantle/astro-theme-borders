@@ -1,6 +1,6 @@
 ---
 import { type CollectionEntry, getCollection, render } from 'astro:content';
-import { PERMALINK_BLOG } from '../../consts';
+import { PERMALINK_POSTS_SINGLE } from '../../consts';
 import { sortMostRecent } from '../../utils/sortingHat';
 import Layout from '../../layouts/Layout.astro';
 import Banner from '../../components/sections/Banner.astro';
@@ -8,10 +8,10 @@ import Title from '../../components/ui/Title.astro';
 import AuthorProfile from '../../components/blocks/AuthorProfile.astro';
 
 export async function getStaticPaths() {
-    const posts = (await getCollection('blog')).sort(sortMostRecent);
+    const posts = (await getCollection('posts')).sort(sortMostRecent);
     const postCount = posts.length;
     return posts.map((post, index) => ({
-        params: { blog: PERMALINK_BLOG, post: post.id },
+        params: { postsArchive: PERMALINK_POSTS_SINGLE, post: post.id },
         props: {
             post,
             prevPost: index + 1 !== postCount ? posts[index + 1] : null,
@@ -20,7 +20,7 @@ export async function getStaticPaths() {
     }));
 }
 
-type Props = { post: CollectionEntry<'blog'>; prevPost: CollectionEntry<'blog'>; nextPost: CollectionEntry<'blog'> };
+type Props = { post: CollectionEntry<'posts'>; prevPost: CollectionEntry<'posts'>; nextPost: CollectionEntry<'posts'> };
 
 const { href } = Astro.url;
 const { post, prevPost, nextPost } = Astro.props;
@@ -34,7 +34,7 @@ const { Content } = await render(post);
         title={post.data.title}
         titleTag="h1"
         description={post.data.description}
-        date={post.data.date}
+        date={post.data.pubDate}
         image={post.data.image?.src}
         alt={post.data.image?.alt}
         aspectRatio='video'

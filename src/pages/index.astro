@@ -1,8 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Banner from '../components/sections/Banner.astro';
-import HeroImage from '../content/blog/images/blog-placeholder-1.jpg';
 import Container from '../components/sections/Container.astro';
+import HeroImage from '../content/posts/images/blog-placeholder-1.jpg';
 import Image from '../components/ui/Image.astro';
 ---
 
@@ -19,15 +19,19 @@ import Image from '../components/ui/Image.astro';
     alt=""
     primaryButtonProps={{ buttonStyle: 'primary', href: '/deadlink', text: 'View the repo', textClass: '', icon: 'iconoir:github', iconSize: 21, iconReverse: true, iconRotate: false }}
     secondaryButtonProps={{ buttonStyle: 'link', href: '/deadlink', text: 'Read more', textClass: '', icon: 'iconoir:arrow-right', iconSize: 21, iconReverse: false, iconRotate: true }}
+    aspectRatio='landscape'
   />
 
-  <Container columns={3} title="lorem ipsum title" description="this is a description blah blah blah"
-  primaryButtonProps={{ buttonStyle: 'primary', href: '/deadlink', text: 'View the repo', textClass: '', icon: 'iconoir:github', iconSize: 21, iconReverse: true, iconRotate: false }}
-  secondaryButtonProps={{ buttonStyle: 'link', href: '/deadlink', text: 'Read more', textClass: '', icon: 'iconoir:arrow-right', iconSize: 21, iconReverse: false, iconRotate: true }}
-
+  <Container
+    columns={3}
+    title="lorem ipsum title"
+    description="this is a description blah blah blah"
+    primaryButtonProps={{ buttonStyle: 'primary', href: '/deadlink', text: 'View the repo', textClass: '', icon: 'iconoir:github', iconSize: 21, iconReverse: true, iconRotate: false }}
+    secondaryButtonProps={{ buttonStyle: 'link', href: '/deadlink', text: 'Read more', textClass: '', icon: 'iconoir:arrow-right', iconSize: 21, iconReverse: false, iconRotate: true }}
   >
-<Image image={HeroImage} contained={true} aspectRatio="portrait"/>
-<Image image={HeroImage} contained={true} aspectRatio="square"/>
-<Image image={HeroImage} contained={true} aspectRatio="square"/>
-</Container>
+    <Image image={HeroImage} containImage={true} aspectRatio="portrait"/>
+    <Image image={HeroImage} containImage={true} aspectRatio="square"/>
+    <Image image={HeroImage} containImage={true} aspectRatio="landscape"/>
+  </Container>
+
 </Layout>
