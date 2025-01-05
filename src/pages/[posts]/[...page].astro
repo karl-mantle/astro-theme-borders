@@ -1,20 +1,23 @@
 ---
 import type { GetStaticPathsOptions, Page } from 'astro';
-import { type CollectionEntry, getCollection } from 'astro:content';
+import { type CollectionEntry } from 'astro:content';
 import { PERMALINK_POSTS, PERMALINK_POSTS_SINGLE, POSTS_PER_PAGE } from '../../consts';
-import { sortMostRecent } from '../../utils/sortingHat';
+import { getEntries } from '../../utils';
 import Layout from '../../layouts/Layout.astro';
 import PostsCard from '../../components/cards/PostsCard.astro';
 import Pagination from '../../components/ui/Pagination.astro';
 import Heading from '../../components/blocks/Heading.astro';
 
-export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-    const posts = (await getCollection('posts')).sort(sortMostRecent);
-    return paginate(posts, { params: { postsArchive: PERMALINK_POSTS }, pageSize: POSTS_PER_PAGE || 9 });
-};
-
 interface Props { 
   page: Page<CollectionEntry<'posts'>>
+};
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+    const posts = await getEntries('posts');
+    return paginate(posts, { 
+      params: { posts: PERMALINK_POSTS },
+      pageSize: POSTS_PER_PAGE || 9
+    });
 };
 
 const { page }: Partial<Props> = Astro.props;
@@ -42,7 +45,7 @@ const { page }: Partial<Props> = Astro.props;
           date={post.data.pubDate}
           image={post.data.image?.src}
           alt={post.data.image?.alt}
-          href={`/${PERMALINK_POSTS_SINGLE}/${post.id}/`}
+          href={`/${PERMALINK_POSTS_SINGLE}/${post.data.slug}/`}
         />
       )}
     </div>

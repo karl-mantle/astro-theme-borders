@@ -3,6 +3,8 @@ title: 'First post'
 description: 'Lorem ipsum dolor sit amet'
 pubDate: 'Jul 08 2022'
 updatedDate: 'Oct 21 2024'
+category: 'Architecture'
+tags: ['3d', 'modern', 'Technology', 'lists']
 image:
   src: './images/blog-placeholder-1.jpg'
   alt: 'placeholder'

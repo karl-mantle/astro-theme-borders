@@ -44,3 +44,9 @@ export interface MenuItemType {
 export interface MenuDataType {
   menuItems: MenuItemType[]
 };
+
+export type Terms = {
+  name: string,
+  slug: string,
+  type: string,
+};

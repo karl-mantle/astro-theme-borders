@@ -2,6 +2,8 @@
 title: 'Second post'
 description: 'Lorem ipsum dolor sit amet'
 pubDate: 'Jul 15 2022'
+category: 'Architecture'
+tags: ['3d', 'tag', 'Technology', 'lists']
 image:
   src: './images/blog-placeholder-2.jpg'
   alt: 'placeholder'

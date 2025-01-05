@@ -1,5 +1,6 @@
 import { glob } from 'astro/loaders';
 import { defineCollection, z } from 'astro:content';
+import { slugify } from './utils';
 
 const seoSchema = z.object({
   title: z.string().min(5).max(120).optional(),
@@ -26,7 +27,8 @@ const customPosts = defineCollection({
         alt: z.string().optional()
       })
       .optional(),
-    isFeatured: z.boolean().default(false),
+    draft: z.boolean().default(false),
+    category: z.string().optional().default('Uncategorised'),
     tags: z.array(z.string()).default([]),
     seo: seoSchema.optional()
   }),
@@ -37,6 +39,7 @@ const posts = defineCollection({
   schema: ({ image }) => z.object({
     title: z.string(),
     description: z.string().optional(),
+    slug: z.string().optional(),
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
     image: z
@@ -45,9 +48,15 @@ const posts = defineCollection({
         alt: z.string().optional()
       })
       .optional(),
-    isFeatured: z.boolean().default(false),
+    draft: z.boolean().default(false),
+    category: z.string().optional().default('Uncategorised'),
     tags: z.array(z.string()).default([]),
     seo: seoSchema.optional()
+  }).refine((data) => {
+    if (!data.slug) {
+      data.slug = slugify(data.title)
+    }
+    return true;
   }),
 });
 
