@@ -2,6 +2,7 @@
 title: "Exploring Iceland's Natural Wonders"
 description: "Discover the stunning natural landscapes of Iceland, from its geysers and waterfalls to its rugged coastlines."
 pubDate: "2024-01-05T11:40:00.000Z"
+author: "kim-eun-sook"
 image:
   src: "./images/unsplash/yvon-hoogers-e0YOht7NgyE-unsplash.jpg"
   alt: "a waterfall in a rocky place"

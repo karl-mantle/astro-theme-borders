@@ -2,6 +2,7 @@
 title: "Serengeti Safari: Witnessing the Great Migration"
 description: "Embark on a thrilling safari in the Serengeti, witnessing the awe-inspiring Great Migration."
 slug: "serengeti-safari-great-migration"
+author: "isabela-castillejos"
 pubDate: "2023-09-21T12:20:00.000Z"
 image:
   src: "./images/unsplash/dawn-w-FmUx8z_Tz4A-unsplash.jpg"

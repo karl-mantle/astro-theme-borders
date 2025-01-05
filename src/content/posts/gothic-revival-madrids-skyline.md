@@ -2,6 +2,7 @@
 title: "Gothic Revival: Madrid’s Skyline"
 description: "An in-depth look at the Gothic Revival architectural style that has left its mark on Madrid's skyline."
 pubDate: "2024-06-20T09:50:00.000Z"
+author: "maria-riley"
 image:
   src: "./images/unsplash/paul-kenny-mcgrath-0pnZ6CaFHWo-unsplash.jpg"
   alt: "the sun is setting over a city with tall buildings"

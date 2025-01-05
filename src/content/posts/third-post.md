@@ -6,7 +6,6 @@ pubDate: "2024-12-27T12:02:33.000Z"
 image:
   src: "./images/blog-placeholder-4.jpg"
   alt: "placeholder"
-category: "Documentation"
 tags: ["astro"]
 ---
 

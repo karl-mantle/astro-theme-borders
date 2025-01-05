@@ -2,6 +2,7 @@
 title: "Art Deco Skyscrapers"
 description: "Exploring the iconic Art Deco skyscrapers that define New York City's skyline."
 pubDate: "2023-08-22T14:20:00.000Z"
+author: "ayo-ogunseinde"
 image:
   src: "./images/unsplash/melanie-dretvic-URtR9YiLeR0-unsplash.jpg"
   alt: "low-angle photography of high rise building"

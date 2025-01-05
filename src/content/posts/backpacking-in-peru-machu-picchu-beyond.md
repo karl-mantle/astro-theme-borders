@@ -2,6 +2,7 @@
 title: "Backpacking in Peru: Machu Picchu and Beyond"
 description: "An adventurous guide to backpacking through Peru, from the iconic Machu Picchu to lesser-known trekking routes."
 slug: "backpacking-in-peru-machu-picchu-beyond"
+author: "josh-anderson"
 pubDate: "2024-05-30T11:45:00.000Z"
 image:
   src: "./images/unsplash/vlad-d-_XRgG3hLxyw-unsplash.jpg"

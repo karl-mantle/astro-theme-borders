@@ -2,6 +2,7 @@
 title: "A Deep Dive into the Architectural Heritage of the Renaissance Period in Florence"
 description: "A detailed exploration of the Renaissance buildings that define Florence's rich architectural heritage."
 slug: "renaissance-buildings-in-florence-deep-dive"
+author: "prince-akachi"
 pubDate: "2024-11-15T12:10:00.000Z"
 image:
   src: "./images/unsplash/jonathan-korner-pRU-VnBVJMQ-unsplash.jpg"

@@ -2,21 +2,17 @@
 import type { ComponentProps } from '../../types';
 import { Image } from 'astro:assets';
 
-const { title = 'Lorem Ipsum', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ', image = '/opengraph.webp' }: Partial<ComponentProps> = Astro.props;
+const { title, description, image, class: className }: Partial<ComponentProps> = Astro.props;
 ---
 
-<div class="not-prose flex flex-col mb-8">
-
-  <!-- <h3 class="mb-2 font-semibold text-md md:text-lg text-theme-800 dark:text-theme-200">Author</h3> -->
-  <h3 class="sr-only">Author</h3>
-
-  <div class="flex flex-row-reverse gap-4">
-    <div class="flex flex-col gap-2">
+<div class:list={['not-prose flex flex-col', className]}>
+  <div class="flex flex-row-reverse justify-end gap-4">
+    <div class="flex flex-col gap-1">
       <h4 class="m-0 text-base font-semibold text-theme-800 dark:text-theme-200">{title}</h4>
       <p class="text-sm text-theme-800 dark:text-theme-200">{description}</p>
     </div>
 
-    <div class="flex pt-2 min-w-16">
+    <div class="flex min-w-16">
       <Image
         src={image}
         height={64}

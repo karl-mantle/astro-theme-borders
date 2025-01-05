@@ -2,6 +2,7 @@
 title: "Moorish Architectural Influences in Spain"
 description: "Exploring the Moorish architectural elements prominently seen in various regions of Spain, inspired by the Alhambra."
 pubDate: "2023-09-15T08:30:00.000Z"
+author: "youssef-el-idrissi"
 image:
   src: "./images/unsplash/xinyu-zhang-TuDgi0vB_7Y-unsplash.jpg"
   alt: "Moorish architecture"

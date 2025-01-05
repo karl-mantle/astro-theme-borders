@@ -1,7 +1,9 @@
 ---
 title: "A Weekend in Paris: What to See and Do"
 description: "A comprehensive guide to making the most of a weekend trip to Paris, including must-see attractions and hidden delights."
+author: "chandri-anggara"
 pubDate: "2024-04-10T12:40:00.000Z"
+updatedDate: "2024-04-14T12:42:00.000Z"
 image:
   src: "./images/unsplash/john-towner-Hf4Ap1-ef40-unsplash.jpg"
   alt: "bike leaning against handrail in front of concrete building at daytime"

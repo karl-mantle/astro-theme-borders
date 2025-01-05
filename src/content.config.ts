@@ -1,5 +1,5 @@
 import { glob } from 'astro/loaders';
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, reference, z } from 'astro:content';
 import { slugify } from './utils';
 
 const seoSchema = z.object({
@@ -14,32 +14,13 @@ const seoSchema = z.object({
   pageType: z.enum(['website', 'article']).default('website')
 });
 
-const customPosts = defineCollection({
-  loader: glob({ base: './src/content/customPosts', pattern: '**/*.{md,mdx}' }),
-  schema: ({ image }) => z.object({
-    title: z.string(),
-    description: z.string().optional(),
-    pubDate: z.coerce.date(),
-    updatedDate: z.coerce.date().optional(),
-    image: z
-      .object({
-        src: image(),
-        alt: z.string().optional()
-      })
-      .optional(),
-    draft: z.boolean().default(false),
-    category: z.string().optional().default('Uncategorised'),
-    tags: z.array(z.string()).default([]),
-    seo: seoSchema.optional()
-  }),
-});
-
 const posts = defineCollection({
   loader: glob({ base: './src/content/posts', pattern: '**/*.{md,mdx}' }),
   schema: ({ image }) => z.object({
     title: z.string(),
     description: z.string().optional(),
     slug: z.string().optional(),
+    author: reference('people').default('default'),
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
     image: z
@@ -49,7 +30,7 @@ const posts = defineCollection({
       })
       .optional(),
     draft: z.boolean().default(false),
-    category: z.string().optional().default('Uncategorised'),
+    category: z.string().default('Uncategorised'),
     tags: z.array(z.string()).default([]),
     seo: seoSchema.optional()
   }).refine((data) => {
@@ -60,4 +41,13 @@ const posts = defineCollection({
   }),
 });
 
-export const collections = { posts, customPosts };
+const people = defineCollection({
+  loader: glob({ base: './src/content/people', pattern: '**/*.yaml' }),
+  schema: ({ image }) => z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    image: image().optional()
+  }),
+});
+
+export const collections = { posts, people };

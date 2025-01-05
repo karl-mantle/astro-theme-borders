@@ -2,6 +2,7 @@
 title: "Discovering the Magic of Yosemite"
 description: "Immerse yourself in the enchanting beauty of Yosemite National Park, from its towering sequoias to its majestic waterfalls."
 pubDate: "2024-03-28T10:00:00.000Z"
+author: "josh-anderson"
 image:
   src: "./images/unsplash/jordi-vich-navarro-OiZKawnGExs-unsplash.jpg"
   alt: "body of water near mountain at daytime"
