@@ -8,7 +8,7 @@ import icon from 'astro-icon';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://example.com',
+  site: 'http://127.0.0.1:4321',
   integrations: [mdx(), sitemap(), tailwind(), icon(), alpinejs()],
   trailingSlash: "always"
 });
