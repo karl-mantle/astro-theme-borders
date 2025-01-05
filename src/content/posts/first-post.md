@@ -1,13 +1,13 @@
 ---
-title: 'First post'
-description: 'Lorem ipsum dolor sit amet'
-pubDate: 'Jul 08 2022'
-updatedDate: 'Oct 21 2024'
-category: 'Architecture'
-tags: ['3d', 'modern', 'Technology', 'lists']
+title: "First post"
+description: "Lorem ipsum dolor sit amet, integer quis auctor elit sed vulputate mi."
+pubDate: "2024-12-22T11:35:03.000Z"
+updatedDate: "2024-12-29T17:23:25.000Z"
 image:
-  src: './images/blog-placeholder-1.jpg'
-  alt: 'placeholder'
+  src: "./images/blog-placeholder-2.jpg"
+  alt: "placeholder"
+category: "Documentation"
+tags: ["astro"]
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
