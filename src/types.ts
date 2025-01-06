@@ -33,18 +33,6 @@ export interface ComponentProps {
   date?: Date
 };
 
-export interface MenuItemType { 
-  id: string,
-  parentId: string | null,
-  href: string,
-  label: string,
-  children: MenuItemType[]
-};
-
-export interface MenuDataType {
-  menuItems: MenuItemType[]
-};
-
 export type Terms = {
   name: string,
   slug: string,

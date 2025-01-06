@@ -3,80 +3,74 @@
     {
       "id": "cG9zdDoyMTE=",
       "parentId": null,
-      "href": "/blog/",
+      "slug": "blog",
       "label": "Blog"
     },
     {
       "id": "cG9zdDoyNw==",
       "parentId": null,
-      "href": "/sample-page/",
-      "label": "Sample Page"
+      "slug": null,
+      "label": "Category"
     },
     {
       "id": "cG9zdDoyMjM=",
-      "parentId": "cG9zdDoyNw==",
-      "href": "/blog/tag/",
-      "label": "Tag"
+      "parentId": null,
+      "slug": "section",
+      "label": "Sections"
     },
     {
       "id": "cG9zdDoyOA==",
       "parentId": "cG9zdDoyNw==",
-      "href": "/sample-page/child-page/",
-      "label": "Child Page"
+      "slug": "category/architecture",
+      "label": "Architecture"
+    },
+    {
+      "id": "cG9zdDoyOA=2=",
+      "parentId": "cG9zdDoyNw==",
+      "slug": "category/documentation",
+      "label": "Documentation"
     },
     {
       "id": "cG9zdDo4Mg==",
       "parentId": "cG9zdDoyNw==",
-      "href": "http://www.bing.com/",
-      "label": "This is a very long link text"
+      "slug": "category/nature",
+      "label": "Nature"
     },
     {
       "id": "cG9zdDo4Mw==",
       "parentId": "cG9zdDoyNw==",
-      "href": "http://www.bing.com/",
-      "label": "And another one"
+      "slug": "category/travel",
+      "label": "Travel"
+    },
+    {
+      "id": "cG9zdDoyMTQ=",
+      "parentId": "cG9zdDoyMjM=",
+      "slug": "sections/banner",
+      "label": "Banner"
     },
     {
       "id": "cG9zdDoyMjI=",
-      "parentId": null,
-      "href": "/blog/category/",
-      "label": "Category"
+      "parentId": "cG9zdDoyMjM=",
+      "slug": null,
+      "label": "Cards"
     },
     {
       "id": "cG9zdDoyMTI=",
       "parentId": "cG9zdDoyMjI=",
-      "href": "/blog/category/culture/",
-      "label": "Culture"
+      "slug": "sections/category/feature",
+      "label": "Feature"
     },
     {
       "id": "cG9zdDoyMTM=",
       "parentId": "cG9zdDoyMjI=",
-      "href": "/blog/category/nature/",
-      "label": "Nature"
-    },
-    {
-      "id": "cG9zdDoyMTQ=",
-      "parentId": "cG9zdDoyMjI=",
-      "href": "/blog/category/sports/",
-      "label": "Sports"
-    },
-    {
-      "id": "cG9zdDo1Ng==",
-      "parentId": "cG9zdDoyMjI=",
-      "href": "/blog/category/travel/",
-      "label": "Travel"
-    },
-    {
-      "id": "cG9zdDo1Nw==",
-      "parentId": "cG9zdDoyMjI=",
-      "href": "/blog/category/transport/",
-      "label": "Transport"
+      "slug": "sections/cards/statistic",
+      "label": "Statistic"
     },
     {
       "id": "cG9zdDoyMTc=",
-      "parentId": "cG9zdDoyMjI=",
-      "href": "/blog/category/uncategorized/",
-      "label": "Uncategorized"
+      "parentId": "cG9zdDoyMjM=",
+      "slug": "sections/hero",
+      "label": "Hero"
     }
   ]
 }
