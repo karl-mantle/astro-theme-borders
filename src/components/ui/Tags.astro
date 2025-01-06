@@ -1,0 +1,23 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { slugify } from '../../utils';
+
+interface Props extends HTMLAttributes<'ul'> {
+  tags: string[],
+  permalink: string
+};
+
+const { tags, permalink, class: className }: Partial<Props> = Astro.props;
+---
+<ul class:list={['flex flex-wrap gap-x-4 gap-y-2', className]}>
+  {tags.map((tag) =>
+    <li>
+      <a
+        class="pb-2 font-medium border-b-2 border-theme-300 dark:border-theme-700 hover:border-theme-700 hover:dark:border-theme-300 transition ease-in-out duration-300"
+        href={`${Astro.site}${permalink}${slugify(tag)}/`}
+      >
+        #{tag.toLowerCase()}
+      </a>
+    </li>
+  )}
+</ul>
