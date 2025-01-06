@@ -11,10 +11,12 @@ export const DATE_FORMAT = 'j F Y';
 export const TIME_FORMAT = 'g:i A';
 
 // content settings
-export const POSTS_PER_PAGE = 3;
+export const POSTS_PER_PAGE = 9;
 export const CUSTOM_POSTS_PER_PAGE = 9;
 export const PERMALINK_POSTS = 'blog';
-export const PERMALINK_POSTS_SINGLE = 'blog/detail'
+export const PERMALINK_POSTS_SINGLE = 'blog/detail';
+export const PERMALINK_POSTS_CATEGORY = 'blog/category';
+export const PERMALINK_POSTS_TAG = 'blog/tag';
 export const PERMALINK_CUSTOM_POSTS = 'custom-posts';
 export const PERMALINK_CUSTOM_SINGLE = 'custom-posts/detail';
 

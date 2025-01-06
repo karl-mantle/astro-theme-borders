@@ -8,6 +8,7 @@ import Title from '../../components/ui/Title.astro';
 import Button from '../../components/ui/Button.astro';
 import AuthorProfile from '../../components/blocks/AuthorProfile.astro';
 import Date from '../../components/ui/Date.astro';
+import Tags from '../../components/ui/Tags.astro';
 
 type Props = { 
   entry: CollectionEntry<'posts'>,
@@ -40,7 +41,6 @@ const { data: authorData } = await getEntry('people', entry.data.author.id);
         title={entry.data.title}
         titleTag="h1"
         description={entry.data.description}
-        date={entry.data.pubDate}
         image={entry.data.image?.src}
         alt={entry.data.image?.alt}
         aspectRatio='landscape'
@@ -68,25 +68,14 @@ const { data: authorData } = await getEntry('people', entry.data.author.id);
         )}
 
         <Title titleTag="h3" class="md:text-lg -mb-2">Tags</Title>
-        <ul class="flex flex-wrap gap-x-4 gap-y-2">
-          {entry.data.tags.map((tag) =>
-            <li>
-              <a
-                class="pb-2 font-medium border-b-2 border-theme-300 dark:border-theme-700 hover:border-theme-700 hover:dark:border-theme-300 transition ease-in-out duration-300"
-                href={`${Astro.site}${PERMALINK_POSTS}/tag/${slugify(tag)}/`}
-              >
-                #{tag.toLowerCase()}
-              </a>
-            </li>
-          )}
-        </ul>
+        <Tags tags={entry.data.tags} permalink={`${PERMALINK_POSTS}/tag/`} />
 
         <Title titleTag="h3" class="sr-only">Post Details</Title>
         <div class="-mb-2">
           Posted in the
             <a
               class="pb-2 font-medium border-b-2 border-transparent hover:border-theme-700 hover:dark:border-theme-300 transition ease-in-out duration-300"
-              href={`${Astro.site}${PERMALINK_POSTS}/category/${entry.data.category.toLowerCase()}/`}>
+              href={`${Astro.site}${PERMALINK_POSTS}/category/${slugify(entry.data.category)}/`}>
                 {entry.data.category}
             </a> 
           category
