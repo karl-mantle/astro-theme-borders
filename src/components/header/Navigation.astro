@@ -33,11 +33,14 @@ const menuTree = createMenuTree(menuData.menuItems as MenuItem[]);
   <ul class="overflow-scroll md:overflow-visible absolute top-full md:top-auto left-0 md:left-auto z-20 h-[calc(100vh-90px)] w-full md:h-auto md:relative md:inline-flex md:px-5 bg-theme-50 dark:bg-theme-950 md:bg-transparent md:dark:bg-transparent" >
 
     {menuTree.map((item: MenuItem) => (
-    <li class="relative flex flex-col md:gap-2" x-data="{ childMenuOpen: false }" @keydown.window.escape="childMenuOpen = false" >
-      <div class="flex flex-row items-center justify-between px-4 py-2 md:py-0 md:px-4 text-theme-800 hover:text-theme-900 dark:text-theme-200 dark:hover:text-theme-100 border-b-2 border-theme-300 hover:border-theme-900 dark:border-theme-700 dark:hover:border-theme-100 transition duration-300" >
+    <li class="relative flex flex-col" x-data="{ childMenuOpen: false }" @keydown.window.escape="childMenuOpen = false" >
+      <div class="flex flex-row items-center justify-between px-4 py-2 md:px-4 md:py-0 text-theme-800 hover:text-theme-900 dark:text-theme-200 dark:hover:text-theme-100 border-b-2 border-theme-300 hover:border-theme-900 dark:border-theme-700 dark:hover:border-theme-100 transition duration-300" >
         {item.slug ?
-        <a class="flex p-2 text-lg md:text-base font-medium" href={`${Astro.site}${item.slug}/`} aria-label={`open link to ${item.label}`} >
-          {item.label}
+        <a class="flex flex-grow justify-between items-center text-lg md:text-base font-medium" href={`${Astro.site}${item.slug}/`} aria-label={`open link to ${item.label}`} >
+          <span class="p-2">{item.label}</span>
+          {item.children.length === 0 && (
+          <Icon name="tabler:arrow-right" height={26} width={26} class="w-8 md:hidden" />
+          )}
         </a> :
         <span class="flex p-2 text-lg md:text-base font-medium cursor-pointer" aria-label={item.label} @click="childMenuOpen = !childMenuOpen" >
           {item.label}
@@ -48,20 +51,20 @@ const menuTree = createMenuTree(menuData.menuItems as MenuItem[]);
           <Icon name="tabler:chevron-down" height={32} width={32} :class="{'rotate-180': childMenuOpen}" class="w-8 md:w-4 transition duration-300" />
         </button>
         )}
-        {item.children.length === 0 && (
-        <Icon name="tabler:arrow-right" height={26} width={26} class="w-8 md:hidden" />
-        )}
       </div>
 
       {item.children.length > 0 && (
-      <ul class="md:absolute md:left-0 md:top-full z-25 flex flex-col w-full md:will-change-auto bg-theme-100 dark:bg-theme-900 md:bg-theme-100 dark:md:bg-theme-900 md:shadow-xl dark:shadow-black" aria-label={`${item.label} sub-menu`} x-show="childMenuOpen" @click.away="childMenuOpen = false" >
+      <ul class="md:absolute md:left-0 md:top-full flex flex-col w-full bg-theme-100 dark:bg-theme-900 md:bg-theme-100 dark:md:bg-theme-900 md:shadow-xl dark:shadow-black" aria-label={`${item.label} sub-menu`} x-show="childMenuOpen" @click.away="childMenuOpen = false" >
 
         {item.children.map((child: MenuItem) => (
         <li class="relative flex flex-col" x-data="{ grandchildMenuOpen: false }" @keydown.window.escape="grandchildMenuOpen = false" >
           <div class="flex flex-row items-center justify-between px-4 py-2 md:p-0 text-theme-800 hover:text-theme-900 dark:text-theme-200 dark:hover:text-theme-100 border-b-2 border-theme-300 hover:border-theme-900 dark:border-theme-700 dark:hover:border-theme-100 transition duration-300" >
             {child.slug ?
-            <a class="flex p-2 text-lg md:text-base font-medium" href={`${Astro.site}${child.slug}/`} aria-label={`open link to ${child.label}`} >
-              {child.label}
+            <a class="flex flex-grow justify-between items-center text-lg md:text-base font-medium" href={`${Astro.site}${child.slug}/`} aria-label={`open link to ${child.label}`} >
+              <span class="p-2">{child.label}</span>
+              {child.children.length === 0 && (
+              <Icon name="tabler:arrow-right" height={26} width={26} class="w-8 md:hidden" />
+              )}
             </a> :
             <span class="flex p-2 text-lg md:text-base font-medium cursor-pointer" aria-label={child.label} @click="grandchildMenuOpen = !grandchildMenuOpen" >
               {child.label}
@@ -69,27 +72,24 @@ const menuTree = createMenuTree(menuData.menuItems as MenuItem[]);
             }
             {child.children.length > 0 && (
             <button class="flex items-center justify-center md:pr-2" aria-label={`opens ${child.label} sub-menu`} :aria-expanded="grandchildMenuOpen" @click="grandchildMenuOpen = !grandchildMenuOpen" @keydown.window.escape="grandchildMenuOpen = false" >
-              <Icon name="tabler:chevron-down" height={32} width={32} :class="{'rotate-180 md:-rotate-90': grandchildMenuOpen}" class="w-8 md:w-4 transition duration-300" />
+              <Icon name="tabler:chevron-down" height={32} width={32} :class="{'rotate-180': grandchildMenuOpen}" class="w-8 md:w-4 transition duration-300" />
             </button>
-            )}
-            {child.children.length === 0 && (
-            <Icon name="tabler:arrow-right" height={26} width={26} class="w-8 md:hidden" />
             )}
           </div>
 
           {child.children.length > 0 && (
-            <ul class="flex flex-col w-full md:w-auto bg-theme-200 dark:bg-theme-800" aria-label={`${child.label} sub-menu`} x-show="grandchildMenuOpen" @click.away="grandchildMenuOpen = false" >
-              {child.children.map((grandchild: MenuItem) => (
-                <li class="flex justify-between items-center px-4 py-2 text-lg md:text-base text-theme-800 hover:text-theme-900 dark:text-theme-200 dark:hover:text-theme-100 md:p-0 border-b-2 border-theme-300 dark:border-theme-700 md:hover:border-theme-900 dark:md:border-theme-700 dark:md:hover:border-theme-100 transition duration-300" >
-                  <a class="md:w-32 block p-2 font-medium" href={`${Astro.site}${grandchild.slug}/`} aria-label={`open link to ${grandchild.label}`} >
-                    {grandchild.label}
-                  </a>
-                  <Icon name="tabler:arrow-right" height={26} width={26} class="w-8 md:hidden" />
-                </li>
-              ))}
-            </ul>
-          )}
+          <ul class="flex flex-col w-full bg-theme-200 dark:bg-theme-800" aria-label={`${child.label} sub-menu`} x-show="grandchildMenuOpen" @click.away="grandchildMenuOpen = false" >
 
+            {child.children.map((grandchild: MenuItem) => (
+              <li class="flex px-4 py-2 text-theme-800 hover:text-theme-900 dark:text-theme-200 dark:hover:text-theme-100 md:p-0 border-b-2 border-theme-300 dark:border-theme-700 md:hover:border-theme-900 dark:md:border-theme-700 dark:md:hover:border-theme-100 transition duration-300" >
+                <a class="flex flex-grow justify-between items-center font-medium text-lg md:text-base" href={`${Astro.site}${grandchild.slug}/`} aria-label={`open link to ${grandchild.label}`} >
+                  <span class="p-2">{grandchild.label}</span>
+                  <Icon name="tabler:arrow-right" height={26} width={26} class="w-8 md:hidden" />
+                </a>
+              </li>
+            ))}
+          </ul>
+          )}
         </li>
         ))}
       </ul>
