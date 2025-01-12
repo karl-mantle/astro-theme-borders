@@ -5,9 +5,9 @@ import type { Terms } from '../../../types.ts';
 import { PERMALINK_POSTS, PERMALINK_POSTS_SINGLE, POSTS_PER_PAGE } from '../../../consts';
 import { getTerms, getEntriesByTag, getEntriesByCategory } from '../../../utils';
 import Layout from '../../../layouts/Layout.astro';
-import PostsCard from '../../../components/cards/PostsCard.astro';
+import Header from '../../../components/partials/Header.astro';
+import PostCard from '../../../components/cards/Post.astro';
 import Pagination from '../../../components/ui/Pagination.astro';
-import Heading from '../../../components/blocks/Heading.astro';
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const terms: Terms[] = await getTerms('posts');
@@ -52,7 +52,7 @@ const { page, term } = Astro.props as { page: Page<CollectionEntry<'posts'>>, te
 >
   <section class="not-prose flex flex-col py-8">
 
-    <Heading
+    <Header
       class="border-b-2 border-theme-300 dark:border-theme-700 mb-8"
       title={`All posts tagged with '${term.name}'`}
       titleTag="h1"
@@ -61,7 +61,7 @@ const { page, term } = Astro.props as { page: Page<CollectionEntry<'posts'>>, te
 
     <div class="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
       {page.data.map((post) =>
-        <PostsCard
+        <PostCard
           title={post.data.title}
           titleTag="h3"
           description={post.data.description}

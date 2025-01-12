@@ -7,7 +7,33 @@ export interface ButtonProps extends HTMLAttributes<'a'> {
   icon?: string,
   iconSize?: number,
   iconReverse?: boolean,
-  iconRotate?: boolean
+  iconRotate?: boolean,
+  ariaLabel?: string
+};
+
+export interface CardProps extends HTMLAttributes<'li'> {
+  subtitle?: string,
+  title: string,
+  titleTag: 'h3' | 'h4' | 'h5',
+  description?: string,
+  image?: any, // fix me
+  alt?: string,
+  primaryButtonProps?: ButtonProps,
+  secondaryButtonProps?: ButtonProps
+  class?: string,
+};
+
+export interface PartialProps extends HTMLAttributes<'div'> {
+  subtitle?: string,
+  title?: string,
+  titleTag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5',
+  description?: string,
+  image?: any, // fix me
+  alt?: string,
+  primaryButtonProps?: ButtonProps,
+  secondaryButtonProps?: ButtonProps
+  class?: string,
+  date?: Date
 };
 
 export interface SectionProps extends HTMLAttributes<'section'> {
@@ -19,18 +45,6 @@ export interface SectionProps extends HTMLAttributes<'section'> {
   alt?: string,
   primaryButtonProps?: ButtonProps,
   secondaryButtonProps?: ButtonProps
-};
-
-export interface ComponentProps {
-  subtitle?: string,
-  title?: string,
-  description?: string,
-  image?: any, // fix me
-  alt?: string,
-  primaryButtonProps?: ButtonProps,
-  secondaryButtonProps?: ButtonProps
-  class?: string,
-  date?: Date
 };
 
 export type Terms = {

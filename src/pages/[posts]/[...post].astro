@@ -3,12 +3,12 @@ import { type CollectionEntry, getEntry, render } from 'astro:content';
 import { PERMALINK_POSTS, PERMALINK_POSTS_SINGLE } from '../../consts';
 import { slugify, getEntries } from '../../utils';
 import Layout from '../../layouts/Layout.astro';
-import Banner from '../../components/sections/Banner.astro';
-import Title from '../../components/ui/Title.astro';
 import Button from '../../components/ui/Button.astro';
-import AuthorProfile from '../../components/blocks/AuthorProfile.astro';
 import Date from '../../components/ui/Date.astro';
-import Tags from '../../components/ui/Tags.astro';
+import Title from '../../components/ui/Title.astro';
+import Banner from '../../components/sections/Banner.astro';
+import Profile from '../../components/partials/Profile.astro';
+import TagList from '../../components/partials/TagList.astro';
 
 type Props = { 
   entry: CollectionEntry<'posts'>,
@@ -35,7 +35,7 @@ const { data: authorData } = await getEntry('people', entry.data.author.id);
 ---
 
 <Layout title={entry.data.seo?.title || entry.data.title} metaDesc={entry.data.seo?.description || entry.data.description}>
-  <article>
+  <article class="prose dark:prose-invert prose-theme">
     <header>
       <Banner
         title={entry.data.title}
@@ -58,9 +58,9 @@ const { data: authorData } = await getEntry('people', entry.data.author.id);
           <div class="absolute bottom-0 -z-40 block w-full border-b-2 border-theme-300 dark:border-theme-700" aria-hidden="true"></div>
         </div>
 
-        { entry.data.author.id !== 'default' &&  (
+        { entry.data.author.id !== 'default' && (
           <Title titleTag="h3" class="md:text-lg">Author</Title>
-          <AuthorProfile
+          <Profile
             title={authorData.title}
             description={authorData.description}
             image={authorData.image}
@@ -68,7 +68,7 @@ const { data: authorData } = await getEntry('people', entry.data.author.id);
         )}
 
         <Title titleTag="h3" class="md:text-lg -mb-2">Tags</Title>
-        <Tags tags={entry.data.tags} permalink={`${PERMALINK_POSTS}/tag/`} />
+        <TagList tags={entry.data.tags} permalink={`${PERMALINK_POSTS}/tag/`} />
 
         <Title titleTag="h3" class="sr-only">Post Details</Title>
         <div class="-mb-2">
@@ -83,21 +83,21 @@ const { data: authorData } = await getEntry('people', entry.data.author.id);
 
         <div class="flex flex-col text-sm gap-1">
           <h4 class="font-medium">Published on</h4>
-          <Date class="text-sm" date={entry.data.pubDate} />
+          <Date class="text-sm" date={entry.data.pubDate} description="post first published on" />
         </div>
         { entry.data.updatedDate &&  (
           <div class="flex flex-col text-sm gap-1">
             <h4 class="font-medium">Last updated</h4>
-            <Date class="text-sm" date={entry.data.updatedDate} />
+            <Date class="text-sm" date={entry.data.updatedDate} description="post last updated on"/>
           </div>
         )}
 
         <div class="flex justify-between">
           { nextEntry && (
-            <Button buttonStyle="link" href={`${Astro.site}${PERMALINK_POSTS_SINGLE}/${nextEntry.data.slug}/`} text="Next post" icon="tabler:arrow-left" iconSize={21} iconReverse={true} class="w-fit text-sm"/>
+            <Button buttonStyle="link" href={`${Astro.site}${PERMALINK_POSTS_SINGLE}/${nextEntry.data.slug}/`} text="Next post" icon="tabler:arrow-left" iconSize={21} iconReverse={true} class="w-fit text-sm" />
           )}
           { prevEntry &&  (
-            <Button buttonStyle="link" href={`${Astro.site}${PERMALINK_POSTS_SINGLE}/${prevEntry.data.slug}/`} text="Previous post" icon="tabler:arrow-right" iconSize={21} iconReverse={false} class="w-fit text-sm"/>
+            <Button buttonStyle="link" href={`${Astro.site}${PERMALINK_POSTS_SINGLE}/${prevEntry.data.slug}/`} text="Previous post" icon="tabler:arrow-right" iconSize={21} iconReverse={false} class="w-fit text-sm" />
           )}
         </div>
 

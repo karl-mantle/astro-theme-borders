@@ -7,9 +7,9 @@ interface Props extends HTMLAttributes<'ul'> {
   permalink: string
 };
 
-const { tags, permalink, class: className }: Partial<Props> = Astro.props;
+const { tags, permalink, class: className, ...rest }: Partial<Props> = Astro.props;
 ---
-<ul class:list={['flex flex-wrap gap-x-4 gap-y-2', className]}>
+<ul class:list={['flex flex-wrap gap-x-4 gap-y-2', className]} {...rest} >
   {tags.map((tag) =>
     <li>
       <a

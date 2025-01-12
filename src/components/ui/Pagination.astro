@@ -2,10 +2,10 @@
 import Button from '../ui/Button.astro';
 
 const iconSize = 21;
-const { page } = Astro.props;
+const { page, class: className, ...rest } = Astro.props;
 ---
 
-<nav class="flex justify-center pt-8 md:pt-12" aria-label="pagination">
+<nav class:list={['flex justify-center pt-8 md:pt-12', className]} aria-label="pagination" {...rest} >
   <ul class="flex items-center">
     <li class="flex justify-end w-1/4">
       {page.url.prev ?

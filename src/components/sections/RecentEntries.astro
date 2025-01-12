@@ -4,8 +4,8 @@ import type { SectionProps } from '../../types';
 import { PERMALINK_POSTS_SINGLE, PERMALINK_CUSTOM_SINGLE, PERMALINK_POSTS, PERMALINK_CUSTOM } from '../../consts';
 import { getEntries } from '../../utils';
 import Container from './Container.astro';
-import PostsCard from '../cards/PostsCard.astro';
-import CustomCard from '../cards/PostsCard.astro';
+import PostCard from '../cards/Post.astro';
+import CustomCard from '../cards/Post.astro';
 
 interface Props extends SectionProps {
   columns: number,
@@ -13,7 +13,7 @@ interface Props extends SectionProps {
   maxEntries?: number
 };
 
-const { title, titleTag = 'h2', description, primaryButtonProps, secondaryButtonProps, columns, contentCollection, maxEntries = 3, class: className }: Partial<Props> = Astro.props;
+const { title, titleTag = 'h2', description, primaryButtonProps, secondaryButtonProps, columns, contentCollection, maxEntries = 3, class: className, ...rest }: Partial<Props> = Astro.props;
 
 const entries = await getEntries(contentCollection, maxEntries);
 
@@ -52,11 +52,12 @@ switch (contentCollection) {
   primaryButtonProps={primaryButtonProps || { buttonStyle: 'link', href: `${defaultHref}`, text: 'View all posts', textClass: '', icon: 'tabler:arrow-right', iconSize: 21, iconReverse: false, iconRotate: true }}
   secondaryButtonProps={secondaryButtonProps}
   class={className}
+  {...rest}
 >
 
   { contentCollection === 'posts' && (
     entries.map((post) =>
-      <PostsCard
+      <PostCard
         title={post.data.title}
         titleTag="h3"
         description={post.data.description}

@@ -17,8 +17,8 @@ export const PERMALINK_POSTS = 'blog';
 export const PERMALINK_POSTS_SINGLE = 'blog/detail';
 export const PERMALINK_POSTS_CATEGORY = 'blog/category';
 export const PERMALINK_POSTS_TAG = 'blog/tag';
-export const PERMALINK_CUSTOM_POSTS = 'custom-posts';
-export const PERMALINK_CUSTOM_SINGLE = 'custom-posts/detail';
+export const PERMALINK_CUSTOM = 'custom';
+export const PERMALINK_CUSTOM_SINGLE = 'custom/detail';
 
 // images
 export const SITE_OG_IMAGE = OGImage;

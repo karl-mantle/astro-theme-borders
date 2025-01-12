@@ -21,25 +21,25 @@
     {
       "id": "cG9zdDoyOA==",
       "parentId": "cG9zdDoyNw==",
-      "slug": "category/architecture",
+      "slug": "blog/category/architecture",
       "label": "Architecture"
     },
     {
       "id": "cG9zdDoyOA=2=",
       "parentId": "cG9zdDoyNw==",
-      "slug": "category/documentation",
+      "slug": "blog/category/documentation",
       "label": "Documentation"
     },
     {
       "id": "cG9zdDo4Mg==",
       "parentId": "cG9zdDoyNw==",
-      "slug": "category/nature",
+      "slug": "blog/category/nature",
       "label": "Nature"
     },
     {
       "id": "cG9zdDo4Mw==",
       "parentId": "cG9zdDoyNw==",
-      "slug": "category/travel",
+      "slug": "blog/category/travel",
       "label": "Travel"
     },
     {

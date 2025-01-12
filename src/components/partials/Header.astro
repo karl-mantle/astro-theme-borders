@@ -1,15 +1,12 @@
 ---
-import type { ComponentProps } from '../../types';
-import Title from '../ui/Title.astro';
+import type { PartialProps } from '../../types';
 import Button from '../ui/Button.astro';
+import Title from '../ui/Title.astro';
 
-interface Props extends ComponentProps {
-  titleTag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5'
-};
-
-const { title, titleTag = 'h2', description, primaryButtonProps, secondaryButtonProps, class: className }: Partial<Props> = Astro.props;
+const { title, titleTag = 'h2', description, primaryButtonProps, secondaryButtonProps, class: className, ...rest }: Partial<PartialProps> = Astro.props;
 ---
-<header class:list={['flex flex-col sm:flex-row justify-between', className]}>
+
+<header class:list={['flex flex-col md:flex-row justify-between', className]} {...rest} >
 
   { (title || description) && (
     <div class="flex flex-col gap-2">

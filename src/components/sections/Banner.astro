@@ -12,10 +12,10 @@ interface Props extends SectionProps {
   containImage?: boolean
 };
 
-const { title, titleTag = 'h2', description, date, image, alt = '', primaryButtonProps, secondaryButtonProps, aspectRatio, containImage = false, class: className }: Partial<Props> = Astro.props;
+const { title, titleTag = 'h2', description, date, image, alt = '', primaryButtonProps, secondaryButtonProps, aspectRatio, containImage = false, class: className, ...rest }: Partial<Props> = Astro.props;
 ---
 
-<section class:list={['not-prose grid grid-cols-1 bg-theme-200 dark:bg-theme-800', image ? 'md:grid-cols-2' : '', className]}>
+<section class:list={['grid grid-cols-1 bg-theme-200 dark:bg-theme-800', image ? 'md:grid-cols-2' : '', className]} {...rest} >
 
   { image && (
     <Image

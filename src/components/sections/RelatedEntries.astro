@@ -4,8 +4,8 @@ import type { SectionProps } from '../../types';
 import { PERMALINK_POSTS_SINGLE, PERMALINK_CUSTOM_SINGLE, PERMALINK_POSTS_CATEGORY, PERMALINK_CUSTOM_CATEGORY } from '../../consts';
 import { slugify, getEntriesByCategory } from '../../utils';
 import Container from './Container.astro';
-import PostsCard from '../cards/PostsCard.astro';
-import CustomCard from '../cards/PostsCard.astro';
+import PostCard from '../cards/Post.astro';
+import CustomCard from '../cards/Post.astro';
 
 interface Props extends SectionProps {
   columns: number,
@@ -14,7 +14,7 @@ interface Props extends SectionProps {
   category: string
 };
 
-const { title, titleTag = 'h2', description, primaryButtonProps, secondaryButtonProps, columns, contentCollection, category, maxEntries = 3, class: className }: Partial<Props> = Astro.props;
+const { title, titleTag = 'h2', description, primaryButtonProps, secondaryButtonProps, columns, contentCollection, category, maxEntries = 3, class: className, ...rest }: Partial<Props> = Astro.props;
 
 const entries = await getEntriesByCategory(contentCollection, category, maxEntries);
 
@@ -53,11 +53,12 @@ switch (contentCollection) {
   primaryButtonProps={primaryButtonProps || { buttonStyle: 'link', href: `${defaultHref}`, text: `View more ${String(contentCollection)}`, textClass: '', icon: 'tabler:arrow-right', iconSize: 21, iconReverse: false, iconRotate: true, ariaLabel: `open ${category} ${String(contentCollection)} archive` }}
   secondaryButtonProps={secondaryButtonProps}
   class={className}
+  {...rest}
 >
 
   { contentCollection === 'posts' && (
     entries.map((post) =>
-      <PostsCard
+      <PostCard
         title={post.data.title}
         titleTag="h3"
         description={post.data.description}
