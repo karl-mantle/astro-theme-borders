@@ -17,7 +17,7 @@ function createMenuTree(menuItems: MenuItem[], parentId: string | null = null): 
       ...item,
       children: createMenuTree(menuItems, item.id)
     }));
-}
+};
 
 const menuTree = createMenuTree(menuData.menuItems as MenuItem[]);
 ---
