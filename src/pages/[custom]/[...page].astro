@@ -1,22 +1,22 @@
 ---
 import type { GetStaticPathsOptions, Page } from 'astro';
 import { type CollectionEntry } from 'astro:content';
-import { PERMALINK_POSTS, PERMALINK_POSTS_SINGLE, POSTS_PER_PAGE } from '../../consts';
+import { PERMALINK_CUSTOM, PERMALINK_CUSTOM_SINGLE, CUSTOM_PER_PAGE } from '../../consts';
 import { getEntries } from '../../utils';
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/partials/Header.astro';
-import PostCard from '../../components/cards/Post.astro';
+import CustomCard from '../../components/cards/Post.astro';
 import Pagination from '../../components/ui/Pagination.astro';
 
 interface Props { 
-  page: Page<CollectionEntry<'posts'>>
+  page: Page<CollectionEntry<'custom'>>
 };
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-    const posts = await getEntries('posts');
-    return paginate(posts, { 
-      params: { posts: PERMALINK_POSTS },
-      pageSize: POSTS_PER_PAGE || 9
+    const custom = await getEntries('custom');
+    return paginate(custom, { 
+      params: { custom: PERMALINK_CUSTOM },
+      pageSize: CUSTOM_PER_PAGE || 9
     });
 };
 
@@ -24,8 +24,8 @@ const { page }: Partial<Props> = Astro.props;
 ---
 
 <Layout
-  title="All Posts"
-  description="An archive of all posts"
+  title="All custom"
+  description="An archive of all custom"
 >
   <section class="flex flex-col py-8">
 
@@ -33,19 +33,19 @@ const { page }: Partial<Props> = Astro.props;
       class="border-b-2 border-theme-300 dark:border-theme-700 mb-8"
       title="Archive"
       titleTag="h1"
-      description={`Showing ${page.start + 1} to ${page.end + 1} posts out of ${page.total} posts.`}
+      description={`Showing ${page.start + 1} to ${page.end + 1} custom out of ${page.total} custom.`}
     />
 
     <div class="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-      {page.data.map((post) =>
-        <PostCard
-          title={post.data.title}
+      {page.data.map((custom) =>
+        <CustomCard
+          title={custom.data.title}
           titleTag="h3"
-          description={post.data.description}
-          date={post.data.pubDate}
-          image={post.data.image?.src}
-          alt={post.data.image?.alt}
-          href={`${Astro.site}${PERMALINK_POSTS_SINGLE}${post.data.slug}/`}
+          description={custom.data.description}
+          date={custom.data.pubDate}
+          image={custom.data.image?.src}
+          alt={custom.data.image?.alt}
+          href={`${Astro.site}${PERMALINK_CUSTOM_SINGLE}${custom.data.slug}/`}
         />
       )}
     </div>

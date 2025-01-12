@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Banner from '../components/sections/Banner.astro';
 import Container from '../components/sections/Container.astro';
-import HeroImage from '../content/posts/images/blog-placeholder-1.jpg';
+import HeroImage from '../content/custom/images/blog-placeholder-1.jpg';
 import Image from '../components/ui/Image.astro';
 import RecentEntries from '../components/sections/RecentEntries.astro';
 import RelatedEntries from '../components/sections/RelatedEntries.astro';
@@ -22,7 +22,7 @@ import RelatedEntries from '../components/sections/RelatedEntries.astro';
     alt=""
     primaryButtonProps={{ buttonStyle: 'primary', href: '/deadlink', text: 'View the repo', textClass: '', icon: 'tabler:brand-github', iconSize: 21, iconReverse: true, iconRotate: false }}
     secondaryButtonProps={{ buttonStyle: 'link', href: '/deadlink', text: 'Read more', textClass: '', icon: 'tabler:arrow-right', iconSize: 21, iconReverse: false, iconRotate: true }}
-    aspectRatio='landscape'
+    aspectRatio="landscape"
   />
 
   <Container
@@ -39,17 +39,23 @@ import RelatedEntries from '../components/sections/RelatedEntries.astro';
 
   <RecentEntries
     columns={3}
-    contentCollection='posts'
+    contentCollection="posts"
   />
 
   <RelatedEntries
     columns={3}
-    contentCollection='posts'
+    contentCollection="posts"
     category="Nature"
     title="Posts categorised as 'Nature'"
     description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     primaryButtonProps={{ buttonStyle: 'primary', href: '/deadlink', text: 'View the repo', textClass: '', icon: 'tabler:brand-github', iconSize: 21, iconReverse: true, iconRotate: false }}
     secondaryButtonProps={{ buttonStyle: 'link', href: '/deadlink', text: 'Read more', textClass: '', icon: 'tabler:arrow-right', iconSize: 21, iconReverse: false, iconRotate: true }}
   />
+
+  <RecentEntries
+  columns={3}
+  contentCollection="custom"
+/>
+
 
 </Layout>

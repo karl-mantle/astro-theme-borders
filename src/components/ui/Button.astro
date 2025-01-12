@@ -21,7 +21,7 @@ switch (buttonStyle) {
 }
 ---
 
-<a href={`${Astro.site}${href}/`} class:list={['group/btn flex gap-2 justify-center items-center transition ease-in-out duration-300', buttonCSS, iconReverse ? 'flex-row-reverse' : '', className]} aria-label={ariaLabel} {...rest} >
+<a href={href} class:list={['group/btn flex gap-2 justify-center items-center transition ease-in-out duration-300', buttonCSS, iconReverse ? 'flex-row-reverse' : '', className]} aria-label={ariaLabel} {...rest} >
   <span class:list={['font-medium', textClass ? textClass : '']}>
     {text}
   </span>

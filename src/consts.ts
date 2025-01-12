@@ -12,13 +12,16 @@ export const TIME_FORMAT = 'g:i A';
 
 // content settings
 export const POSTS_PER_PAGE = 9;
-export const CUSTOM_POSTS_PER_PAGE = 9;
-export const PERMALINK_POSTS = 'blog';
-export const PERMALINK_POSTS_SINGLE = 'blog/detail';
-export const PERMALINK_POSTS_CATEGORY = 'blog/category';
-export const PERMALINK_POSTS_TAG = 'blog/tag';
-export const PERMALINK_CUSTOM = 'custom';
-export const PERMALINK_CUSTOM_SINGLE = 'custom/detail';
+export const PERMALINK_POSTS = 'blog/';
+export const PERMALINK_POSTS_SINGLE = 'blog/detail/';
+export const PERMALINK_POSTS_CATEGORY = 'blog/category/';
+export const PERMALINK_POSTS_TAG = 'blog/tag/';
+
+export const CUSTOM_PER_PAGE = 9;
+export const PERMALINK_CUSTOM = 'custom/';
+export const PERMALINK_CUSTOM_SINGLE = 'custom/detail/';
+export const PERMALINK_CUSTOM_CATEGORY = 'custom/category/';
+export const PERMALINK_CUSTOM_TAG = 'custom/tag/';
 
 // images
 export const SITE_OG_IMAGE = OGImage;

@@ -2,15 +2,15 @@
 import type { GetStaticPathsOptions, Page } from 'astro';
 import type { CollectionEntry } from 'astro:content';
 import type { Terms } from '../../../types.ts';
-import { PERMALINK_POSTS, PERMALINK_POSTS_SINGLE, POSTS_PER_PAGE } from '../../../consts';
+import { PERMALINK_CUSTOM, PERMALINK_CUSTOM_SINGLE, CUSTOM_PER_PAGE } from '../../../consts';
 import { getTerms, getEntriesByTag, getEntriesByCategory } from '../../../utils';
 import Layout from '../../../layouts/Layout.astro';
 import Header from '../../../components/partials/Header.astro';
-import PostCard from '../../../components/cards/Post.astro';
+import CustomCard from '../../../components/cards/Post.astro';
 import Pagination from '../../../components/ui/Pagination.astro';
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-  const terms: Terms[] = await getTerms('posts');
+  const terms: Terms[] = await getTerms('custom');
   let paths: any[] = [];
 
   for (const term of terms) {
@@ -19,18 +19,18 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
     let entries;
     switch (type) {
       case 'category':
-        entries = await getEntriesByCategory('posts', name);
+        entries = await getEntriesByCategory('custom', name);
         break;
       case 'tag':
-        entries = await getEntriesByTag('posts', name);
+        entries = await getEntriesByTag('custom', name);
         break;
       default:
-        entries = await getEntriesByCategory('posts', name);
+        entries = await getEntriesByCategory('custom', name);
     };
 
     const paginatedTerms = paginate(entries, {
-      params: { posts: PERMALINK_POSTS, terms: `${type}/${slug}` },
-      pageSize: POSTS_PER_PAGE || 9
+      params: { custom: PERMALINK_CUSTOM, terms: `${type}/${slug}` },
+      pageSize: CUSTOM_PER_PAGE || 9
     });
 
     paginatedTerms.forEach((path) => {
@@ -43,32 +43,32 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   return paths;
 };
 
-const { page, term } = Astro.props as { page: Page<CollectionEntry<'posts'>>, term: Terms };
+const { page, term } = Astro.props as { page: Page<CollectionEntry<'custom'>>, term: Terms };
 ---
 
 <Layout
-  title="All Posts"
-  description="An archive of all posts"
+  title="All custom"
+  description="An archive of all custom"
 >
-  <section class="not-prose flex flex-col py-8">
+  <section class="flex flex-col py-8">
 
     <Header
       class="border-b-2 border-theme-300 dark:border-theme-700 mb-8"
-      title={`All posts tagged with '${term.name}'`}
+      title={`All custom tagged with '${term.name}'`}
       titleTag="h1"
-      description={`Showing ${page.end + 1} of ${page.total} posts.`}
+      description={`Showing ${page.end + 1} of ${page.total} custom.`}
     />
 
     <div class="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-      {page.data.map((post) =>
-        <PostCard
-          title={post.data.title}
+      {page.data.map((custom) =>
+        <CustomCard
+          title={custom.data.title}
           titleTag="h3"
-          description={post.data.description}
-          date={post.data.pubDate}
-          image={post.data.image?.src}
-          alt={post.data.image?.alt}
-          href={`${Astro.site}${PERMALINK_POSTS_SINGLE}${post.data.slug}/`}
+          description={custom.data.description}
+          date={custom.data.pubDate}
+          image={custom.data.image?.src}
+          alt={custom.data.image?.alt}
+          href={`${Astro.site}${PERMALINK_CUSTOM_SINGLE}${custom.data.slug}/`}
         />
       )}
     </div>
