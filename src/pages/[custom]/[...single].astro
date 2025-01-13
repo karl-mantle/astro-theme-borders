@@ -31,7 +31,8 @@ export async function getStaticPaths() {
 
 const { entry, prevEntry, nextEntry } = Astro.props;
 const { Content } = await render(entry);
-const { data: authorData } = await getEntry('people', entry.data.author.id);
+const author =  await getEntry('people', entry.data.author.id);
+const authorData = author?.data;
 ---
 
 <Layout title={entry.data.seo?.title || entry.data.title} metaDesc={entry.data.seo?.description || entry.data.description}>
@@ -62,14 +63,12 @@ const { data: authorData } = await getEntry('people', entry.data.author.id);
         { entry.data.author.id !== 'default' && (
           <Title titleTag="h3" class="md:text-lg">Author</Title>
           <Profile
-            title={authorData.title}
-            description={authorData.description}
-            image={authorData.image}
+            title={authorData?.title}
+            description={authorData?.description}
+            image={authorData?.image?.src}
+            alt={authorData?.image?.alt}
           />
         )}
-
-        <Title titleTag="h3" class="md:text-lg -mb-2">Tags</Title>
-        <TagList tags={entry.data.tags} permalink={`${PERMALINK_CUSTOM_TAG}`} />
 
         <Title titleTag="h3" class="sr-only">Custom Details</Title>
         <div class="-mb-2">
@@ -92,6 +91,9 @@ const { data: authorData } = await getEntry('people', entry.data.author.id);
             <Date class="text-sm" date={entry.data.updatedDate} description="custom last updated on"/>
           </div>
         )}
+
+        <Title titleTag="h3" class="md:text-lg -mb-2">Tags</Title>
+        <TagList tags={entry.data.tags} permalink={`${PERMALINK_CUSTOM_TAG}`} />
 
         <div class="flex justify-between">
           { nextEntry && (

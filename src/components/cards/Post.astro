@@ -18,7 +18,7 @@ const uniqueId = Math.random().toString(36).slice(2, 11);
 
 <li
   class="group/card h-full flex flex-col-reverse hover:shadow-md dark:shadow-black brightness-90 hover:brightness-100 focus:brightness-100 transition duration-300"
-  tabindex="0"
+  tabindex="-1"
   aria-label={title}
   :class="{'cursor-pointer': !preventClick}"
   x-data="{ clickTimeout: null, preventClick: false }"

@@ -2,7 +2,7 @@
 import type { PartialProps } from '../../types';
 import { Image } from 'astro:assets';
 
-const { title, description, image, class: className, ...rest }: Partial<PartialProps> = Astro.props;
+const { title, description, image, alt, class: className, ...rest }: Partial<PartialProps> = Astro.props;
 ---
 
 <div class:list={['flex flex-col', className]} {...rest} >
@@ -19,7 +19,7 @@ const { title, description, image, class: className, ...rest }: Partial<PartialP
         width={64}
         format="webp"
         class="rounded-full border-2 border-b-2 dark:border-theme-300 border-theme-700 h-16 w-16 object-cover object-center"
-        alt=`${title}'s avatar`
+        alt={ alt ? alt : `avatar of ${title}`}
       />
     </div>
   </div>

@@ -34,7 +34,17 @@ const people = defineCollection({
   schema: ({ image }) => z.object({
     title: z.string(),
     description: z.string().optional(),
-    image: image().optional()
+    slug: z.string().optional(),
+    image: z
+      .object({
+        src: image(),
+        alt: z.string().optional()
+      })
+    .optional(),
+    pubDate: z.coerce.date(),
+    draft: z.boolean().default(false),
+    category: z.string().default('Uncategorised'),
+    tags: z.array(z.string()).default([])
   }),
 });
 

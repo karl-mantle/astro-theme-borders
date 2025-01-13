@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 import Button from '../ui/Button.astro';
+import { PERMALINK_POSTS_TAG } from '../../consts';
 
 const iconSize = 28;
 const listClasses = 'text-theme-800 hover:text-theme-900 dark:text-theme-200 dark:hover:text-theme-100 transition duration-300';
@@ -13,7 +14,7 @@ const listClasses = 'text-theme-800 hover:text-theme-900 dark:text-theme-200 dar
       aria-label="open tags archive"
       text="Tags"
       textClass="hidden md:inline-block"
-      href="blog/tags"
+      href={`${Astro.site}${PERMALINK_POSTS_TAG}`}
       icon="tabler:tags"
       iconSize={iconSize}
       iconReverse={true}

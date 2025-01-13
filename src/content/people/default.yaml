@@ -1,4 +1,6 @@
 title: "Default"
 description: "This author shouldn't be visible on posts."
 role: "Bug"
-image: "./images/1a270860bac2c66b434968a3047822e3.png"
+image:  
+  src: "./images/1a270860bac2c66b434968a3047822e3.png"
+pubDate: "2024-12-22T11:35:03.000Z"

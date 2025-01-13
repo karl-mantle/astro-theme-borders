@@ -1,3 +1,5 @@
 title: "Maria Riley"
 description: "Photographer"
-image: "./images/622e4c7767d4eb0307179d6dfda9248b.png"
+image:  
+  src: "./images/622e4c7767d4eb0307179d6dfda9248b.png"
+pubDate: "2024-12-22T11:35:03.000Z"
