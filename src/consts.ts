@@ -28,3 +28,7 @@ export const SITE_OG_IMAGE = OGImage;
 export const SITE_LOGO_SVG_SQUARE = './assets/logo/svg/Logo-1-1.svg';
 
 // seo/schema
+
+// theme
+export const THEME_CONTAINER_DESKTOP = 'm-auto max-w-7xl';
+export const THEME_CONTAINER_MOBILE = 'px-8 xl:px-0';

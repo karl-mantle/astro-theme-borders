@@ -1,7 +1,7 @@
 ---
 import type { GetStaticPathsOptions, Page } from 'astro';
 import { type CollectionEntry } from 'astro:content';
-import { PERMALINK_CUSTOM, PERMALINK_CUSTOM_SINGLE, CUSTOM_PER_PAGE } from '../../consts';
+import { CUSTOM_PER_PAGE, PERMALINK_CUSTOM, PERMALINK_CUSTOM_SINGLE, THEME_CONTAINER_DESKTOP, THEME_CONTAINER_MOBILE } from '../../consts';
 import { getEntries } from '../../utils';
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/partials/Header.astro';
@@ -27,7 +27,7 @@ const { page }: Partial<Props> = Astro.props;
   title="All custom"
   description="An archive of all custom"
 >
-  <section class="flex flex-col py-8">
+  <section class={`flex flex-col py-8 ${THEME_CONTAINER_DESKTOP} ${THEME_CONTAINER_MOBILE}`}>
 
     <Header
       class="border-b-2 border-theme-300 dark:border-theme-700 mb-8"

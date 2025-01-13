@@ -1,9 +1,9 @@
 ---
-import { SITE_FOOTER_TEXT } from '../../consts.ts';
+import { SITE_FOOTER_TEXT, THEME_CONTAINER_DESKTOP, THEME_CONTAINER_MOBILE } from '../../consts';
 // import SocialIcons from "./SocialIcons.astro";
 ---
 
-<footer class="relative flex flex-col md:flex-row items-center justify-between gap-4 pt-4 pb-8">
+<footer class={`relative flex flex-col md:flex-row items-center justify-between gap-4 pt-4 pb-8 ${THEME_CONTAINER_DESKTOP} ${THEME_CONTAINER_MOBILE}`}>
   <div class="absolute top-0 -z-40 block w-full border-t-2 border-theme-300 dark:border-theme-700"></div>
   <span class="inline-flex px-4 text-center text-theme-800 dark:text-theme-200">
     {SITE_FOOTER_TEXT}

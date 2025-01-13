@@ -5,7 +5,7 @@ import { Image } from 'astro:assets';
 const { title, description, image, class: className, ...rest }: Partial<PartialProps> = Astro.props;
 ---
 
-<div class:list={['not-prose flex flex-col', className]} {...rest} >
+<div class:list={['flex flex-col', className]} {...rest} >
   <div class="flex flex-row-reverse justify-end gap-4">
     <div class="flex flex-col gap-1">
       <h4 class="m-0 text-base font-semibold text-theme-800 dark:text-theme-200">{title}</h4>

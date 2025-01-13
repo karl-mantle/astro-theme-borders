@@ -44,7 +44,8 @@ export interface SectionProps extends HTMLAttributes<'section'> {
   image?: any, // fix me
   alt?: string,
   primaryButtonProps?: ButtonProps,
-  secondaryButtonProps?: ButtonProps
+  secondaryButtonProps?: ButtonProps,
+  contained?: boolean,
 };
 
 export type Terms = {

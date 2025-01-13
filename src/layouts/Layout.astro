@@ -33,9 +33,9 @@ const { title, description, image } = Astro.props;
     <Head title={title} description={description} image={image} />
   </head>
 
-  <body class="bg-theme-100 dark:bg-theme-900 m-auto max-w-7xl">
+  <body class="bg-theme-100 dark:bg-theme-900">
     <Header />
-    <main class="m-auto px-4 max-w-7xl xl:px-0">
+    <main id="main">
       <slot />
     </main>
     <Footer />

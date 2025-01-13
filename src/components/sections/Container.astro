@@ -1,12 +1,13 @@
 ---
 import type { SectionProps } from '../../types';
+import { THEME_CONTAINER_DESKTOP, THEME_CONTAINER_MOBILE } from '../../consts';
 import Header from '../partials/Header.astro';
 
 interface Props extends SectionProps {
   columns: number
 }
 
-const { title, titleTag = 'h2', description, primaryButtonProps, secondaryButtonProps, columns, class: className, ...rest }: Partial<Props> = Astro.props;
+const { title, titleTag = 'h2', description, primaryButtonProps, secondaryButtonProps, contained = true, columns, class: className, ...rest }: Partial<Props> = Astro.props;
 
 let columnsCSS;
 switch (columns) {
@@ -25,7 +26,7 @@ switch (columns) {
 }
 ---
 
-<section class:list={['flex flex-col mb-8', className]} {...rest} >
+<section class:list={['flex flex-col mb-8', contained ? `${THEME_CONTAINER_DESKTOP} ${THEME_CONTAINER_MOBILE}` : '', className]} {...rest} >
 
   <Header
     title={title}
@@ -35,7 +36,7 @@ switch (columns) {
     secondaryButtonProps={secondaryButtonProps}
   />
 
-  <div class:list={['grid gap-4', columnsCSS]}>
+  <div class:list={['grid gap-4 lg:gap-8', columnsCSS]}>
     <slot />
   </div>
 

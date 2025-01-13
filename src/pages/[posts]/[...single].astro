@@ -1,6 +1,6 @@
 ---
 import { type CollectionEntry, getEntry, render } from 'astro:content';
-import { PERMALINK_POSTS_CATEGORY, PERMALINK_POSTS_SINGLE, PERMALINK_POSTS_TAG } from '../../consts';
+import { PERMALINK_POSTS_CATEGORY, PERMALINK_POSTS_SINGLE, PERMALINK_POSTS_TAG, THEME_CONTAINER_DESKTOP, THEME_CONTAINER_MOBILE } from '../../consts';
 import { slugify, getEntries } from '../../utils';
 import Layout from '../../layouts/Layout.astro';
 import Button from '../../components/ui/Button.astro';
@@ -35,7 +35,7 @@ const { data: authorData } = await getEntry('people', entry.data.author.id);
 ---
 
 <Layout title={entry.data.seo?.title || entry.data.title} metaDesc={entry.data.seo?.description || entry.data.description}>
-  <div class="prose dark:prose-invert prose-theme max-w-max">
+  <div class={`prose dark:prose-invert prose-theme ${THEME_CONTAINER_DESKTOP} ${THEME_CONTAINER_MOBILE}`}>
     <header>
       <Banner
         title={entry.data.title}
@@ -44,7 +44,7 @@ const { data: authorData } = await getEntry('people', entry.data.author.id);
         image={entry.data.image?.src}
         alt={entry.data.image?.alt}
         aspectRatio="landscape"
-        class="not-prose"
+        class="not-prose px-0"
       />
     </header>
 

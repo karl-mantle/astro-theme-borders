@@ -1,5 +1,6 @@
 ---
 import type { SectionProps } from '../../types';
+import { THEME_CONTAINER_DESKTOP, THEME_CONTAINER_MOBILE } from '../../consts';
 import Title from '../ui/Title.astro';
 import Date from '../ui/Date.astro';
 import Image from '../ui/Image.astro';
@@ -12,10 +13,17 @@ interface Props extends SectionProps {
   containImage?: boolean
 };
 
-const { title, titleTag = 'h2', description, date, image, alt = '', primaryButtonProps, secondaryButtonProps, aspectRatio, containImage = false, class: className, ...rest }: Partial<Props> = Astro.props;
+const { title, titleTag = 'h2', description, date, image, alt = '', primaryButtonProps, secondaryButtonProps, aspectRatio, containImage = false, contained = true, class: className, ...rest }: Partial<Props> = Astro.props;
+
+let containerCSS = ``;
+let containerContentCSS = `${THEME_CONTAINER_MOBILE} max-w-screen-sm`
+if (contained === false) {
+  containerCSS = '';
+  containerContentCSS = ``
+};
 ---
 
-<section class:list={['grid grid-cols-1 bg-theme-200 dark:bg-theme-800', image ? 'md:grid-cols-2' : '', className]} {...rest} >
+<section class:list={['grid grid-cols-1 bg-theme-200 dark:bg-theme-800', image ? 'md:grid-cols-2' : '', contained ? `${THEME_CONTAINER_DESKTOP}` : '', className]} {...rest} >
 
   { image && (
     <Image
@@ -27,7 +35,7 @@ const { title, titleTag = 'h2', description, date, image, alt = '', primaryButto
     />
   )}
 
-  <div class="order-2 md:order-1 flex flex-col gap-4 justify-center p-8 lg:py-8 lg:px-16">
+  <div class:list={['order-2 md:order-1 flex flex-col gap-4 justify-center p-8', contained ? `${THEME_CONTAINER_DESKTOP} xl:px-20` : 'xl:pl-0 ml-auto max-w-screen-sm']}>
 
     <Title titleTag={titleTag}>{title}</Title>
 
