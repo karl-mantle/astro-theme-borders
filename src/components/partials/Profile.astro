@@ -8,8 +8,8 @@ const { title, description, image, alt, class: className, ...rest }: Partial<Par
 <div class:list={['flex flex-col', className]} {...rest} >
   <div class="flex flex-row-reverse justify-end gap-4">
     <div class="flex flex-col gap-1">
-      <h4 class="m-0 text-base font-semibold text-theme-800 dark:text-theme-200">{title}</h4>
-      <p class="text-sm text-theme-800 dark:text-theme-200">{description}</p>
+      <h4 class="m-0 text-base font-semibold text-black dark:text-white">{title}</h4>
+      <p class="text-sm text-black dark:text-white">{description}</p>
     </div>
 
     <div class="flex min-w-16">
@@ -18,7 +18,7 @@ const { title, description, image, alt, class: className, ...rest }: Partial<Par
         height={64}
         width={64}
         format="webp"
-        class="rounded-full border-2 border-b-2 dark:border-theme-300 border-theme-700 h-16 w-16 object-cover object-center"
+        class="rounded-full border-2 border-b-2 border-dark-grey dark:border-light-grey h-16 w-16 object-cover object-center"
         alt={ alt ? alt : `avatar of ${title}`}
       />
     </div>

@@ -6,58 +6,49 @@ export default {
 		colors: {
 			transparent: 'transparent',
 			current: 'currentColor',
-			'black': '#000000',
-			'white': '#ffffff',
-			'theme': {
-				50: '#fafafa',
-				100: '#f5f5f5', // dark:focus/hover/active text
-				200: '#e5e5e5', // dark:normal text / background
-				300: '#d4d4d4', // accent
-				400: '#a3a3a3',
-				500: '#737373',
-				600: '#525252',
-				700: '#404040', // dark:accent
-				800: '#262626', // normal text / dark:background
-				900: '#171717', // focus/hover/active text
-				950: '#0a0a0a',
-			},
+			'true-black': '#000000', // 900
+			'black': '#242424', // 800
+			'true-white': '#ffffff', // 100
+			'white': '#f5f5f5', // 200
+			'light-grey': '#d8d8d8', // 400
+			'dark-grey': '#3e3e3e', // 700
 		},
 		extend: {
 			typography: ({ theme }) => ({
 				theme: {
 					css: {
-						'--tw-prose-body': theme('colors.theme[800]'),
-						'--tw-prose-headings': theme('colors.theme[900]'),
-						'--tw-prose-lead': theme('colors.theme[700]'),
-						'--tw-prose-links': theme('colors.theme[800]'),
-						'--tw-prose-bold': theme('colors.theme[900]'),
-						'--tw-prose-counters': theme('colors.theme[600]'),
-						'--tw-prose-bullets': theme('colors.theme[400]'),
-						'--tw-prose-hr': theme('colors.theme[300]'),
-						'--tw-prose-quotes': theme('colors.theme[900]'),
-						'--tw-prose-quote-borders': theme('colors.theme[300]'),
-						'--tw-prose-captions': theme('colors.theme[700]'),
-						'--tw-prose-code': theme('colors.theme[900]'),
-						'--tw-prose-pre-code': theme('colors.theme[100]'),
-						'--tw-prose-pre-bg': theme('colors.theme[900]'),
-						'--tw-prose-th-borders': theme('colors.theme[300]'),
-						'--tw-prose-td-borders': theme('colors.theme[200]'),
-						'--tw-prose-invert-body': theme('colors.theme[200]'),
-						'--tw-prose-invert-headings': theme('colors.theme[100]'),
-						'--tw-prose-invert-lead': theme('colors.theme[300]'),
-						'--tw-prose-invert-links': theme('colors.theme[200]'),
-						'--tw-prose-invert-bold': theme('colors.theme[200]'),
-						'--tw-prose-invert-counters': theme('colors.theme[400]'),
-						'--tw-prose-invert-bullets': theme('colors.theme[600]'),
-						'--tw-prose-invert-hr': theme('colors.theme[700]'),
-						'--tw-prose-invert-quotes': theme('colors.theme[100]'),
-						'--tw-prose-invert-quote-borders': theme('colors.theme[700]'),
-						'--tw-prose-invert-captions': theme('colors.theme[400]'),
-						'--tw-prose-invert-code': theme('colors.theme[100]'),
-						'--tw-prose-invert-pre-code': theme('colors.theme[300]'),
+						'--tw-prose-body': theme('colors.black'),
+						'--tw-prose-headings': theme('colors.true-black'),
+						'--tw-prose-lead': theme('colors.dark-grey'),
+						'--tw-prose-links': theme('colors.black'),
+						'--tw-prose-bold': theme('colors.true-black'),
+						'--tw-prose-counters': theme('colors.dark-grey'),
+						'--tw-prose-bullets': theme('colors.light-grey'),
+						'--tw-prose-hr': theme('colors.light-grey'),
+						'--tw-prose-quotes': theme('colors.true-black'),
+						'--tw-prose-quote-borders': theme('colors.light-grey'),
+						'--tw-prose-captions': theme('colors.dark-grey'),
+						'--tw-prose-code': theme('colors.true-black'),
+						'--tw-prose-pre-code': theme('colors.true-white'),
+						'--tw-prose-pre-bg': theme('colors.true-black'),
+						'--tw-prose-th-borders': theme('colors.light-grey'),
+						'--tw-prose-td-borders': theme('colors.white'),
+						'--tw-prose-invert-body': theme('colors.white'),
+						'--tw-prose-invert-headings': theme('colors.true-white'),
+						'--tw-prose-invert-lead': theme('colors.light-grey'),
+						'--tw-prose-invert-links': theme('colors.white'),
+						'--tw-prose-invert-bold': theme('colors.white'),
+						'--tw-prose-invert-counters': theme('colors.light-grey'),
+						'--tw-prose-invert-bullets': theme('colors.dark-grey'),
+						'--tw-prose-invert-hr': theme('colors.dark-grey'),
+						'--tw-prose-invert-quotes': theme('colors.true-white'),
+						'--tw-prose-invert-quote-borders': theme('colors.dark-grey'),
+						'--tw-prose-invert-captions': theme('colors.light-grey'),
+						'--tw-prose-invert-code': theme('colors.true-white'),
+						'--tw-prose-invert-pre-code': theme('colors.light-grey'),
 						'--tw-prose-invert-pre-bg': 'rgb(0 0 0 / 50%)',
-						'--tw-prose-invert-th-borders': theme('colors.theme[600]'),
-						'--tw-prose-invert-td-borders': theme('colors.theme[700]'),
+						'--tw-prose-invert-th-borders': theme('colors.dark-grey'),
+						'--tw-prose-invert-td-borders': theme('colors.dark-grey'),
 					},
 				},
 			}),

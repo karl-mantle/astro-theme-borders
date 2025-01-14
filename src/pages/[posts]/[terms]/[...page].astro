@@ -53,7 +53,7 @@ const { page, term } = Astro.props as { page: Page<CollectionEntry<'posts'>>, te
   <section class={`flex flex-col py-8 ${THEME_CONTAINER_DESKTOP} ${THEME_CONTAINER_MOBILE}`}>
 
     <Header
-      class="border-b-2 border-theme-300 dark:border-theme-700 mb-8"
+      class="border-b-2 border-light-grey dark:border-dark-grey mb-8"
       title={`All posts tagged with '${term.name}'`}
       titleTag="h1"
       description={`Showing ${page.end + 1} of ${page.total} posts.`}

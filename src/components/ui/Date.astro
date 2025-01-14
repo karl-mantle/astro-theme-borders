@@ -13,7 +13,7 @@ const { date, description, class: className, ...rest }: Partial<Props> = Astro.p
 const formattedDate = formatDateTime(date.toISOString());
 ---
 
-<div class:list={['inline-flex gap-2 text-theme-800 dark:text-theme-200', className]} {...rest} >
+<div class:list={['inline-flex gap-2 text-black dark:text-white', className]} {...rest} >
   <Icon name="tabler:calendar" height={21} width={21} class="self-center"/>
   <span class="sr-only">{description}</span>
   <time datetime={date.toISOString()}>{formattedDate}</time>

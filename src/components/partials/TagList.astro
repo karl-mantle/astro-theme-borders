@@ -13,7 +13,7 @@ const { tags, permalink, class: className, ...rest }: Partial<Props> = Astro.pro
   {tags.map((tag) =>
     <li>
       <a
-        class="pb-2 font-medium border-b-2 border-theme-300 dark:border-theme-700 hover:border-theme-700 hover:dark:border-theme-300 transition ease-in-out duration-300"
+        class="pb-2 font-medium border-b-2 border-light-grey dark:border-dark-grey hover:border-dark-grey hover:dark:border-light-grey transition ease-in-out duration-300"
         href={`${Astro.site}${permalink}${slugify(tag)}/`}
       >
         #{tag.toLowerCase()}

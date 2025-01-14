@@ -29,13 +29,13 @@ const uniqueId = Math.random().toString(36).slice(2, 11);
   {...rest}
 >
   <article class="flex flex-col flex-grow gap-2 p-4 mb-auto">
-    <Title id={uniqueId} titleTag={titleTag} class="md:text-xl hover:text-theme-900 dark:hover:text-theme-100 underline underline-offset-8 decoration-transparent hover:decoration-theme-900 dark:hover:decoration-theme-100 transition duration-300">
+    <Title id={uniqueId} titleTag={titleTag} class="md:text-xl hover:text-true-black dark:hover:text-true-white underline underline-offset-8 decoration-transparent hover:decoration-true-black dark:hover:decoration-true-white transition duration-300">
       {title}
     </Title>
 
     <Date date={date} description="Blog published on" />
 
-    <p class="text-theme-800 dark:text-theme-200">{description}</p>
+    <p class="text-black dark:text-white">{description}</p>
 
     <Button
       class="mt-auto mx-0 mr-auto pl-0"

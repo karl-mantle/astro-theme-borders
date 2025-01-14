@@ -4,11 +4,11 @@ import Button from '../ui/Button.astro';
 import { PERMALINK_POSTS_TAG } from '../../consts';
 
 const iconSize = 28;
-const listClasses = 'text-theme-800 hover:text-theme-900 dark:text-theme-200 dark:hover:text-theme-100 transition duration-300';
+const listClasses = 'text-black hover:text-true-black dark:text-white dark:hover:text-true-white transition duration-300';
 ---
 <ul class="inline-flex gap-4 justify-end items-center px-5 my-auto md:my-0 pb-2 md:pb-0 leading-none" aria-label="toolbar">
 
-  <li class=`${listClasses} md:border-r-2 border-theme-300 dark:border-theme-700`>
+  <li class=`${listClasses} md:border-r-2 border-light-grey dark:border-dark-grey`>
     <Button
       class="md:mr-4"
       aria-label="open tags archive"

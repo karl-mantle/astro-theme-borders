@@ -23,7 +23,7 @@ if (contained === false) {
 };
 ---
 
-<section class:list={['grid grid-cols-1 bg-theme-200 dark:bg-theme-800', image ? 'md:grid-cols-2' : '', contained ? `${THEME_CONTAINER_DESKTOP}` : '', className]} {...rest} >
+<section class:list={['grid grid-cols-1 bg-light-grey dark:bg-dark-grey', image ? 'md:grid-cols-2' : '', contained ? `${THEME_CONTAINER_DESKTOP}` : '', className]} {...rest} >
 
   { image && (
     <Image
@@ -44,7 +44,7 @@ if (contained === false) {
     )}
 
     { description && (
-      <p class="text-theme-800 dark:text-theme-200">{description}</p>
+      <p class="text-black dark:text-white">{description}</p>
     )}
 
     { (primaryButtonProps || secondaryButtonProps) && (
