@@ -54,7 +54,7 @@ const menuTree = createMenuTree(menuData.menuItems as MenuItem[]);
       </div>
 
       {item.children.length > 0 && (
-      <ul class="md:absolute md:left-0 md:top-full flex flex-col w-full bg-true-white dark:bg-true-black md:bg-true-white dark:md:bg-true-black md:shadow-xl dark:shadow-black" aria-label={`${item.label} sub-menu`} x-show="childMenuOpen" @click.away="childMenuOpen = false" >
+      <ul class="md:absolute md:left-0 md:top-full w-full flex flex-col bg-true-white dark:bg-true-black md:bg-true-white dark:md:bg-true-black md:shadow-xl dark:shadow-black" aria-label={`${item.label} sub-menu`} x-show="childMenuOpen" @click.away="childMenuOpen = false" >
 
         {item.children.map((child: MenuItem) => (
         <li class="relative flex flex-col" x-data="{ grandchildMenuOpen: false }" @keydown.window.escape="grandchildMenuOpen = false" >
@@ -78,7 +78,7 @@ const menuTree = createMenuTree(menuData.menuItems as MenuItem[]);
           </div>
 
           {child.children.length > 0 && (
-          <ul class="flex flex-col w-full bg-white dark:bg-black" aria-label={`${child.label} sub-menu`} x-show="grandchildMenuOpen" @click.away="grandchildMenuOpen = false" >
+          <ul class="w-full flex flex-col bg-white dark:bg-black" aria-label={`${child.label} sub-menu`} x-show="grandchildMenuOpen" @click.away="grandchildMenuOpen = false" >
 
             {child.children.map((grandchild: MenuItem) => (
               <li class="flex px-4 py-2 text-black hover:text-true-black dark:text-white dark:hover:text-true-white md:p-0 border-b-2 border-light-grey dark:border-dark-grey md:hover:border-true-black dark:md:border-dark-grey dark:md:hover:border-true-white transition duration-300" >
@@ -97,5 +97,5 @@ const menuTree = createMenuTree(menuData.menuItems as MenuItem[]);
     </li>
     ))}
   </ul>
-  <div class="absolute bottom-0 -z-40 block w-full border-b-2 border-light-grey dark:border-dark-grey" aria-hidden="true"></div>
+  <div class="-z-40 absolute bottom-0 w-full block border-b-2 border-light-grey dark:border-dark-grey" aria-hidden="true"></div>
 </nav>

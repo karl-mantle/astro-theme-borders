@@ -7,7 +7,7 @@ const { page, class: className, ...rest } = Astro.props;
 
 <nav class:list={['flex justify-center pt-8 md:pt-12', className]} aria-label="pagination" {...rest} >
   <ul class="flex items-center">
-    <li class="flex justify-end w-1/4">
+    <li class="w-1/4 flex justify-end">
       {page.url.prev ?
         <Button
           buttonStyle="link"
@@ -34,13 +34,13 @@ const { page, class: className, ...rest } = Astro.props;
       }
     </li>
 
-    <li class="flex justify-center w-1/2">
+    <li class="w-1/2 flex justify-center">
       <span class="px-4 border-l-2 border-r-2 border-light-grey dark:border-dark-grey text-black dark:text-white" aria-label="Current page indicator">
         Page {page.currentPage} of {page.lastPage}
       </span>
     </li>
 
-    <li class="flex justify-end w-1/4">
+    <li class="w-1/4 flex justify-end">
       {page.url.next ?
         <Button
           buttonStyle="link"
