@@ -1,7 +1,7 @@
 ---
-import type { SectionProps } from '../../types';
-import { THEME_CONTAINER_DESKTOP, THEME_CONTAINER_MOBILE } from '../../consts';
-import Header from '../partials/Header.astro';
+import type { SectionProps } from '~/types';
+import { THEME_CONTAINER_DESKTOP, THEME_CONTAINER_MOBILE } from '~/consts';
+import SectionHeader from '~/components/partials/SectionHeader.astro';
 
 interface Props extends SectionProps {
   columns: number
@@ -28,7 +28,7 @@ switch (columns) {
 
 <section class:list={['flex flex-col mb-8', contained ? `${THEME_CONTAINER_DESKTOP} ${THEME_CONTAINER_MOBILE}` : '', className]} {...rest} >
 
-  <Header
+  <SectionHeader
     title={title}
     titleTag={titleTag}
     description={description}

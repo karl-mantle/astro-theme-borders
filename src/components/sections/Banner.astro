@@ -1,10 +1,10 @@
 ---
-import type { SectionProps } from '../../types';
-import { THEME_CONTAINER_DESKTOP, THEME_CONTAINER_MOBILE } from '../../consts';
-import Title from '../ui/Title.astro';
-import Date from '../ui/Date.astro';
-import Image from '../ui/Image.astro';
-import Button from '../ui/Button.astro';
+import type { SectionProps } from '~/types';
+import { THEME_CONTAINER_DESKTOP, THEME_CONTAINER_MOBILE } from '~/consts';
+import Button from '~/components/ui/Button.astro';
+import Date from '~/components/ui/Date.astro';
+import Heading from '~/components/ui/Heading.astro';
+import Image from '~/components/ui/Image.astro';
 
 interface Props extends SectionProps {
   title: string,
@@ -37,7 +37,7 @@ if (contained === false) {
 
   <div class:list={['order-2 md:order-1 flex flex-col gap-4 justify-center p-8', contained ? `${THEME_CONTAINER_DESKTOP} xl:px-20` : 'xl:pl-0 ml-auto max-w-screen-sm']}>
 
-    <Title titleTag={titleTag}>{title}</Title>
+    <Heading titleTag={titleTag}>{title}</Heading>
 
     { date &&  (
       <Date date={date} description="Post published on"/>

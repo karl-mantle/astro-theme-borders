@@ -1,11 +1,11 @@
 ---
 import type { DataEntryMap } from 'astro:content';
-import type { SectionProps } from '../../types';
-import { PERMALINK_POSTS_SINGLE, PERMALINK_CUSTOM_SINGLE, PERMALINK_POSTS_CATEGORY, PERMALINK_CUSTOM_CATEGORY } from '../../consts';
-import { slugify, getEntriesByCategory } from '../../utils';
-import Container from './Container.astro';
-import PostCard from '../cards/Post.astro';
-import CustomCard from '../cards/Post.astro';
+import type { SectionProps } from '~/types';
+import { PERMALINK_POSTS_SINGLE, PERMALINK_CUSTOM_SINGLE, PERMALINK_POSTS_CATEGORY, PERMALINK_CUSTOM_CATEGORY } from '~/consts';
+import { slugify, getEntriesByCategory } from '~/utils';
+import Container from '~/components/sections/Container.astro';
+import PostCard from '~/components/cards/Post.astro';
+import CustomCard from '~/components/cards/Post.astro';
 
 interface Props extends SectionProps {
   columns: number,

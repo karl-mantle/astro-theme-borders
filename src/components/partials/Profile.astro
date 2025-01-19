@@ -1,6 +1,6 @@
 ---
-import type { PartialProps } from '../../types';
 import { Image } from 'astro:assets';
+import type { PartialProps } from '~/types';
 
 const { title, description, image, alt, class: className, ...rest }: Partial<PartialProps> = Astro.props;
 ---

@@ -1,10 +1,10 @@
 ---
-import type { CardProps } from '../../types';
 import { Picture } from 'astro:assets';
-import { SITE_OG_IMAGE } from '../../consts';
-import Title from '../ui/Title.astro';
-import Date from '../ui/Date.astro';
-import Button from '../ui/Button.astro';
+import type { CardProps } from '~/types';
+import { SITE_OG_IMAGE } from '~/consts';
+import Button from '~/components/ui/Button.astro';
+import Date from '~/components/ui/Date.astro';
+import Heading from '~/components/ui/Heading.astro';
 
 interface Props extends CardProps {
   date: Date,
@@ -29,9 +29,9 @@ const uniqueId = Math.random().toString(36).slice(2, 11);
   {...rest}
 >
   <article class="flex flex-col flex-grow gap-2 p-4 mb-auto">
-    <Title id={uniqueId} titleTag={titleTag} class="md:text-xl hover:text-true-black dark:hover:text-true-white underline underline-offset-8 decoration-transparent hover:decoration-true-black dark:hover:decoration-true-white transition duration-300">
+    <Heading id={uniqueId} titleTag={titleTag} class="md:text-xl hover:text-true-black dark:hover:text-true-white underline underline-offset-8 decoration-transparent hover:decoration-true-black dark:hover:decoration-true-white transition duration-300">
       {title}
-    </Title>
+    </Heading>
 
     <Date date={date} description="Blog published on" />
 
