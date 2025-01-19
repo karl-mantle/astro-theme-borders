@@ -1,12 +1,12 @@
 ---
 import type { GetStaticPathsOptions, Page } from 'astro';
 import { type CollectionEntry } from 'astro:content';
-import { CUSTOM_PER_PAGE, PERMALINK_CUSTOM, PERMALINK_CUSTOM_SINGLE, THEME_CONTAINER_DESKTOP, THEME_CONTAINER_MOBILE } from '../../consts';
-import { getEntries } from '../../utils';
-import Layout from '../../layouts/Layout.astro';
-import Header from '../../components/partials/Header.astro';
-import CustomCard from '../../components/cards/Post.astro';
-import Pagination from '../../components/ui/Pagination.astro';
+import { CUSTOM_PER_PAGE, PERMALINK_CUSTOM, PERMALINK_CUSTOM_SINGLE, THEME_CONTAINER_DESKTOP, THEME_CONTAINER_MOBILE } from '~/consts';
+import { getEntries } from '~/utils';
+import Layout from '~/layouts/Layout.astro';
+import CustomCard from '~/components/cards/Post.astro';
+import SectionHeader from '~/components/partials/SectionHeader.astro';
+import Pagination from '~/components/ui/Pagination.astro';
 
 interface Props { 
   page: Page<CollectionEntry<'custom'>>
@@ -29,7 +29,7 @@ const { page }: Partial<Props> = Astro.props;
 >
   <section class={`flex flex-col py-8 ${THEME_CONTAINER_DESKTOP} ${THEME_CONTAINER_MOBILE}`}>
 
-    <Header
+    <SectionHeader
       class="border-b-2 border-light-grey dark:border-dark-grey mb-8"
       title="Archive"
       titleTag="h1"

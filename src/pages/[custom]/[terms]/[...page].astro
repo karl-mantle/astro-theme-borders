@@ -1,13 +1,13 @@
 ---
 import type { GetStaticPathsOptions, Page } from 'astro';
 import type { CollectionEntry } from 'astro:content';
-import type { Terms } from '../../../types.ts';
-import { CUSTOM_PER_PAGE, PERMALINK_CUSTOM, PERMALINK_CUSTOM_SINGLE, THEME_CONTAINER_DESKTOP, THEME_CONTAINER_MOBILE } from '../../../consts';
-import { getTerms, getEntriesByTag, getEntriesByCategory } from '../../../utils';
-import Layout from '../../../layouts/Layout.astro';
-import Header from '../../../components/partials/Header.astro';
-import CustomCard from '../../../components/cards/Post.astro';
-import Pagination from '../../../components/ui/Pagination.astro';
+import type { Terms } from '~/types.ts';
+import { CUSTOM_PER_PAGE, PERMALINK_CUSTOM, PERMALINK_CUSTOM_SINGLE, THEME_CONTAINER_DESKTOP, THEME_CONTAINER_MOBILE } from '~/consts';
+import { getTerms, getEntriesByTag, getEntriesByCategory } from '~/utils';
+import Layout from '~/layouts/Layout.astro';
+import CustomCard from '~/components/cards/Post.astro';
+import SectionHeader from '~/components/partials/SectionHeader.astro';
+import Pagination from '~/components/ui/Pagination.astro';
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const terms: Terms[] = await getTerms('custom');
@@ -52,7 +52,7 @@ const { page, term } = Astro.props as { page: Page<CollectionEntry<'custom'>>, t
 >
   section class={`flex flex-col py-8 ${THEME_CONTAINER_DESKTOP} ${THEME_CONTAINER_MOBILE}`}>
 
-    <Header
+    <SectionHeader
       class="border-b-2 border-light-grey dark:border-dark-grey mb-8"
       title={`All custom tagged with '${term.name}'`}
       titleTag="h1"
