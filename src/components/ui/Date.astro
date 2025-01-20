@@ -4,11 +4,11 @@ import { formatDateTime } from '~/i18n';
 
 interface Props {
   date: Date,
-  description: string,
+  description?: string,
   class?: string,
 };
 
-const { date, description, class: className, ...rest }: Partial<Props> = Astro.props;
+const { date, description = 'published on:', class: className, ...rest }: Partial<Props> = Astro.props;
 
 const formattedDate = formatDateTime(date.toISOString());
 ---
