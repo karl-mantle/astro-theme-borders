@@ -1,6 +1,6 @@
 ---
-import { Picture } from 'astro:assets';
 import type { CardProps } from '~/types';
+import { Picture } from 'astro:assets';
 import { SITE_OG_IMAGE } from '~/consts';
 import Button from '~/components/ui/Button.astro';
 import Date from '~/components/ui/Date.astro';
@@ -29,7 +29,7 @@ const uniqueId = Math.random().toString(36).slice(2, 11);
   {...rest}
 >
   <article class="flex flex-col flex-grow gap-2 p-4 mb-auto">
-    <Heading id={uniqueId} titleTag={titleTag} class="md:text-xl hover:text-true-black dark:hover:text-true-white underline underline-offset-8 decoration-transparent hover:decoration-true-black dark:hover:decoration-true-white transition duration-300">
+    <Heading id={uniqueId} titleTag={titleTag} class="md:text-xl text-black dark:text-white group-hover/card:text-true-black dark:group-hover/card:text-true-white underline underline-offset-8 decoration-transparent group-hover/card:decoration-true-black dark:group-hover/card:decoration-true-white transition duration-300">
       {title}
     </Heading>
 
@@ -38,7 +38,7 @@ const uniqueId = Math.random().toString(36).slice(2, 11);
     <p class="text-black dark:text-white">{description}</p>
 
     <Button
-      class="mt-auto mx-0 mr-auto pl-0"
+      class="mt-auto mr-auto pl-0 focus:pl-2"
       buttonStyle="link"
       text="Read more"
       href={href}
@@ -56,7 +56,7 @@ const uniqueId = Math.random().toString(36).slice(2, 11);
     sizes={`480px`}
     inferSize={true}
     formats={['webp']}
-    class="h-full md:min-h-[216px] md:max-h-[216px] lg:max-h-56 min-w-full object-cover aspect-[4/3]"
+    class="object-cover aspect-video"
     alt={alt}
   />
 </li>
