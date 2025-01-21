@@ -1,0 +1,86 @@
+---
+import type { SectionProps } from '~/types';
+import { THEME_CONTAINER_DESKTOP, THEME_CONTAINER_MOBILE } from '~/consts';
+import { resolveBackgroundColor } from '~/utils';
+import Content from '~/components/partials/Content.astro';
+import Image from '~/components/ui/Image.astro';
+
+interface Props extends SectionProps {
+  title: string,
+  date?: Date,
+  dateDescription?: string,
+  aspectRatio?: string,
+  containImage?: boolean,
+};
+
+const { title, titleTag, description, date, dateDescription, image, alt = '', primaryButtonProps, secondaryButtonProps, backgroundColor, bodyColor, reverseColumns, aspectRatio, containImage = false, padded = false, class: className, ...rest }: Partial<Props> = Astro.props;
+
+let imageLayoutCSS;
+switch (reverseColumns) {
+  case true:
+    if (padded) {
+      imageLayoutCSS = 'order-1 md:w-[50%]';
+    } else {
+      imageLayoutCSS = 'order-1 md:absolute md:top-0 md:bottom-0 md:left-0 md:right-1/2';
+    }
+    break;
+  default:
+    if (padded) {
+      imageLayoutCSS = 'order-1 md:order-2 md:w-[50%]';
+    } else {
+      imageLayoutCSS = 'order-1 md:order-2 md:absolute md:top-0 md:bottom-0 md:right-0 md:left-1/2';
+    }
+    break;
+};
+
+let contentLayoutCSS;
+switch (reverseColumns) {
+  case true:
+    if (padded) {
+      contentLayoutCSS = `order-2 md:w-[50%] ${THEME_CONTAINER_MOBILE} md:px-16 py-8 md:py-16`;
+    } else {
+      contentLayoutCSS = 'order-2 md:w-[50%] p-8 md:p-16 md:pr-8 ml-auto';
+    }
+    break;
+  default:
+    if (padded) {
+      contentLayoutCSS = `order-2 md:order-1 md:w-[50%] ${THEME_CONTAINER_MOBILE} md:px-16 py-8 md:py-16`;
+    } else {
+      contentLayoutCSS = 'order-2 md:order-1 md:w-[50%] p-8 md:p-16 md:pl-8';
+    }
+    break;
+};
+---
+
+<section class:list={['relative flex flex-col', resolveBackgroundColor(backgroundColor), className]} {...rest} >
+
+  <div class:list={['flex flex-col md:flex-row', THEME_CONTAINER_DESKTOP, padded ? 'relative' : '']}>
+
+    { image && (
+      <Image
+        image={image}
+        alt={alt}
+        class={imageLayoutCSS}
+        aspectRatio={aspectRatio}
+        containImage={containImage}
+      />
+    )}
+
+    <Content
+      title={title}
+      titleTag={titleTag}
+      date={date}
+      dateDescription={dateDescription}
+      description={description}
+      primaryButtonProps={primaryButtonProps}
+      secondaryButtonProps={secondaryButtonProps}
+      backgroundColor={bodyColor ? bodyColor : backgroundColor}
+      class={contentLayoutCSS}
+    >
+      <slot />
+
+    </Content>
+
+  </div>
+
+</section>

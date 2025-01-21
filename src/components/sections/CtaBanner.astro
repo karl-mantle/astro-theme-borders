@@ -1,0 +1,43 @@
+---
+import type { SectionProps } from '~/types';
+import { THEME_CONTAINER_DESKTOP, THEME_CONTAINER_MOBILE } from '~/consts';
+import { resolveBackgroundColor, resolveTextColor } from '~/utils';
+import Heading from '~/components/ui/Heading.astro';
+import Button from '~/components/ui/Button.astro';
+
+const { title, titleTag, description, primaryButtonProps, secondaryButtonProps, backgroundColor, bodyColor, padded = false, class: className, ...rest }: Partial<SectionProps> = Astro.props;
+---
+
+<section class:list={['group flex flex-col', resolveBackgroundColor(backgroundColor), className]} {...rest} >
+
+  <div class:list={['flex flex-col md:flex-row justify-between gap-4', THEME_CONTAINER_MOBILE, THEME_CONTAINER_DESKTOP, padded ? `${resolveBackgroundColor(bodyColor)} group p-8 xl:px-16` : '']}>
+
+    { (title || description) && (
+      <div class="flex flex-col gap-2">
+        { title && (
+          <Heading titleTag={titleTag} class={resolveTextColor(bodyColor ? bodyColor : backgroundColor)}>
+            {title}
+          </Heading>
+        )}
+        { description && (
+          <p class={bodyColor ? resolveTextColor(bodyColor) : resolveTextColor(backgroundColor)}>
+            {description}
+          </p>
+        )}
+      </div>
+    )}
+
+    { (primaryButtonProps || secondaryButtonProps) && (
+      <div class="flex flex-col lg:flex-row gap-4 my-auto">
+        { primaryButtonProps && (
+          <Button {...primaryButtonProps} backgroundColor={bodyColor ? bodyColor : backgroundColor} />
+        )}
+        { secondaryButtonProps && (
+          <Button {...secondaryButtonProps} backgroundColor={bodyColor ? bodyColor : backgroundColor} />
+        )}
+      </div>
+    )}
+
+  </div>
+
+</section>
