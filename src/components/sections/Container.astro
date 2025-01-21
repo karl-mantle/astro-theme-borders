@@ -1,13 +1,17 @@
 ---
 import type { SectionProps } from '~/types';
 import { THEME_CONTAINER_DESKTOP, THEME_CONTAINER_MOBILE } from '~/consts';
+import { resolveBackgroundColor } from '~/utils';
 import SectionHeader from '~/components/partials/SectionHeader.astro';
 
 interface Props extends SectionProps {
-  columns: number
+  type: 'standard' | 'unordered' | 'ordered',
+  columns: number,
+  hideHeader?: boolean,
+  fullWidth?: boolean
 }
 
-const { title, titleTag = 'h2', description, primaryButtonProps, secondaryButtonProps, contained = true, columns, class: className, ...rest }: Partial<Props> = Astro.props;
+const { title, titleTag, description, primaryButtonProps, secondaryButtonProps, backgroundColor, columns, type = 'standard', hideHeader, fullWidth = false, class: className, ...rest }: Partial<Props> = Astro.props;
 
 let columnsCSS;
 switch (columns) {
@@ -24,20 +28,37 @@ switch (columns) {
     columnsCSS = 'grid-cols-1';
     break;
 }
+
+let ColumnsTag;
+switch (type) {
+  case 'unordered':
+    ColumnsTag = 'ul';
+    break;
+  case 'ordered':
+    ColumnsTag = 'ol';
+    break;
+  default:
+    ColumnsTag = 'div';
+    break;
+}
 ---
 
-<section class:list={['flex flex-col mb-8', contained ? `${THEME_CONTAINER_DESKTOP} ${THEME_CONTAINER_MOBILE}` : '', className]} {...rest} >
+<section class:list={['flex flex-col gap-8', resolveBackgroundColor(backgroundColor), className]} {...rest} >
 
-  <SectionHeader
-    title={title}
-    titleTag={titleTag}
-    description={description}
-    primaryButtonProps={primaryButtonProps}
-    secondaryButtonProps={secondaryButtonProps}
-  />
+  { !hideHeader && (
+    <SectionHeader
+      class:list={[THEME_CONTAINER_MOBILE, THEME_CONTAINER_DESKTOP]}
+      title={title}
+      titleTag={titleTag}
+      description={description}
+      primaryButtonProps={primaryButtonProps}
+      secondaryButtonProps={secondaryButtonProps}
+      backgroundColor={backgroundColor}
+    />
+  )}
 
-  <div class:list={['grid gap-4 lg:gap-8', columnsCSS]}>
+  <ColumnsTag class:list={['grid gap-4 lg:gap-8', columnsCSS, fullWidth ? '' : `${THEME_CONTAINER_MOBILE} ${THEME_CONTAINER_DESKTOP}`]}>
     <slot />
-  </div>
+  </ColumnsTag>
 
 </section>

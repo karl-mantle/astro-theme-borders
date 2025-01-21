@@ -1,20 +1,21 @@
 ---
 import type { PartialProps } from '~/types';
+import { resolveBackgroundColor, resolveTextColor } from '~/utils'; 
 import Button from '~/components/ui/Button.astro';
 import Heading from '~/components/ui/Heading.astro';
 
-const { title, titleTag, description, primaryButtonProps, secondaryButtonProps, class: className, ...rest }: Partial<PartialProps> = Astro.props;
+const { title, titleTag, description, primaryButtonProps, secondaryButtonProps, backgroundColor, class: className, ...rest }: Partial<PartialProps> = Astro.props;
 ---
 
-<header class:list={['flex flex-col md:flex-row justify-between', className]} {...rest} >
+<header class:list={['flex flex-col md:flex-row justify-between', resolveBackgroundColor(backgroundColor), className]} {...rest} >
 
   { (title || description) && (
     <div class="flex flex-col gap-2">
       { title && (
-        <Heading titleTag={titleTag} class="text-black dark:text-white">{title}</Heading>
+        <Heading titleTag={titleTag} class={resolveTextColor(backgroundColor)}>{title}</Heading>
       )}
       { description && (
-        <p class="mb-2 text-black dark:text-white">{description}</p>
+        <p class:list={['mb-2', resolveTextColor(backgroundColor)]}>{description}</p>
       )}
     </div>
   )}
@@ -22,10 +23,10 @@ const { title, titleTag, description, primaryButtonProps, secondaryButtonProps, 
   { (primaryButtonProps || secondaryButtonProps) && (
     <div class="flex flex-col xl:flex-row gap-4 my-auto">
       { primaryButtonProps && (
-        <Button {...primaryButtonProps} />
+        <Button backgroundColor={backgroundColor} {...primaryButtonProps} />
       )}
       { secondaryButtonProps && (
-        <Button {...secondaryButtonProps} />
+        <Button backgroundColor={backgroundColor} {...secondaryButtonProps} />
       )}
     </div>
   )}

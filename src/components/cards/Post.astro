@@ -2,6 +2,7 @@
 import type { CardProps } from '~/types';
 import { Picture } from 'astro:assets';
 import { SITE_OG_IMAGE } from '~/consts';
+import { resolveBackgroundColor, resolveTextColor, resolveLinkColor } from '~/utils';
 import Button from '~/components/ui/Button.astro';
 import Date from '~/components/ui/Date.astro';
 import Heading from '~/components/ui/Heading.astro';
@@ -11,13 +12,13 @@ interface Props extends CardProps {
   href: string
 };
 
-const { title, titleTag = 'h3', description, date, image, alt = '', href, ...rest }: Partial<Props> = Astro.props;
+const { title, titleTag = 'h3', description, date, image, alt = '', href, backgroundColor, bodyColor, class: className, ...rest }: Partial<Props> = Astro.props;
 
 const uniqueId = Math.random().toString(36).slice(2, 11);
 ---
 
 <li
-  class="group/card h-full flex flex-col-reverse hover:shadow-md dark:shadow-black brightness-90 hover:brightness-100 focus:brightness-100 transition duration-300"
+  class:list={['group/card h-full flex flex-col-reverse hover:shadow-lg transition duration-300', className]}
   tabindex="-1"
   aria-label={title}
   :class="{'cursor-pointer': !preventClick}"
@@ -28,14 +29,16 @@ const uniqueId = Math.random().toString(36).slice(2, 11);
   @keydown.enter="window.location = $refs.link.href"
   {...rest}
 >
-  <article class="flex flex-col flex-grow gap-2 p-4 mb-auto">
-    <Heading id={uniqueId} titleTag={titleTag} class="md:text-xl text-black dark:text-white group-hover/card:text-true-black dark:group-hover/card:text-true-white underline underline-offset-8 decoration-transparent group-hover/card:decoration-true-black dark:group-hover/card:decoration-true-white transition duration-300">
+
+  <article class:list={['flex flex-col flex-grow gap-2 p-4 mb-auto', resolveBackgroundColor(bodyColor)]}>
+
+    <Heading id={uniqueId} titleTag={titleTag} class:list={['md:text-xl underline underline-offset-8 decoration-transparent transition duration-300', resolveLinkColor(backgroundColor)]}>
       {title}
     </Heading>
 
-    <Date date={date} description="Blog published on" />
+    <Date date={date} description="Blog published on" hideDescription={true} backgroundColor={backgroundColor} />
 
-    <p class="text-black dark:text-white">{description}</p>
+    <p class={resolveTextColor(backgroundColor)}>{description}</p>
 
     <Button
       class="mt-auto mr-auto pl-0 focus:pl-2"
@@ -45,9 +48,11 @@ const uniqueId = Math.random().toString(36).slice(2, 11);
       icon="tabler:arrow-right"
       iconSize={21}
       iconRotate={true}
+      backgroundColor={backgroundColor}
       aria-describedby={uniqueId}
       x-ref="link"
     />
+
   </article>
   
   <Picture
@@ -59,4 +64,5 @@ const uniqueId = Math.random().toString(36).slice(2, 11);
     class="object-cover aspect-video"
     alt={alt}
   />
+
 </li>
