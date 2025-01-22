@@ -74,3 +74,74 @@ export const getEntriesByTag = async (entryType: keyof DataEntryMap, tag: string
     .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
     .slice(0, max)
 };
+
+export const resolveBackgroundColor = (backgroundColor?: string) => {
+  let backgroundColorCSS;
+  switch (backgroundColor) {
+    case 'transparent':
+      backgroundColorCSS = 'bg-transparent dark:bg-transparent';
+      break;
+    case 'white':
+      backgroundColorCSS = 'bg-white dark:bg-black';
+      break;
+    case 'light-grey':
+      backgroundColorCSS = 'bg-light-grey dark:bg-dark-grey';
+      break;
+    case 'transparent-dark':
+      backgroundColorCSS = 'bg-transparent dark:bg-transparent';
+      break;
+    case 'black':
+      backgroundColorCSS = 'bg-black dark:bg-white';
+      break;
+    case 'dark-grey':
+      backgroundColorCSS = 'bg-dark-grey dark:bg-light-grey';
+      break;
+    default:
+      break;
+  }
+  return backgroundColorCSS;
+};
+
+export const resolveTextColor = (backgroundColor?: string) => {
+  const blackText = 'text-black dark:text-white';
+  const whiteText = 'text-white dark:text-black';
+
+  let textColor;
+  switch (backgroundColor) {
+    case 'transparent-dark':
+      textColor = whiteText;
+      break;
+    case 'black':
+      textColor = whiteText;
+      break;
+    case 'dark-grey':
+      textColor = whiteText;
+      break;
+    default:
+      textColor = blackText;
+      break;
+  }
+  return textColor;
+};
+
+export const resolveLinkColor = (backgroundColor?: string) => {
+  const blackText = 'text-black dark:text-white group-hover/card:text-true-black dark:group-hover/card:text-true-white group-hover/card:decoration-true-black dark:group-hover/card:decoration-true-white';
+  const whiteText = 'text-white dark:text-black group-hover/card:text-true-white dark:group-hover/card:text-true-black group-hover/card:decoration-true-white dark:group-hover/card:decoration-true-black';
+
+  let linkColor;
+  switch (backgroundColor) {
+    case 'transparent-dark':
+      linkColor = whiteText;
+      break;
+    case 'black':
+      linkColor = whiteText;
+      break;
+    case 'dark-grey':
+      linkColor = whiteText;
+      break;
+    default:
+      linkColor = blackText;
+      break;
+  }
+  return linkColor;
+};

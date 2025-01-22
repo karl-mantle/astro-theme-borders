@@ -4,18 +4,18 @@ import { resolveBackgroundColor, resolveTextColor } from '~/utils';
 import Button from '~/components/ui/Button.astro';
 import Heading from '~/components/ui/Heading.astro';
 
-const { title, titleTag, description, primaryButtonProps, secondaryButtonProps, backgroundColor, class: className, ...rest }: Partial<PartialProps> = Astro.props;
+const { title, titleTag, description, primaryButtonProps, secondaryButtonProps, backgroundColor = 'transparent', class: className, ...rest }: Partial<PartialProps> = Astro.props;
 ---
 
 <header class:list={['flex flex-col md:flex-row justify-between', resolveBackgroundColor(backgroundColor), className]} {...rest} >
 
   { (title || description) && (
-    <div class="flex flex-col gap-2">
+    <div class="flex flex-col gap-4 mb-4">
       { title && (
-        <Heading titleTag={titleTag} class={resolveTextColor(backgroundColor)}>{title}</Heading>
+        <Heading titleTag={titleTag} backgroundColor={backgroundColor}>{title}</Heading>
       )}
       { description && (
-        <p class:list={['mb-2', resolveTextColor(backgroundColor)]}>{description}</p>
+        <p class={resolveTextColor(backgroundColor)}>{description}</p>
       )}
     </div>
   )}

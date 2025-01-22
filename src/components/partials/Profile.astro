@@ -1,11 +1,12 @@
 ---
-import { Image } from 'astro:assets';
 import type { PartialProps } from '~/types';
+import { Image } from 'astro:assets';
+import { resolveBackgroundColor } from '~/utils';
 
-const { title, description, image, alt, class: className, ...rest }: Partial<PartialProps> = Astro.props;
+const { title, description, image, alt, backgroundColor = 'transparent', class: className, ...rest }: Partial<PartialProps> = Astro.props;
 ---
 
-<div class:list={['flex flex-col', className]} {...rest} >
+<div class:list={['flex flex-col', resolveBackgroundColor(backgroundColor), className]} {...rest} >
   <div class="flex flex-row-reverse justify-end gap-4">
     <div class="flex flex-col gap-1">
       <h4 class="m-0 text-base font-semibold text-black dark:text-white">{title}</h4>

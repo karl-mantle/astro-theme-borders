@@ -10,10 +10,12 @@ import CustomCard from '~/components/cards/Post.astro';
 interface Props extends SectionProps {
   columns: number,
   contentCollection: keyof DataEntryMap,
-  maxEntries?: number
+  maxEntries?: number,
+  hideHeader?: boolean,
+  fullWidth?: boolean
 };
 
-const { title, titleTag = 'h2', description, primaryButtonProps, secondaryButtonProps, columns, contentCollection, maxEntries = 3, class: className, ...rest }: Partial<Props> = Astro.props;
+const { title, titleTag = 'h2', description, primaryButtonProps, secondaryButtonProps, backgroundColor = 'transparent', bodyColor = backgroundColor, columns, contentCollection, maxEntries = 3, hideHeader, fullWidth, class: className, ...rest }: Partial<Props> = Astro.props;
 
 const entries = await getEntries(contentCollection, maxEntries);
 
@@ -26,7 +28,6 @@ switch (contentCollection) {
     defaultTitle = 'Recent custom'
     break;
   default:
-    defaultTitle = ''
     break;
 };
 
@@ -39,19 +40,22 @@ switch (contentCollection) {
     defaultHref = `${Astro.site}${PERMALINK_CUSTOM}`;
     break;
   default:
-    defaultHref = '';
     break;
 };
 ---
 
 <Container
-  columns={columns}
+  class={className}
   title={title || defaultTitle }
   titleTag={titleTag}
   description={description}
   primaryButtonProps={primaryButtonProps || { buttonStyle: 'link', href: `${defaultHref}`, text: 'View all posts', textClass: '', icon: 'tabler:arrow-right', iconSize: 21, iconReverse: false, iconRotate: true }}
   secondaryButtonProps={secondaryButtonProps}
-  class={className}
+  backgroundColor={backgroundColor}
+  columns={columns}
+  type="ordered"
+  hideHeader={hideHeader}
+  fullWidth={fullWidth}
   {...rest}
 >
 
@@ -64,6 +68,7 @@ switch (contentCollection) {
         date={post.data.pubDate}
         image={post.data.image?.src}
         alt={post.data.image?.alt}
+        backgroundColor={bodyColor}
         href={`${Astro.site}${PERMALINK_POSTS_SINGLE}${post.data.slug}/`}
       />
     )
@@ -78,6 +83,7 @@ switch (contentCollection) {
         date={custom.data.pubDate}
         image={custom.data.image?.src}
         alt={custom.data.image?.alt}
+        backgroundColor={bodyColor}
         href={`${Astro.site}${PERMALINK_CUSTOM_SINGLE}${custom.data.slug}/`}
       />
     )

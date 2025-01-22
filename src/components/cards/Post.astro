@@ -12,7 +12,7 @@ interface Props extends CardProps {
   href: string
 };
 
-const { title, titleTag = 'h3', description, date, image, alt = '', href, backgroundColor, bodyColor, class: className, ...rest }: Partial<Props> = Astro.props;
+const { title, titleTag = 'h3', description, date, image, alt = '', href, backgroundColor, class: className, ...rest }: Partial<Props> = Astro.props;
 
 const uniqueId = Math.random().toString(36).slice(2, 11);
 ---
@@ -30,7 +30,7 @@ const uniqueId = Math.random().toString(36).slice(2, 11);
   {...rest}
 >
 
-  <article class:list={['flex flex-col flex-grow gap-2 p-4 mb-auto', resolveBackgroundColor(bodyColor)]}>
+  <article class:list={['flex flex-col flex-grow gap-2 p-4 mb-auto', resolveBackgroundColor(backgroundColor)]}>
 
     <Heading id={uniqueId} titleTag={titleTag} class:list={['md:text-xl underline underline-offset-8 decoration-transparent transition duration-300', resolveLinkColor(backgroundColor)]}>
       {title}

@@ -1,9 +1,10 @@
 ---
 import type { PartialProps } from '~/types';
+import { resolveBackgroundColor } from '~/utils';
 
-const { class: className, ...rest }: Partial<PartialProps> = Astro.props;
+const { backgroundColor = 'transparent', class: className, ...rest }: Partial<PartialProps> = Astro.props;
 ---
 
-<div class:list={['flex flex-col', className]} {...rest} >
+<div class:list={['flex flex-col', resolveBackgroundColor(backgroundColor), className]} {...rest} >
 
 </div>

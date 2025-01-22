@@ -9,7 +9,7 @@ interface Props extends PartialProps {
   hideDescription?: boolean
 };
 
-const { date, description, hideDescription, backgroundColor, class: className, ...rest }: Partial<Props> = Astro.props;
+const { date, description, hideDescription, backgroundColor = 'transparent', class: className, ...rest }: Partial<Props> = Astro.props;
 
 const formattedDate = formatDateTime(date.toISOString());
 ---

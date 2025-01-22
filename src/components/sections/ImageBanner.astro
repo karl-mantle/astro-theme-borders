@@ -13,7 +13,7 @@ interface Props extends SectionProps {
   containImage?: boolean,
 };
 
-const { title, titleTag, description, date, dateDescription, image, alt = '', primaryButtonProps, secondaryButtonProps, backgroundColor, bodyColor, reverseColumns, aspectRatio, containImage = false, padded = false, class: className, ...rest }: Partial<Props> = Astro.props;
+const { title, titleTag, description, date, dateDescription, image, alt = '', primaryButtonProps, secondaryButtonProps, backgroundColor = 'transparent', bodyColor = backgroundColor, reverseColumns, aspectRatio, containImage = false, padded = false, class: className, ...rest }: Partial<Props> = Astro.props;
 
 let imageLayoutCSS;
 switch (reverseColumns) {
@@ -74,7 +74,7 @@ switch (reverseColumns) {
       description={description}
       primaryButtonProps={primaryButtonProps}
       secondaryButtonProps={secondaryButtonProps}
-      backgroundColor={bodyColor ? bodyColor : backgroundColor}
+      backgroundColor={bodyColor}
       class={contentLayoutCSS}
     >
       <slot />

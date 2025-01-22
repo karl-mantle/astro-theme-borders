@@ -5,7 +5,7 @@ import { resolveBackgroundColor, resolveTextColor } from '~/utils';
 import Heading from '~/components/ui/Heading.astro';
 import Button from '~/components/ui/Button.astro';
 
-const { title, titleTag, description, primaryButtonProps, secondaryButtonProps, backgroundColor, bodyColor, padded = false, class: className, ...rest }: Partial<SectionProps> = Astro.props;
+const { title, titleTag, description, primaryButtonProps, secondaryButtonProps, backgroundColor = 'transparent', bodyColor = backgroundColor, padded = false, class: className, ...rest }: Partial<SectionProps> = Astro.props;
 ---
 
 <section class:list={['group flex flex-col', resolveBackgroundColor(backgroundColor), className]} {...rest} >
@@ -15,12 +15,12 @@ const { title, titleTag, description, primaryButtonProps, secondaryButtonProps, 
     { (title || description) && (
       <div class="flex flex-col gap-2">
         { title && (
-          <Heading titleTag={titleTag} class={resolveTextColor(bodyColor ? bodyColor : backgroundColor)}>
+          <Heading titleTag={titleTag} backgroundColor={bodyColor}>
             {title}
           </Heading>
         )}
         { description && (
-          <p class={bodyColor ? resolveTextColor(bodyColor) : resolveTextColor(backgroundColor)}>
+          <p class={resolveTextColor(bodyColor)}>
             {description}
           </p>
         )}
@@ -30,10 +30,10 @@ const { title, titleTag, description, primaryButtonProps, secondaryButtonProps, 
     { (primaryButtonProps || secondaryButtonProps) && (
       <div class="flex flex-col lg:flex-row gap-4 my-auto">
         { primaryButtonProps && (
-          <Button {...primaryButtonProps} backgroundColor={bodyColor ? bodyColor : backgroundColor} />
+          <Button backgroundColor={bodyColor} {...primaryButtonProps} />
         )}
         { secondaryButtonProps && (
-          <Button {...secondaryButtonProps} backgroundColor={bodyColor ? bodyColor : backgroundColor} />
+          <Button backgroundColor={bodyColor} {...secondaryButtonProps} />
         )}
       </div>
     )}

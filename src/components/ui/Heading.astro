@@ -1,11 +1,14 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
+import type { defaultTypes } from '~/types';
+import { resolveTextColor } from '~/utils'; 
 
 interface Props extends HTMLAttributes<'h1'> {
-  titleTag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'div' | 'span'
+  titleTag?: defaultTypes['titleTag'],
+  backgroundColor?: defaultTypes['themeColors']
 };
 
-const { titleTag, class: className, ...rest }: Partial<Props> = Astro.props;
+const { titleTag, backgroundColor = 'transparent', class: className, ...rest }: Partial<Props> = Astro.props;
 
 let HeadingTag;
 let headingCSS;
@@ -49,6 +52,6 @@ switch (titleTag) {
 };
 ---
 
-<HeadingTag class:list={[headingCSS, className]} {...rest} >
+<HeadingTag class:list={[headingCSS, resolveTextColor(backgroundColor), className]} {...rest} >
   <slot />
 </HeadingTag>

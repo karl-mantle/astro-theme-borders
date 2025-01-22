@@ -5,13 +5,13 @@ import Button from '~/components/ui/Button.astro';
 import Date from '~/components/ui/Date.astro';
 import Heading from '~/components/ui/Heading.astro';
 
-const { title, titleTag = 'h2', description, date, dateDescription, primaryButtonProps, secondaryButtonProps, backgroundColor, class: className, ...rest }: Partial<PartialProps> = Astro.props;
+const { title, titleTag = 'h2', description, date, dateDescription, primaryButtonProps, secondaryButtonProps, backgroundColor = 'transparent', class: className, ...rest }: Partial<PartialProps> = Astro.props;
 ---
 
 <div class:list={['flex flex-col gap-4 justify-center', resolveBackgroundColor(backgroundColor), className]} {...rest} >
 
   { title &&  (
-    <Heading titleTag={titleTag} class={resolveTextColor(backgroundColor)}>{title}</Heading>
+    <Heading titleTag={titleTag} backgroundColor={backgroundColor}>{title}</Heading>
   )}
 
   { date &&  (
@@ -25,10 +25,10 @@ const { title, titleTag = 'h2', description, date, dateDescription, primaryButto
   { (primaryButtonProps || secondaryButtonProps) && (
     <div class="flex flex-col lg:flex-row gap-4">
       { primaryButtonProps && (
-        <Button {...primaryButtonProps} backgroundColor={backgroundColor} />
+        <Button backgroundColor={backgroundColor} {...primaryButtonProps} />
       )}
       { secondaryButtonProps && (
-        <Button {...secondaryButtonProps} backgroundColor={backgroundColor} />
+        <Button backgroundColor={backgroundColor} {...secondaryButtonProps} />
       )}
     </div>
   )}

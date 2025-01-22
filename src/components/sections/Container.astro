@@ -11,7 +11,7 @@ interface Props extends SectionProps {
   fullWidth?: boolean
 }
 
-const { title, titleTag, description, primaryButtonProps, secondaryButtonProps, backgroundColor, columns, type = 'standard', hideHeader, fullWidth = false, class: className, ...rest }: Partial<Props> = Astro.props;
+const { title, titleTag, description, primaryButtonProps, secondaryButtonProps, backgroundColor = 'transparent', columns, type = 'standard', hideHeader, fullWidth = false, class: className, ...rest }: Partial<Props> = Astro.props;
 
 let columnsCSS;
 switch (columns) {

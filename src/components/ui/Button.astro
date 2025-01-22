@@ -2,7 +2,7 @@
 import type { ButtonProps } from '~/types';
 import { Icon } from 'astro-icon/components';
 
-const { backgroundColor = 'white', buttonStyle, text, textClass, href, icon, iconSize = 21, iconRotate, iconReverse, ariaLabel, class: className, ...rest }: Partial<ButtonProps> = Astro.props;
+const { backgroundColor = 'transparent', buttonStyle, text, textClass, href, icon, iconSize = 21, iconRotate, iconReverse, ariaLabel, class: className, ...rest }: Partial<ButtonProps> = Astro.props;
 
 let darkButton;
 if (backgroundColor === 'black' || backgroundColor === 'dark-grey' || backgroundColor === 'transparent-dark') {

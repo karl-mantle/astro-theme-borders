@@ -1,14 +1,15 @@
 ---
 import type { SectionProps } from '~/types';
 import { THEME_CONTAINER_DESKTOP, THEME_CONTAINER_MOBILE } from '~/consts';
+import { resolveBackgroundColor } from '~/utils';
 
 interface Props extends SectionProps {
   example: string
 };
 
-const { class: className, ...rest }: Partial<Props> = Astro.props;
+const { backgroundColor = 'transparent', class: className, ...rest }: Partial<Props> = Astro.props;
 ---
 
-<section class:list={['flex flex-col mb-8', className]} {...rest} >
+<section class:list={['flex flex-col mb-8', resolveBackgroundColor(backgroundColor), className]} {...rest} >
 
 </section>
