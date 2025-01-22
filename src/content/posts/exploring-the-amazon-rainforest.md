@@ -4,7 +4,7 @@ description: "Journey through the dense, vibrant Amazon Rainforest, discovering 
 pubDate: "2023-06-14T09:00:00.000Z"
 author: "maria-riley"
 image:
-  src: "./images/unsplash/conscious-design-eOdaC-oBt84-unsplash.jpg"
+  src: "~/assets/unsplash/conscious-design-eOdaC-oBt84-unsplash.jpg"
   alt: "green trees beside river during daytime"
 category: "Nature"
 tags: ["South America", "Rainforest", "Nature", "Wildlife"]

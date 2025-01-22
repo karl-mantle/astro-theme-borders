@@ -4,7 +4,7 @@ description: "An in-depth look at the Gothic Revival architectural style that ha
 pubDate: "2024-06-20T09:50:00.000Z"
 author: "maria-riley"
 image:
-  src: "./images/unsplash/paul-kenny-mcgrath-0pnZ6CaFHWo-unsplash.jpg"
+  src: "~/assets/unsplash/paul-kenny-mcgrath-0pnZ6CaFHWo-unsplash.jpg"
   alt: "the sun is setting over a city with tall buildings"
 category: "Architecture"
 tags: ["Gothic Revival", "Madrid", "Architecture", "Spain", "Mediterranean", "Europe"]

@@ -5,7 +5,7 @@ author: "chandri-anggara"
 pubDate: "2024-04-10T12:40:00.000Z"
 updatedDate: "2024-04-14T12:42:00.000Z"
 image:
-  src: "./images/unsplash/john-towner-Hf4Ap1-ef40-unsplash.jpg"
+  src: "~/assets/unsplash/john-towner-Hf4Ap1-ef40-unsplash.jpg"
   alt: "bike leaning against handrail in front of concrete building at daytime"
 category: "Travel"
 tags: ["Paris", "Europe", "Travel", "Guide", "France"]

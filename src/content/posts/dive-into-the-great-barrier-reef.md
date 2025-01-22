@@ -3,7 +3,7 @@ title: "Dive into the Great Barrier Reef"
 description: "A breathtaking underwater adventure exploring the vibrant ecosystem of the Great Barrier Reef."
 pubDate: "2023-11-03T13:15:00.000Z"
 image:
-  src: "./images/unsplash/giorgia-doglioni-vZsg8M_lZNY-unsplash.jpg"
+  src: "~/assets/unsplash/giorgia-doglioni-vZsg8M_lZNY-unsplash.jpg"
   alt: "clown fish on coral reef"
 category: "Nature"
 tags: ["Pacific", "Diving", "Nature", "Marine Life"]

@@ -4,7 +4,7 @@ description: "Exploring the Moorish architectural elements prominently seen in v
 pubDate: "2023-09-15T08:30:00.000Z"
 author: "youssef-el-idrissi"
 image:
-  src: "./images/unsplash/xinyu-zhang-TuDgi0vB_7Y-unsplash.jpg"
+  src: "~/assets/unsplash/xinyu-zhang-TuDgi0vB_7Y-unsplash.jpg"
   alt: "Moorish architecture"
 category: "Architecture"
 tags: ["Moorish", "Alhambra", "Architecture", "Spain", "Mediterranean", "Europe"]

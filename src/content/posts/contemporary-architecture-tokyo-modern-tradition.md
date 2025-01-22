@@ -4,7 +4,7 @@ description: "Examining the unique blend of modern and traditional elements in T
 slug: "contemporary-architecture-tokyo-modern-tradition"
 pubDate: "2024-12-05T11:30:00.000Z"
 image:
-  src: "./images/unsplash/jezael-melgoza-layMbSJ3YOE-unsplash.jpg"
+  src: "~/assets/unsplash/jezael-melgoza-layMbSJ3YOE-unsplash.jpg"
   alt: "people walking on road near well-lit buildings"
 category: "Architecture"
 tags: ["Contemporary", "Tokyo", "Architecture", "Japan", "Pacific"]

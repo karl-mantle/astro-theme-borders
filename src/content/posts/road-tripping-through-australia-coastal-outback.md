@@ -4,7 +4,7 @@ description: "Embarking on an epic road trip across Australia, uncovering coasta
 slug: "road-tripping-through-australia-coastal-outback"
 pubDate: "2024-02-22T15:00:00.000Z"
 image:
-  src: "./images/unsplash/tobias-keller-gF0IZVVKrD0-unsplash.jpg"
+  src: "~/assets/unsplash/tobias-keller-gF0IZVVKrD0-unsplash.jpg"
   alt: "field of rocks"
 category: "Travel"
 tags: ["Road Trip", "Australia", "Travel", "Adventure", "Pacific"]

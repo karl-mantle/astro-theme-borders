@@ -4,7 +4,7 @@ description: "Discover the stunning natural landscapes of Iceland, from its geys
 pubDate: "2024-01-05T11:40:00.000Z"
 author: "kim-eun-sook"
 image:
-  src: "./images/unsplash/yvon-hoogers-e0YOht7NgyE-unsplash.jpg"
+  src: "~/assets/unsplash/yvon-hoogers-e0YOht7NgyE-unsplash.jpg"
   alt: "a waterfall in a rocky place"
 category: "Nature"
 tags: ["Iceland", "Europe", "Nature", "Travel"]

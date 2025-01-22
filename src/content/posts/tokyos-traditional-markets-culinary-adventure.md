@@ -3,7 +3,7 @@ title: "Tokyo's Traditional Markets: A Culinary Adventure"
 description: "Delving into the vibrant traditional markets of Tokyo, where you can experience local culture through food."
 pubDate: "2023-11-05T09:15:00.000Z"
 image:
-  src: "./images/unsplash/rafael-hoyos-weht-ck84niU-EHU-unsplash.jpg"
+  src: "~/assets/unsplash/rafael-hoyos-weht-ck84niU-EHU-unsplash.jpg"
   alt: "people in market during daytime"
 category: "Travel"
 tags: ["Tokyo", "Markets", "Travel", "Culinary", "Japan", "Pacific"]

@@ -4,7 +4,7 @@ description: "An exhilarating adventure hiking the Appalachian Trail, experienci
 slug: "hiking-the-appalachian-trail"
 pubDate: "2024-07-11T10:30:00.000Z"
 image:
-  src: "./images/unsplash/abigail-ducote-iKww9_oeQio-unsplash.jpg"
+  src: "~/assets/unsplash/abigail-ducote-iKww9_oeQio-unsplash.jpg"
   alt: "white tent on green grass field during sunset"
 category: "Nature"
 tags: ["Hiking", "Appalachian Trail", "Nature", "Adventure"]

@@ -5,7 +5,7 @@ slug: "serengeti-safari-great-migration"
 author: "isabela-castillejos"
 pubDate: "2023-09-21T12:20:00.000Z"
 image:
-  src: "./images/unsplash/dawn-w-FmUx8z_Tz4A-unsplash.jpg"
+  src: "~/assets/unsplash/dawn-w-FmUx8z_Tz4A-unsplash.jpg"
   alt: "herd of wildebeest on green grass field during daytime"
 category: "Nature"
 tags: ["Africa", "Safari", "Nature", "Wildlife"]

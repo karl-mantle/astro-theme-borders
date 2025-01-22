@@ -3,7 +3,7 @@ title: "Vienna’s Baroque Palaces"
 description: "Discover the grandeur and opulence of Baroque palaces that grace Vienna's historic cityscape."
 pubDate: "2024-09-10T10:00:00.000Z"
 image:
-  src: "./images/unsplash/martin-zenker-cVeFRSbfc_M-unsplash.jpg"
+  src: "~/assets/unsplash/martin-zenker-cVeFRSbfc_M-unsplash.jpg"
   alt: "a large building with a fountain in front of it with belvedere vienna in the background"
 category: "Architecture"
 tags: ["Baroque", "Palaces", "Vienna", "Architecture", "Austria", "Travel", "Europe"]

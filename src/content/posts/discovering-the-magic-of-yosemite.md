@@ -4,7 +4,7 @@ description: "Immerse yourself in the enchanting beauty of Yosemite National Par
 pubDate: "2024-03-28T10:00:00.000Z"
 author: "josh-anderson"
 image:
-  src: "./images/unsplash/jordi-vich-navarro-OiZKawnGExs-unsplash.jpg"
+  src: "~/assets/unsplash/jordi-vich-navarro-OiZKawnGExs-unsplash.jpg"
   alt: "body of water near mountain at daytime"
 category: "Nature"
 tags: ["Yosemite", "National Park", "Nature", "Adventure", "Travel", "USA"]

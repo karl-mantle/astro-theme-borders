@@ -5,7 +5,7 @@ slug: "backpacking-in-peru-machu-picchu-beyond"
 author: "josh-anderson"
 pubDate: "2024-05-30T11:45:00.000Z"
 image:
-  src: "./images/unsplash/vlad-d-_XRgG3hLxyw-unsplash.jpg"
+  src: "~/assets/unsplash/vlad-d-_XRgG3hLxyw-unsplash.jpg"
   alt: "a view of the ruins of a mountain in the clouds"
 category: "Travel"
 tags: ["Peru", "Hiking", "Travel", "Adventure", "South America"]

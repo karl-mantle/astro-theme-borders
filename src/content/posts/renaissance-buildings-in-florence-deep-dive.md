@@ -5,7 +5,7 @@ slug: "renaissance-buildings-in-florence-deep-dive"
 author: "prince-akachi"
 pubDate: "2024-11-15T12:10:00.000Z"
 image:
-  src: "./images/unsplash/jonathan-korner-pRU-VnBVJMQ-unsplash.jpg"
+  src: "~/assets/unsplash/jonathan-korner-pRU-VnBVJMQ-unsplash.jpg"
   alt: "white and brown concrete dome building during daytime"
 category: "Architecture"
 tags: ["Renaissance", "Florence", "Architecture", "Italy", "Mediterranean", "Europe"]
