@@ -9,32 +9,87 @@ import RelatedEntries from '~/components/sections/RelatedEntries.astro';
   metaDesc="A fast, accessible, SEO-friendly and easy-to-use starter theme for building static sites with Astro."
 >
   <RecentEntries
-    titleTag="h2"
-    class="py-12"
-    backgroundColor="dark-grey"
-    columns={3}
-    contentCollection="posts"
-  />
-
-  <RecentEntries
-    class="py-12"
-    title="Recent Posts"
-    titleTag="h2"
     backgroundColor="white"
-    columns={2}
-    maxEntries={2}
+    class="py-12"
     contentCollection="posts"
+    headingOptions={{
+      headingTag: 'h2'
+    }}
+    layoutOptions={{
+      columns: 3
+    }}
   />
 
   <RecentEntries
+    backgroundColor="dark-grey"
+    description="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate."
     class="py-12"
-    title="Recent Posts"
-    titleTag="h2"
+    contentCollection="posts"
+    heading="Lorem ipsum dolor sit amet consectetur adipiscing elit"
+    headingOptions={{
+      headingTag: 'h2'
+    }}
+    layoutOptions={{
+      columns: 2
+    }}
+    maxEntries={2}
+  />
+
+  <RecentEntries
     backgroundColor="light-grey"
     bodyColor="white"
-    columns={3}
-    maxEntries={3}
+    class="py-12"
     contentCollection="posts"
+    heading="Lorem ipsum dolor sit amet"
+    headingOptions={{
+      headingTag: 'h2'
+    }}
+    layoutOptions={{
+      columns: 3
+    }}
+  />
+
+  <RelatedEntries
+    backgroundColor="white"
+    category="Nature"
+    class="py-12"
+    contentCollection="posts"
+    headingOptions={{
+      headingTag: 'h2'
+    }}
+    layoutOptions={{
+      columns: 3
+    }}
+  />
+
+  <RelatedEntries
+    backgroundColor="light-grey"
+    bodyColor="white"
+    category="Architecture"
+    class="py-12"
+    contentCollection="posts"
+    headingOptions={{
+      headingTag: 'h2'
+    }}
+    layoutOptions={{
+      columns: 2
+    }}
+    maxEntries={2}
+  />
+
+  <RelatedEntries
+    backgroundColor="dark-grey"
+    bodyColor="light-grey"
+    category="Nature"
+    class="py-12"
+    contentCollection="posts"
+    description="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate."
+    headingOptions={{
+      headingTag: 'h2'
+    }}
+    layoutOptions={{
+      columns: 3
+    }}
   />
 
 </Layout>

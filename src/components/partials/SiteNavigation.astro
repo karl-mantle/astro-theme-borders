@@ -1,6 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
-import menuData from '~/data/menu.json';
+import navigationData from '~/data/navigation';
 
 type MenuItem = { 
   id: string,
@@ -19,7 +19,7 @@ function createMenuTree(menuItems: MenuItem[], parentId: string | null = null): 
     }));
 };
 
-const menuTree = createMenuTree(menuData.menuItems as MenuItem[]);
+const menuTree = createMenuTree(navigationData.headerNavigation as MenuItem[]);
 ---
 
 <nav
@@ -39,7 +39,7 @@ const menuTree = createMenuTree(menuData.menuItems as MenuItem[]);
         <a class="flex flex-grow justify-between items-center text-lg md:text-base font-medium" href={`${Astro.site}${item.slug}/`} aria-label={`open link to ${item.label}`} >
           <span class="p-2">{item.label}</span>
           {item.children.length === 0 && (
-          <Icon name="tabler:arrow-right" height={26} width={26} class="w-8 md:hidden" />
+          <Icon name="carbon:arrow-right" height={26} width={26} class="w-8 md:hidden" />
           )}
         </a> :
         <span class="flex p-2 text-lg md:text-base font-medium cursor-pointer" aria-label={item.label} @click="childMenuOpen = !childMenuOpen" >
@@ -48,7 +48,7 @@ const menuTree = createMenuTree(menuData.menuItems as MenuItem[]);
         }
         {item.children.length > 0 && (
         <button class="flex items-center justify-center md:mr-2" aria-label={`opens ${item.label} sub-menu`} :aria-expanded="childMenuOpen" @click="childMenuOpen = !childMenuOpen" @keydown.window.escape="childMenuOpen = false" >
-          <Icon name="tabler:chevron-down" height={32} width={32} :class="{'rotate-180': childMenuOpen}" class="w-8 md:w-4 transition duration-300" />
+          <Icon name="carbon:chevron-down" height={32} width={32} :class="{'rotate-180': childMenuOpen}" class="w-8 md:w-4 transition duration-300" />
         </button>
         )}
       </div>
@@ -63,7 +63,7 @@ const menuTree = createMenuTree(menuData.menuItems as MenuItem[]);
             <a class="flex flex-grow justify-between items-center text-lg md:text-base font-medium" href={`${Astro.site}${child.slug}/`} aria-label={`open link to ${child.label}`} >
               <span class="p-2">{child.label}</span>
               {child.children.length === 0 && (
-              <Icon name="tabler:arrow-right" height={26} width={26} class="w-8 md:hidden" />
+              <Icon name="carbon:arrow-right" height={26} width={26} class="w-8 md:hidden" />
               )}
             </a> :
             <span class="flex p-2 text-lg md:text-base font-medium cursor-pointer" aria-label={child.label} @click="grandchildMenuOpen = !grandchildMenuOpen" >
@@ -72,7 +72,7 @@ const menuTree = createMenuTree(menuData.menuItems as MenuItem[]);
             }
             {child.children.length > 0 && (
             <button class="flex items-center justify-center md:mr-2" aria-label={`opens ${child.label} sub-menu`} :aria-expanded="grandchildMenuOpen" @click="grandchildMenuOpen = !grandchildMenuOpen" @keydown.window.escape="grandchildMenuOpen = false" >
-              <Icon name="tabler:chevron-down" height={32} width={32} :class="{'rotate-180': grandchildMenuOpen}" class="w-8 md:w-4 transition duration-300" />
+              <Icon name="carbon:chevron-down" height={32} width={32} :class="{'rotate-180': grandchildMenuOpen}" class="w-8 md:w-4 transition duration-300" />
             </button>
             )}
           </div>
@@ -84,7 +84,7 @@ const menuTree = createMenuTree(menuData.menuItems as MenuItem[]);
               <li class="flex px-4 py-2 text-black hover:text-true-black dark:text-white dark:hover:text-true-white md:p-0 border-b-2 border-light-grey dark:border-dark-grey md:hover:border-true-black dark:md:border-dark-grey dark:md:hover:border-true-white transition duration-300" >
                 <a class="flex flex-grow justify-between items-center font-medium text-lg md:text-base" href={`${Astro.site}${grandchild.slug}/`} aria-label={`open link to ${grandchild.label}`} >
                   <span class="p-2">{grandchild.label}</span>
-                  <Icon name="tabler:arrow-right" height={26} width={26} class="w-8 md:hidden" />
+                  <Icon name="carbon:arrow-right" height={26} width={26} class="w-8 md:hidden" />
                 </a>
               </li>
             ))}

@@ -14,17 +14,17 @@ interface Props extends DefaultTypes, HTMLAttributes<'section'> {
   maxEntries?: number
 };
 
-const { backgroundColor = 'transparent', bodyColor = backgroundColor, buttonPrimary, buttonSecondary, contentCollection, category,  description, heading, headingOptions = { headingTag: 'h2' }, layoutOptions, maxEntries = 3, class: className, ...rest }: Partial<Props> = Astro.props;
+const { backgroundColor = 'transparent', bodyColor = backgroundColor, buttonPrimary, buttonSecondary, contentCollection, category, description, heading, headingOptions = { headingTag: 'h2' }, layoutOptions, maxEntries = 3, class: className, ...rest }: Partial<Props> = Astro.props;
 
 const entries = await getEntriesByCategory(contentCollection, category, maxEntries);
 
 let defaultTitle;
 switch (contentCollection) {
   case 'posts':
-    defaultTitle = 'Related posts'
+    defaultTitle = `Related posts in “${category}”`
     break;
   case 'custom':
-    defaultTitle = 'Related custom'
+    defaultTitle = `Related custom in “${category}”`
     break;
   default:
     break;
@@ -56,7 +56,7 @@ switch (contentCollection) {
       href: `${defaultHref}`,
       buttonText: `View more ${String(contentCollection)}`,
       buttonTextClass: '',
-      icon: 'tabler:arrow-right',
+      icon: 'carbon:arrow-right',
       iconSize: 21,
       iconReverse: false,
       iconAnimate: true,
