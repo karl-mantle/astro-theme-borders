@@ -1,0 +1,57 @@
+---
+import { Icon } from 'astro-icon/components';
+import { resolveTextColor, resolveLinkColor } from '~/utils';
+import navigationData from '~/data/navigation';
+
+type MenuItem = { 
+  id: string,
+  parentId: string | null,
+  slug: string,
+  label: string,
+  children: MenuItem[]
+};
+
+function createMenuTree(menuItems: MenuItem[], parentId: string | null = null): MenuItem[] {
+  return menuItems
+    .filter(item => item.parentId === parentId)
+    .map(item => ({
+      ...item,
+      children: createMenuTree(menuItems, item.id)
+    }));
+};
+
+const menuTree = createMenuTree(navigationData.footerNavigation as MenuItem[]);
+---
+
+<nav class:list={['lg:pr-16', resolveTextColor('light-grey')]}>
+  <ul class="flex flex-wrap gap-4 gap-x-16">
+
+    {menuTree.map((item: MenuItem) => (
+    <li class="flex flex-col gap-2">
+      <div class="flex font-medium" >
+        {item.slug ?
+        <a class:list={['flex', resolveLinkColor('light-grey')]} href={`${Astro.site}${item.slug}/`} aria-label={`open link to ${item.label}`} >
+          <span class="p-2">{item.label}</span>
+        </a> :
+        <span class="flex" aria-label={item.label}>
+          {item.label}
+        </span>
+        }
+      </div>
+
+      {item.children.length > 0 && (
+      <ul class="flex flex-col gap-1" aria-label={`${item.label} sub-menu`}>
+
+        {item.children.map((child: MenuItem) => (
+        <li class="flex">
+          <a class:list={['flex hover:underline underline-offset-4', resolveLinkColor('light-grey')]} href={`${Astro.site}${child.slug}/`} aria-label={`open link to ${child.label}`} >
+            <span class="flex">{child.label}</span>
+          </a>
+        </li>
+        ))}
+      </ul>
+        )}
+    </li>
+    ))}
+  </ul>
+</nav>

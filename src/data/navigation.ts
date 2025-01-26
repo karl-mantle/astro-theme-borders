@@ -1,6 +1,90 @@
-export const headerNavigation = [
+export const footerNavigation = [
   {
     "id": "cG9zdDoyMTE",
+    "parentId": null,
+    "slug": null,
+    "label": "About"
+  },
+  {
+    "id": "cG9zdDoyNw",
+    "parentId": null,
+    "slug": null,
+    "label": "Learn More"
+  },
+  {
+    "id": "cG9zdDoyMT6",
+    "parentId": null,
+    "slug": null,
+    "label": "Quick Links"
+  },
+  // About
+  {
+    "id": "cG9zdDoyMTc",
+    "parentId": "cG9zdDoyMTE",
+    "slug": "components",
+    "label": "Components"
+  },
+  {
+    "id": "cG9zdDoya22",
+    "parentId": "cG9zdDoyMTE",
+    "slug": "contact-us",
+    "label": "Contact Us"
+  },
+  {
+    "id": "cG9zdDoyMTQ",
+    "parentId": "cG9zdDoyMTE",
+    "slug": "blog",
+    "label": "Latest Posts"
+  },
+  // Learn More
+  {
+    "id": "cG9zdDoyOA",
+    "parentId": "cG9zdDoyNw",
+    "slug": "https://astro.build/",
+    "label": "Astro"
+  },
+  {
+    "id": "cG9zdDoyMTM",
+    "parentId": "cG9zdDoyNw",
+    "slug": "https://tailwindcss.com/",
+    "label": "Tailwind CSS"
+  },
+  {
+    "id": "cGyidDoyMTM",
+    "parentId": "cG9zdDoyNw",
+    "slug": "https://alpinejs.dev/",
+    "label": "Alpine.js"
+  },
+  {
+    "id": "cGyidDoyMTwM",
+    "parentId": "cG9zdDoyNw",
+    "slug": "https://github.com/",
+    "label": "GitHub"
+  },
+  // Quick Links
+  {
+    "id": "cG9zdDoyMjM",
+    "parentId": "cG9zdDoyMT6",
+    "slug": null,
+    "label": "Accessibility"
+  },
+  {
+    "id": "cG9zdDoyOA2",
+    "parentId": "cG9zdDoyMT6",
+    "slug": null,
+    "label": "Cookie Policy"
+  },
+  {
+    "id": "cG9zdDo4Mg",
+    "parentId": "cG9zdDoyMT6",
+    "slug": "components/partials",
+    "label": "Privacy Policy"
+  }
+];
+
+export const headerNavigation = [
+  {
+    "id": "cG9zdDoyMT6",
     "parentId": null,
     "slug": "blog",
     "label": "Blog"
@@ -98,5 +182,6 @@ export const headerNavigation = [
 ];
 
 export default {
+  footerNavigation,
   headerNavigation
 };
