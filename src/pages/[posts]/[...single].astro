@@ -80,10 +80,10 @@ const authorData = author?.data;
 
           <div class="flex justify-between">
             { nextEntry && (
-              <Button buttonStyle="link" href={`${Astro.site}${PERMALINK_POSTS_SINGLE}${nextEntry.data.slug}/`} buttonText="Next post" icon="tabler:arrow-left" iconSize={21} iconReverse={true} class="w-fit text-sm" />
+              <Button buttonStyle="link" href={`${Astro.site}${PERMALINK_POSTS_SINGLE}${nextEntry.data.slug}/`} buttonText="Next post" icon="carbon:arrow-left" iconSize={21} iconReverse={true} class="w-fit text-sm" />
             )}
             { prevEntry &&  (
-              <Button buttonStyle="link" href={`${Astro.site}${PERMALINK_POSTS_SINGLE}${prevEntry.data.slug}/`} buttonText="Previous post" icon="tabler:arrow-right" iconSize={21} iconReverse={false} class="w-fit text-sm" />
+              <Button buttonStyle="link" href={`${Astro.site}${PERMALINK_POSTS_SINGLE}${prevEntry.data.slug}/`} buttonText="Previous post" icon="carbon:arrow-right" iconSize={21} iconReverse={false} class="w-fit text-sm" />
             )}
           </div>
 

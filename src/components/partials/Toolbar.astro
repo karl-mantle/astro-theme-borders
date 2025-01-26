@@ -15,8 +15,8 @@ const listClasses = 'text-black hover:text-true-black dark:text-white dark:hover
       buttonText="Tags"
       buttonTextClass="hidden md:inline-block"
       href={`${Astro.site}${PERMALINK_POSTS_TAG}`}
-      icon="tabler:tags"
-      iconSize={iconSize}
+      icon="carbon:hashtag"
+      iconSize={32}
       iconReverse={true}
     />
   </li>
@@ -26,7 +26,7 @@ const listClasses = 'text-black hover:text-true-black dark:text-white dark:hover
       class="m-auto"
       aria-label="open search"
     >
-      <Icon name="tabler:search" height={iconSize} width={iconSize} />
+      <Icon name="carbon:search" height={iconSize} width={iconSize} />
     </button>
   </li>
 
@@ -34,7 +34,7 @@ const listClasses = 'text-black hover:text-true-black dark:text-white dark:hover
     <button
       aria-label="subscribe to RSS feed"
     >
-      <Icon name="tabler:rss" height={iconSize} width={iconSize} />
+      <Icon name="carbon:rss" height={iconSize} width={iconSize} />
     </button>
   </li>
 
@@ -43,7 +43,7 @@ const listClasses = 'text-black hover:text-true-black dark:text-white dark:hover
       buttonText="open GitHub repository in new tab"
       buttonTextClass="sr-only"
       href="https://github.com/karl-mantle/astro-theme-borders"
-      icon="tabler:brand-github"
+      icon="carbon:logo-github"
       iconSize={iconSize}
       iconReverse={true}
       target="_blank"
@@ -57,8 +57,8 @@ const listClasses = 'text-black hover:text-true-black dark:text-white dark:hover
       :aria-pressed="darkMode"
       @click="toggleDarkMode"
     >
-      <Icon name="tabler:sun" height={iconSize} width={iconSize} class="hidden dark:block" />
-      <Icon name="tabler:moon" height={iconSize} width={iconSize} class="dark:hidden" />
+      <Icon name="carbon:sun" height={iconSize} width={iconSize} class="hidden dark:block" />
+      <Icon name="carbon:moon" height={iconSize} width={iconSize} class="dark:hidden" />
     </button>
   </li>
 
@@ -70,10 +70,10 @@ const listClasses = 'text-black hover:text-true-black dark:text-white dark:hover
       @keydown.window.escape="siteNavigationOpen = false"
     >
       <div x-show="!siteNavigationOpen">
-        <Icon name="tabler:menu-2" height={iconSize} width={iconSize} />
+        <Icon name="carbon:menu" height={iconSize} width={iconSize} />
       </div>
       <div x-show="siteNavigationOpen">
-        <Icon name="tabler:x" height={iconSize} width={iconSize} />
+        <Icon name="carbon:x" height={iconSize} width={iconSize} />
       </div>
     </button>
   </li>
