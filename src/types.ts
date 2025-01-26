@@ -1,4 +1,5 @@
 import type { HTMLAttributes } from 'astro/types';
+import { boolean } from 'astro:schema';
 
 export interface DefaultTypes {
   backgroundColor?: 'white' | 'black' | 'transparent' | 'transparent-dark' | 'light-grey' | 'dark-grey',
@@ -45,6 +46,7 @@ export interface ImageOptions extends HTMLAttributes<'div'> {
   altText?: string,
   aspectRatio?: 'square' | 'video' | 'landscape' | 'portrait',
   imageMask?: 'none' | 'circle' | 'heart' | 'hexagon' | 'star' | 'triangle',
+  imageSize?: number,
   objectFit?: 'none' | 'contain' | 'fill' | 'cover' | 'scale-down',
   padded?: boolean
 };

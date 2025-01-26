@@ -12,22 +12,22 @@ const { page, class: className, ...rest } = Astro.props;
         <Button
           buttonStyle="link"
           href={page.url.prev}
-          text="Previous"
+          buttonText="Previous"
           icon="tabler:arrow-left"
           iconSize={iconSize}
           iconReverse={true}
-          iconRotate={false}
+          iconAnimate={false}
           aria-label="Go to the previous page"
         />
         :
         <Button
           buttonStyle="disabled"
           href=""
-          text="Previous"
+          buttonText="Previous"
           icon="tabler:arrow-left"
           iconSize={iconSize}
           iconReverse={true}
-          iconRotate={false}
+          iconAnimate={false}
           aria-label="Go to the previous page"
           aria-disabled="true"
         />
@@ -45,20 +45,20 @@ const { page, class: className, ...rest } = Astro.props;
         <Button
           buttonStyle="link"
           href={page.url.next}
-          text="Next"
+          buttonText="Next"
           icon="tabler:arrow-right"
           iconSize={iconSize}
-          iconRotate={false}
+          iconAnimate={false}
           aria-label="Go to the next page"
         />
         :
         <Button
           buttonStyle="disabled"
           href=""
-          text="Next"
+          buttonText="Next"
           icon="tabler:arrow-right"
           iconSize={iconSize}
-          iconRotate={false}
+          iconAnimate={false}
           aria-disabled="true"
         />
       }

@@ -1,0 +1,42 @@
+---
+import type { DefaultTypes, ImageOptions } from '~/types';
+import { Image } from 'astro:assets';
+
+interface Props extends ImageOptions {
+  image: DefaultTypes['image']
+};
+
+const { image, altText = '', aspectRatio, imageMask, imageSize, class: className, ...rest }: Partial<Props> = Astro.props;
+
+let maskCSS;
+switch (imageMask) {
+  case 'circle':
+    maskCSS = 'mask-circle';
+    break;
+  case 'heart':
+    maskCSS = 'mask-heart';
+    break;
+  case 'hexagon':
+    maskCSS = 'mask-hexagon';
+    break;
+  case 'star':
+    maskCSS = 'mask-star';
+    break;
+  case 'triangle':
+    maskCSS = 'mask-triangle';
+    break;
+  default:
+    break;
+};
+---
+
+<div class:list={['flex min-w-16', className]} {...rest}>
+  <Image
+    src={image}
+    height={imageSize}
+    width={imageSize}
+    format="webp"
+    class:list={['h-16 w-16 object-cover object-center', maskCSS]}
+    alt={altText}
+  />
+</div>

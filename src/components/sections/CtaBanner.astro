@@ -3,8 +3,9 @@ import type { HTMLAttributes } from 'astro/types';
 import type { DefaultTypes } from '~/types';
 import { THEME_CONTAINER_DESKTOP, THEME_CONTAINER_MOBILE } from '~/consts';
 import { resolveBackgroundColor, resolveTextColor } from '~/utils';
-import Heading from '~/components/ui/Heading.astro';
 import Button from '~/components/ui/Button.astro';
+import Heading from '~/components/ui/Heading.astro';
+import Text from '../ui/Text.astro';
 
 interface Props extends DefaultTypes, HTMLAttributes<'section'> {};
 
@@ -23,9 +24,9 @@ const { buttonPrimary, buttonSecondary, backgroundColor = 'transparent', bodyCol
           </Heading>
         )}
         { description && (
-          <p class={resolveTextColor(bodyColor)}>
+          <Text backgroundColor={bodyColor}>
             {description}
-          </p>
+          </Text>
         )}
       </div>
     )}

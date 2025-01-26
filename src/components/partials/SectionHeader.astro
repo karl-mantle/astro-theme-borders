@@ -1,9 +1,10 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 import type { DefaultTypes } from '~/types';
-import { resolveBackgroundColor, resolveTextColor } from '~/utils'; 
+import { resolveBackgroundColor } from '~/utils'; 
 import Button from '~/components/ui/Button.astro';
 import Heading from '~/components/ui/Heading.astro';
+import Text from '../ui/Text.astro';
 
 interface Props extends DefaultTypes, HTMLAttributes<'header'> {};
 
@@ -18,7 +19,7 @@ const { backgroundColor = 'transparent', buttonPrimary, buttonSecondary, descrip
         <Heading backgroundColor={backgroundColor} {...headingOptions} class="">{heading}</Heading>
       )}
       { description && (
-        <p class={resolveTextColor(backgroundColor)}>{description}</p>
+        <Text backgroundColor={backgroundColor}>{description}</Text>
       )}
     </div>
   )}

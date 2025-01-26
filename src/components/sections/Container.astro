@@ -6,10 +6,11 @@ import { resolveBackgroundColor } from '~/utils';
 import SectionHeader from '~/components/partials/SectionHeader.astro';
 
 interface Props extends DefaultTypes, HTMLAttributes<'section'> {
+  hideHeader?: boolean,
   type: 'standard' | 'unordered' | 'ordered',
 };
 
-const { backgroundColor = 'transparent', buttonPrimary, buttonSecondary, description, heading, headingOptions, layoutOptions = { fullWidth: false }, type, class: className, ...rest }: Partial<Props> = Astro.props;
+const { backgroundColor = 'transparent', buttonPrimary, buttonSecondary, description, heading, headingOptions, hideHeader, layoutOptions = { fullWidth: false }, type, class: className, ...rest }: Partial<Props> = Astro.props;
 
 let columnsCSS;
 switch (layoutOptions?.columns) {

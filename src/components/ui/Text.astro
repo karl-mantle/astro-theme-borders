@@ -1,0 +1,33 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import type { DefaultTypes } from '~/types';
+import { resolveTextColor } from '~/utils';
+
+interface Props extends HTMLAttributes<'p'> {
+  backgroundColor?: DefaultTypes['backgroundColor'],
+  textTag?: 'div' | 'span' | 'p'
+}
+
+const { backgroundColor = 'transparent', textTag, class: className, ...rest }: Partial<Props> = Astro.props;
+
+let TextTag;
+let textCSS;
+switch (textTag) {
+  case 'p':
+    TextTag = 'div';
+    textCSS = 'text-base';
+    break;
+  case 'span':
+    TextTag = 'span';
+    textCSS = 'text-base';
+    break;
+  default:
+    TextTag = 'p';
+    textCSS = 'text-base';
+    break;
+};
+---
+
+<TextTag class:list={[textCSS, resolveTextColor(backgroundColor), className]} {...rest} >
+  <slot />
+</TextTag>
