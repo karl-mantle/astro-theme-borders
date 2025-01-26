@@ -1,15 +1,18 @@
 ---
-import type { PartialProps } from '~/types';
+import type { HTMLAttributes } from 'astro/types';
+import type { DefaultTypes } from '~/types';
 import { Image } from 'astro:assets';
 import { resolveBackgroundColor } from '~/utils';
 
-const { title, description, image, alt, backgroundColor = 'transparent', class: className, ...rest }: Partial<PartialProps> = Astro.props;
+interface Props extends DefaultTypes, HTMLAttributes<'div'> {};
+
+const { backgroundColor = 'transparent', description, image, imageOptions = { altText: 'Missing alt text' }, heading, class: className, ...rest }: Partial<Props> = Astro.props;
 ---
 
 <div class:list={['flex flex-col', resolveBackgroundColor(backgroundColor), className]} {...rest} >
   <div class="flex flex-row-reverse justify-end gap-4">
     <div class="flex flex-col gap-1">
-      <h4 class="m-0 text-base font-semibold text-black dark:text-white">{title}</h4>
+      <h4 class="m-0 text-base font-semibold text-black dark:text-white">{heading}</h4>
       <p class="text-sm text-black dark:text-white">{description}</p>
     </div>
 
@@ -20,7 +23,7 @@ const { title, description, image, alt, backgroundColor = 'transparent', class: 
         width={64}
         format="webp"
         class="h-16 w-16 object-cover object-center border-2 border-b-2 border-dark-grey dark:border-light-grey rounded-full"
-        alt={ alt ? alt : `avatar of ${title}`}
+        alt={imageOptions.altText!}
       />
     </div>
   </div>

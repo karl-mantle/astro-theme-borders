@@ -1,68 +1,80 @@
 ---
-import type { CardProps } from '~/types';
+import type { HTMLAttributes } from 'astro/types';
+import type { DefaultTypes } from '~/types';
 import { Picture } from 'astro:assets';
-import { SITE_OG_IMAGE } from '~/consts';
 import { resolveBackgroundColor, resolveTextColor, resolveLinkColor } from '~/utils';
 import Button from '~/components/ui/Button.astro';
 import Date from '~/components/ui/Date.astro';
 import Heading from '~/components/ui/Heading.astro';
 
-interface Props extends CardProps {
+interface Props extends DefaultTypes, HTMLAttributes<'li'> {
   date: Date,
   href: string
 };
 
-const { title, titleTag = 'h3', description, date, image, alt = '', href, backgroundColor, class: className, ...rest }: Partial<Props> = Astro.props;
+const { backgroundColor, date, dateOptions = { description: 'Blog published on', hideDescription: true }, description, heading, headingOptions = { headingTag: 'h3' }, href, image, imageOptions = { altText: '' }, class: className, ...rest }: Partial<Props> = Astro.props;
 
 const uniqueId = Math.random().toString(36).slice(2, 11);
 ---
 
 <li
+  aria-label={heading}
   class:list={['group/card h-full flex flex-col-reverse hover:shadow-lg transition duration-300', className]}
-  tabindex="-1"
-  aria-label={title}
   :class="{'cursor-pointer': !preventClick}"
+  tabindex="-1"
   x-data="{ clickTimeout: null, preventClick: false }"
+  @keydown.enter="window.location = $refs.link.href"
   @mouseleave="clearTimeout(clickTimeout); preventClick = false"
   @mousedown="event.preventClick = false; event.button === 2 ? preventClick = true : clickTimeout = setTimeout(() => preventClick = true, 200);"
   @mouseup=" clearTimeout(clickTimeout); if (!preventClick) { window.location = $refs.link.href; } preventClick = false;"
-  @keydown.enter="window.location = $refs.link.href"
   {...rest}
 >
 
   <article class:list={['flex flex-col flex-grow gap-2 p-4 mb-auto', resolveBackgroundColor(backgroundColor)]}>
 
-    <Heading id={uniqueId} titleTag={titleTag} class:list={['md:text-xl underline underline-offset-8 decoration-transparent transition duration-300', resolveLinkColor(backgroundColor)]}>
-      {title}
+    <Heading
+      backgroundColor={backgroundColor}
+      id={uniqueId}
+      class:list={['md:text-xl underline underline-offset-8 decoration-transparent transition duration-300', resolveLinkColor(backgroundColor)]}
+      {...headingOptions}
+    >
+      {heading}
     </Heading>
 
-    <Date date={date} description="Blog published on" hideDescription={true} backgroundColor={backgroundColor} />
+    <Date
+      backgroundColor={backgroundColor}
+      date={date}
+      description={dateOptions.description}
+      hideDescription={dateOptions.hideDescription}
+    />
 
     <p class={resolveTextColor(backgroundColor)}>{description}</p>
 
     <Button
-      class="mt-auto mr-auto pl-0 focus:pl-2"
-      buttonStyle="link"
-      text="Read more"
-      href={href}
-      icon="tabler:arrow-right"
-      iconSize={21}
-      iconRotate={true}
-      backgroundColor={backgroundColor}
       aria-describedby={uniqueId}
+      backgroundColor={backgroundColor}
+      buttonStyle="link"
+      buttonText="Read more"
+      class="mt-auto mr-auto ml-0 pl-0 focus:pl-2"
+      href={href} 
+      icon="tabler:arrow-right"
+      iconAnimate={true}
+      iconSize={21}
       x-ref="link"
     />
 
   </article>
-  
-  <Picture
-    src={image ? image : SITE_OG_IMAGE}
-    widths={[480]}
-    sizes={`480px`}
-    inferSize={true}
-    formats={['webp']}
-    class="object-cover aspect-video"
-    alt={alt}
-  />
+
+  { image && (
+    <Picture
+      alt={imageOptions.altText!}
+      class="object-cover aspect-video"
+      formats={['webp']}
+      inferSize={true}
+      sizes={`480px`}
+      src={image}
+      widths={[480]}
+    />
+  )}
 
 </li>

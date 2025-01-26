@@ -1,15 +1,16 @@
 ---
-import type { SectionProps } from '~/types';
+import type { DefaultTypes } from '~/types';
 import { THEME_CONTAINER_DESKTOP, THEME_CONTAINER_MOBILE } from '~/consts';
 import { resolveBackgroundColor } from '~/utils';
+import type { HTMLAttributes } from 'astro/types';
 
-interface Props extends SectionProps {
+interface Props extends DefaultTypes, HTMLAttributes<'section'> {
   example: string
 };
 
-const { backgroundColor = 'transparent', class: className, ...rest }: Partial<Props> = Astro.props;
+const { backgroundColor = 'transparent', layoutOptions = { fullWidth: false }, class: className, ...rest }: Partial<Props> = Astro.props;
 ---
 
-<section class:list={['flex flex-col mb-8', resolveBackgroundColor(backgroundColor), className]} {...rest} >
+<section class:list={['flex flex-col mb-8', resolveBackgroundColor(backgroundColor), layoutOptions?.fullWidth ? '' : `${THEME_CONTAINER_MOBILE} ${THEME_CONTAINER_DESKTOP}`, className]} {...rest} >
 
 </section>

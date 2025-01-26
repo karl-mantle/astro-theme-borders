@@ -1,13 +1,12 @@
 ---
-import type { PartialProps } from '~/types';
+import type { DefaultTypes, ImageOptions } from '~/types';
 import { Picture } from 'astro:assets';
 
-interface Props extends PartialProps {
-  aspectRatio?: string,
-  containImage?: boolean
+interface Props extends ImageOptions {
+  image: DefaultTypes['image']
 };
 
-const { image, alt = '', aspectRatio, containImage, class: className, ...rest }: Partial<Props> = Astro.props;
+const { image, altText = '', aspectRatio, objectFit = 'cover', imageMask, padded, class: className, ...rest }: Partial<Props> = Astro.props;
 
 let aspectRatioCSS;
 switch (aspectRatio) {
@@ -27,9 +26,30 @@ switch (aspectRatio) {
     aspectRatioCSS = 'aspect-auto';
     break;
 };
+
+let maskCSS;
+switch (imageMask) {
+  case 'circle':
+    maskCSS = 'mask-circle';
+    break;
+  case 'heart':
+    maskCSS = 'mask-heart';
+    break;
+  case 'hexagon':
+    maskCSS = 'mask-hexagon';
+    break;
+  case 'star':
+    maskCSS = 'mask-star';
+    break;
+  case 'triangle':
+    maskCSS = 'mask-triangle';
+    break;
+  default:
+    break;
+};
 ---
 
-<div class:list={[className, containImage ? 'p-12 mb-auto' : '' ]} {...rest} >
+<div class:list={[padded ? 'p-12 self-center' : '', className]} {...rest} >
   <Picture
     src={image}
     widths={[480, 900, 1600]}
@@ -37,7 +57,60 @@ switch (aspectRatio) {
     inferSize
     formats={['webp']}
     loading="eager"
-    class:list={['h-full w-full object-cover', aspectRatioCSS]}
-    alt={alt}
+    class:list={['h-full w-full', `object-${objectFit}`, maskCSS, aspectRatioCSS]}
+    alt={altText}
     />
 </div>
+
+<style is:global>
+  .mask-circle {
+    -webkit-mask-image: url(/mask/circle.svg);
+    mask-image: url(/mask/circle.svg);
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 75%;
+    mask-size: 75%
+  }
+  .mask-heart {
+    -webkit-mask-image: url(/mask/heart.svg);
+    mask-image: url(/mask/heart.svg);
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 75%;
+    mask-size: 75%
+  }
+  .mask-hexagon {
+    -webkit-mask-image: url(/mask/hexagon.svg);
+    mask-image: url(/mask/hexagon.svg);
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 75%;
+    mask-size: 75%
+  }
+  .mask-star {
+    -webkit-mask-image: url(/mask/star.svg);
+    mask-image: url(/mask/star.svg);
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 75%;
+    mask-size: 75%
+  }
+  .mask-triangle {
+    -webkit-mask-image: url(/mask/triangle.svg);
+    mask-image: url(/mask/triangle.svg);
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 75%;
+    mask-size: 75%
+  }
+</style>

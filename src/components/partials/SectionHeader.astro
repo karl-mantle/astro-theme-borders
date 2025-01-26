@@ -1,18 +1,21 @@
 ---
-import type { PartialProps } from '~/types';
+import type { HTMLAttributes } from 'astro/types';
+import type { DefaultTypes } from '~/types';
 import { resolveBackgroundColor, resolveTextColor } from '~/utils'; 
 import Button from '~/components/ui/Button.astro';
 import Heading from '~/components/ui/Heading.astro';
 
-const { title, titleTag, description, primaryButtonProps, secondaryButtonProps, backgroundColor = 'transparent', class: className, ...rest }: Partial<PartialProps> = Astro.props;
+interface Props extends DefaultTypes, HTMLAttributes<'header'> {};
+
+const { backgroundColor = 'transparent', buttonPrimary, buttonSecondary, description, heading, headingOptions = { headingTag: 'h2' }, class: className, ...rest }: Partial<Props> = Astro.props;
 ---
 
-<header class:list={['flex flex-col md:flex-row justify-between', resolveBackgroundColor(backgroundColor), className]} {...rest} >
+<header class:list={['flex flex-col md:flex-row justify-between gap-4', resolveBackgroundColor(backgroundColor), className]} {...rest} >
 
-  { (title || description) && (
-    <div class="flex flex-col gap-4 mb-4">
-      { title && (
-        <Heading titleTag={titleTag} backgroundColor={backgroundColor}>{title}</Heading>
+  { (heading || description) && (
+    <div class:list={['flex flex-col justify-center max-w-[80ch]', (heading && description) ? ' gap-4' : '']}>
+      { heading && (
+        <Heading backgroundColor={backgroundColor} {...headingOptions} class="">{heading}</Heading>
       )}
       { description && (
         <p class={resolveTextColor(backgroundColor)}>{description}</p>
@@ -20,13 +23,13 @@ const { title, titleTag, description, primaryButtonProps, secondaryButtonProps, 
     </div>
   )}
 
-  { (primaryButtonProps || secondaryButtonProps) && (
-    <div class="flex flex-col xl:flex-row gap-4 my-auto">
-      { primaryButtonProps && (
-        <Button backgroundColor={backgroundColor} {...primaryButtonProps} />
+  { (buttonPrimary || buttonSecondary) && (
+    <div class="flex flex-col xl:flex-row gap-4 mb-auto">
+      { buttonPrimary && (
+        <Button backgroundColor={backgroundColor} {...buttonPrimary} />
       )}
-      { secondaryButtonProps && (
-        <Button backgroundColor={backgroundColor} {...secondaryButtonProps} />
+      { buttonSecondary && (
+        <Button backgroundColor={backgroundColor} {...buttonSecondary} />
       )}
     </div>
   )}

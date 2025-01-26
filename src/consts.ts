@@ -31,4 +31,4 @@ export const SITE_LOGO_SVG_SQUARE = './assets/logo/svg/Logo-1-1.svg';
 
 // theme
 export const THEME_CONTAINER_DESKTOP = 'w-full max-w-screen-xl mx-auto';
-export const THEME_CONTAINER_MOBILE = 'px-8 md:px-0';
+export const THEME_CONTAINER_MOBILE = 'px-8 xl:px-0';

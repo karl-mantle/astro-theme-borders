@@ -1,15 +1,14 @@
 ---
-import type { PartialProps } from '~/types';
+import type { DateOptions } from '~/types';
 import { Icon } from 'astro-icon/components';
-import { resolveBackgroundColor, resolveTextColor } from '~/utils'; 
 import { formatDateTime } from '~/i18n';
+import { resolveBackgroundColor, resolveTextColor } from '~/utils';
 
-interface Props extends PartialProps {
-  date: Date,
-  hideDescription?: boolean
+interface Props extends DateOptions {
+  date: Date
 };
 
-const { date, description, hideDescription, backgroundColor = 'transparent', class: className, ...rest }: Partial<Props> = Astro.props;
+const { backgroundColor = 'transparent', date, description, hideDescription, class: className, ...rest }: Partial<Props> = Astro.props;
 
 const formattedDate = formatDateTime(date.toISOString());
 ---

@@ -1,34 +1,37 @@
 ---
-import type { PartialProps } from '~/types';
+import type { DefaultTypes } from '~/types';
 import { resolveBackgroundColor, resolveTextColor } from '~/utils';
 import Button from '~/components/ui/Button.astro';
 import Date from '~/components/ui/Date.astro';
 import Heading from '~/components/ui/Heading.astro';
+import type { HTMLAttributes } from 'astro/types';
 
-const { title, titleTag = 'h2', description, date, dateDescription, primaryButtonProps, secondaryButtonProps, backgroundColor = 'transparent', class: className, ...rest }: Partial<PartialProps> = Astro.props;
+interface Props extends DefaultTypes, HTMLAttributes<'div'> {};
+
+const { backgroundColor = 'transparent', buttonPrimary, buttonSecondary, description, date, dateOptions, heading, headingOptions, class: className, ...rest }: Partial<Props> = Astro.props;
 ---
 
-<div class:list={['flex flex-col gap-4 justify-center', resolveBackgroundColor(backgroundColor), className]} {...rest} >
+<div class:list={['flex flex-col gap-4 justify-center max-w-[80ch]', resolveBackgroundColor(backgroundColor), className]} {...rest} >
 
-  { title &&  (
-    <Heading titleTag={titleTag} backgroundColor={backgroundColor}>{title}</Heading>
+  { heading &&  (
+    <Heading backgroundColor={backgroundColor} {...headingOptions}>{heading}</Heading>
   )}
 
   { date &&  (
-    <Date date={date} description={dateDescription} backgroundColor={backgroundColor} class="text-sm" />
+    <Date date={date} backgroundColor={backgroundColor} class="text-sm" {...dateOptions} />
   )}
 
   { description && (
     <p class={resolveTextColor(backgroundColor)}>{description}</p>
   )}
 
-  { (primaryButtonProps || secondaryButtonProps) && (
+  { (buttonPrimary || buttonSecondary) && (
     <div class="flex flex-col lg:flex-row gap-4">
-      { primaryButtonProps && (
-        <Button backgroundColor={backgroundColor} {...primaryButtonProps} />
+      { buttonPrimary && (
+        <Button backgroundColor={backgroundColor} {...buttonPrimary} />
       )}
-      { secondaryButtonProps && (
-        <Button backgroundColor={backgroundColor} {...secondaryButtonProps} />
+      { buttonSecondary && (
+        <Button backgroundColor={backgroundColor} {...buttonSecondary} />
       )}
     </div>
   )}

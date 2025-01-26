@@ -1,31 +1,29 @@
 ---
 import type { DataEntryMap } from 'astro:content';
-import type { SectionProps } from '~/types';
+import type { DefaultTypes } from '~/types';
 import { PERMALINK_POSTS_SINGLE, PERMALINK_CUSTOM_SINGLE, PERMALINK_POSTS, PERMALINK_CUSTOM } from '~/consts';
 import { getEntries } from '~/utils';
 import Container from '~/components/sections/Container.astro';
 import PostCard from '~/components/cards/Post.astro';
 import CustomCard from '~/components/cards/Post.astro';
+import type { HTMLAttributes } from 'astro/types';
 
-interface Props extends SectionProps {
-  columns: number,
+interface Props extends DefaultTypes, HTMLAttributes<'section'> {
   contentCollection: keyof DataEntryMap,
-  maxEntries?: number,
-  hideHeader?: boolean,
-  fullWidth?: boolean
+  maxEntries?: number
 };
 
-const { title, titleTag = 'h2', description, primaryButtonProps, secondaryButtonProps, backgroundColor = 'transparent', bodyColor = backgroundColor, columns, contentCollection, maxEntries = 3, hideHeader, fullWidth, class: className, ...rest }: Partial<Props> = Astro.props;
+const { backgroundColor = 'transparent', bodyColor = backgroundColor, buttonPrimary, buttonSecondary, contentCollection, description, heading, headingOptions = { headingTag: 'h2' }, layoutOptions, maxEntries = 3, class: className, ...rest }: Partial<Props> = Astro.props;
 
 const entries = await getEntries(contentCollection, maxEntries);
 
-let defaultTitle;
+let defaultHeading;
 switch (contentCollection) {
   case 'posts':
-    defaultTitle = 'Recent posts'
+    defaultHeading = 'Recent posts'
     break;
   case 'custom':
-    defaultTitle = 'Recent custom'
+    defaultHeading = 'Recent custom'
     break;
   default:
     break;
@@ -45,31 +43,41 @@ switch (contentCollection) {
 ---
 
 <Container
-  class={className}
-  title={title || defaultTitle }
-  titleTag={titleTag}
-  description={description}
-  primaryButtonProps={primaryButtonProps || { buttonStyle: 'link', href: `${defaultHref}`, text: 'View all posts', textClass: '', icon: 'tabler:arrow-right', iconSize: 21, iconReverse: false, iconRotate: true }}
-  secondaryButtonProps={secondaryButtonProps}
   backgroundColor={backgroundColor}
-  columns={columns}
+  buttonPrimary={
+    buttonPrimary || {
+      buttonStyle: 'link',
+      class: 'mt-auto mr-auto ml-0 pl-0 focus:pl-2',
+      href: `${defaultHref}`,
+      buttonText: 'View all posts',
+      buttonTextClass: '',
+      buttonTextWrap: false,
+      icon: 'tabler:arrow-right',
+      iconSize: 21,
+      iconReverse: false,
+      iconAnimate: true
+  }}
+  buttonSecondary={buttonSecondary}
+  class={className}
+  description={description}
+  heading={heading || defaultHeading }
+  headingOptions={headingOptions}
+  layoutOptions={layoutOptions}
   type="ordered"
-  hideHeader={hideHeader}
-  fullWidth={fullWidth}
   {...rest}
 >
 
   { contentCollection === 'posts' && (
     entries.map((post) =>
       <PostCard
-        title={post.data.title}
-        titleTag="h3"
-        description={post.data.description}
-        date={post.data.pubDate}
-        image={post.data.image?.src}
-        alt={post.data.image?.alt}
         backgroundColor={bodyColor}
+        date={post.data.pubDate}
+        description={post.data.description}
+        heading={post.data.title}
+        headingOptions={{ headingTag: 'h3' }/* fix */} 
         href={`${Astro.site}${PERMALINK_POSTS_SINGLE}${post.data.slug}/`}
+        image={post.data.image?.src}
+        imageOptions={{ altText: post.data.image?.alt }}
       />
     )
   )}
@@ -77,14 +85,14 @@ switch (contentCollection) {
   { contentCollection === 'custom' && (
     entries.map((custom) =>
       <CustomCard
-        title={custom.data.title}
-        titleTag="h3"
-        description={custom.data.description}
-        date={custom.data.pubDate}
-        image={custom.data.image?.src}
-        alt={custom.data.image?.alt}
         backgroundColor={bodyColor}
+        date={custom.data.pubDate}
+        description={custom.data.description}
+        heading={custom.data.title}
+        headingOptions={{ headingTag: 'h3' }/* fix */}
         href={`${Astro.site}${PERMALINK_CUSTOM_SINGLE}${custom.data.slug}/`}
+        image={custom.data.image?.src}
+        imageOptions={{ altText: custom.data.image?.alt }}
       />
     )
   )}

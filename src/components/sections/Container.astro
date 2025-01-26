@@ -1,20 +1,18 @@
 ---
-import type { SectionProps } from '~/types';
+import type { HTMLAttributes } from 'astro/types';
+import type { DefaultTypes } from '~/types';
 import { THEME_CONTAINER_DESKTOP, THEME_CONTAINER_MOBILE } from '~/consts';
 import { resolveBackgroundColor } from '~/utils';
 import SectionHeader from '~/components/partials/SectionHeader.astro';
 
-interface Props extends SectionProps {
+interface Props extends DefaultTypes, HTMLAttributes<'section'> {
   type: 'standard' | 'unordered' | 'ordered',
-  columns: number,
-  hideHeader?: boolean,
-  fullWidth?: boolean
-}
+};
 
-const { title, titleTag, description, primaryButtonProps, secondaryButtonProps, backgroundColor = 'transparent', columns, type = 'standard', hideHeader, fullWidth = false, class: className, ...rest }: Partial<Props> = Astro.props;
+const { backgroundColor = 'transparent', buttonPrimary, buttonSecondary, description, heading, headingOptions, layoutOptions = { fullWidth: false }, type, class: className, ...rest }: Partial<Props> = Astro.props;
 
 let columnsCSS;
-switch (columns) {
+switch (layoutOptions?.columns) {
   case 1:
     columnsCSS = 'grid-cols-1';
     break;
@@ -27,7 +25,7 @@ switch (columns) {
   default:
     columnsCSS = 'grid-cols-1';
     break;
-}
+};
 
 let ColumnsTag;
 switch (type) {
@@ -40,24 +38,24 @@ switch (type) {
   default:
     ColumnsTag = 'div';
     break;
-}
+};
 ---
 
 <section class:list={['flex flex-col gap-8', resolveBackgroundColor(backgroundColor), className]} {...rest} >
 
-  { !hideHeader && (
+  { !layoutOptions?.hideHeader && (
     <SectionHeader
-      class:list={[THEME_CONTAINER_MOBILE, THEME_CONTAINER_DESKTOP]}
-      title={title}
-      titleTag={titleTag}
-      description={description}
-      primaryButtonProps={primaryButtonProps}
-      secondaryButtonProps={secondaryButtonProps}
       backgroundColor={backgroundColor}
+      buttonPrimary={buttonPrimary}
+      buttonSecondary={buttonSecondary}
+      class:list={[THEME_CONTAINER_MOBILE, THEME_CONTAINER_DESKTOP]}
+      description={description}
+      heading={heading}
+      headingOptions={headingOptions}
     />
   )}
 
-  <ColumnsTag class:list={['grid gap-4 lg:gap-8', columnsCSS, fullWidth ? '' : `${THEME_CONTAINER_MOBILE} ${THEME_CONTAINER_DESKTOP}`]}>
+  <ColumnsTag class:list={['grid gap-4 lg:gap-8', columnsCSS, layoutOptions?.fullWidth ? '' : `${THEME_CONTAINER_MOBILE} ${THEME_CONTAINER_DESKTOP}`]}>
     <slot />
   </ColumnsTag>
 

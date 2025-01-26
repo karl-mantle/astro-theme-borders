@@ -1,8 +1,12 @@
 ---
-import type { ButtonProps } from '~/types';
+import type { ButtonOptions, DefaultTypes } from '~/types';
 import { Icon } from 'astro-icon/components';
 
-const { backgroundColor = 'transparent', buttonStyle, text, textClass, href, icon, iconSize = 21, iconRotate, iconReverse, ariaLabel, class: className, ...rest }: Partial<ButtonProps> = Astro.props;
+interface Props extends ButtonOptions {
+  backgroundColor?: DefaultTypes['backgroundColor']
+};
+
+const { backgroundColor = 'transparent', buttonStyle, buttonText, buttonTextClass, buttonTextWrap, icon, iconAnimate, iconReverse, iconSize = 21, ariaLabel, href, class: className, ...rest }: Partial<Props> = Astro.props;
 
 let darkButton;
 if (backgroundColor === 'black' || backgroundColor === 'dark-grey' || backgroundColor === 'transparent-dark') {
@@ -57,15 +61,18 @@ switch (buttonStyle) {
 ---
 
 <a href={href} class:list={['group/btn flex gap-2 justify-center items-center transition ease-in-out duration-300', buttonCSS, iconReverse ? 'flex-row-reverse' : '', className]} aria-label={ariaLabel} {...rest} >
-  <span class:list={['font-medium', textClass ? textClass : '']}>
-    {text}
+
+  <span class:list={['font-medium', buttonTextClass ? buttonTextClass : '', buttonTextWrap ? '' : 'text-nowrap']}>
+    {buttonText}
   </span>
+
   { icon && (
     <Icon
       name={icon}
       height={iconSize}
       width={iconSize}
-      class:list={['self-center', iconRotate ? 'group-hover/btn:-rotate-45 transition duration-300' : '']}
+      class:list={['self-center', iconAnimate ? 'group-hover/btn:-rotate-45 transition duration-300' : '']}
     />
   )}
+
 </a>

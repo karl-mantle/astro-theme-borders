@@ -1,70 +1,58 @@
 import type { HTMLAttributes } from 'astro/types';
 
-export interface defaultTypes {
-  themeColors?: 'white' | 'black' | 'transparent' | 'transparent-dark' | 'light-grey' | 'dark-grey',
-  class?: string,
-  title?: string,
-  titleTag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'div',
-  subtitle?: string,
-  description?: string,
+export interface DefaultTypes {
+  backgroundColor?: 'white' | 'black' | 'transparent' | 'transparent-dark' | 'light-grey' | 'dark-grey',
+  bodyColor?: 'white' | 'black' | 'transparent' | 'transparent-dark' | 'light-grey' | 'dark-grey',
+  buttonPrimary?: ButtonOptions,
+  buttonSecondary?: ButtonOptions,
+  class?: string | null | undefined
   date?: Date,
-  dateDescription?: string,
-  image?: any, // fix it lol
-  alt?: string
+  dateOptions?: DateOptions,
+  description?: string,
+  heading?: string,
+  headingOptions?: HeadingOptions,
+  image?: any, // fix
+  imageOptions?: ImageOptions,
+  layoutOptions?: LayoutOptions
 };
 
-export interface ButtonProps extends HTMLAttributes<'a'> {
-  buttonStyle: 'primary' | 'secondary' | 'link' | 'disabled',
-  backgroundColor?: defaultTypes['themeColors'],
-  text: string,
-  textClass?: string,
+export interface ButtonOptions extends HTMLAttributes<'a'> {
+  buttonStyle?: 'primary' | 'secondary' | 'link' | 'disabled',
+  buttonText?: string,
+  buttonTextClass?: string,
+  buttonTextWrap?: boolean,
   icon?: string,
-  iconSize?: number,
+  iconAnimate?: boolean,
   iconReverse?: boolean,
-  iconRotate?: boolean,
+  iconSize?: number,
   ariaLabel?: string
 };
 
-export interface CardProps extends HTMLAttributes<'li'> {
-  title: defaultTypes['title'],
-  titleTag: 'h3' | 'h4' | 'h5',
-  subtitle?: defaultTypes['subtitle'],
-  description?: defaultTypes['description'],
-  image?: defaultTypes['image'],
-  alt?: defaultTypes['alt'],
-  primaryButtonProps?: ButtonProps,
-  secondaryButtonProps?: ButtonProps,
-  backgroundColor?: defaultTypes['themeColors'],
-  bodyColor?: defaultTypes['themeColors'],
+export interface DateOptions extends HTMLAttributes<'div'> {
+  backgroundColor?: DefaultTypes['backgroundColor'],
+  description?: DefaultTypes['description'],
+  hideDescription?: boolean,
+  showTime?: boolean
 };
 
-export interface PartialProps extends HTMLAttributes<'div'> {
-  title?: defaultTypes['title'],
-  titleTag?: defaultTypes['titleTag']
-  subtitle?: defaultTypes['subtitle'],
-  description?: defaultTypes['description'],
-  date?: defaultTypes['date'],
-  dateDescription?: defaultTypes['dateDescription'],
-  image?: defaultTypes['image'],
-  alt?: defaultTypes['alt'],
-  primaryButtonProps?: ButtonProps,
-  secondaryButtonProps?: ButtonProps,
-  backgroundColor?: defaultTypes['themeColors'],
-  bodyColor?: defaultTypes['themeColors'],
+export interface HeadingOptions extends HTMLAttributes<'h1'> {
+  backgroundColor?: DefaultTypes['backgroundColor'],
+  headingTag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'div',
+  subtitle?: string
+};
+
+export interface ImageOptions extends HTMLAttributes<'div'> {
+  altText?: string,
+  aspectRatio?: 'square' | 'video' | 'landscape' | 'portrait',
+  imageMask?: 'none' | 'circle' | 'heart' | 'hexagon' | 'star' | 'triangle',
+  objectFit?: 'none' | 'contain' | 'fill' | 'cover' | 'scale-down',
   padded?: boolean
 };
 
-export interface SectionProps extends HTMLAttributes<'section'> {
-  title?: defaultTypes['title'],
-  titleTag?: 'h1' | 'h2' | 'h3' | 'h4',
-  subtitle?: defaultTypes['subtitle'],
-  description?: defaultTypes['description'],
-  image?: defaultTypes['image'],
-  alt?: defaultTypes['alt'],
-  primaryButtonProps?: ButtonProps,
-  secondaryButtonProps?: ButtonProps,
-  backgroundColor?: defaultTypes['themeColors'],
-  bodyColor?: defaultTypes['themeColors'],
+interface LayoutOptions {
+  columns?: number,
+  fullWidth?: boolean
+  hideHeader?: boolean,
   padded?: boolean,
   reverseColumns?: boolean
 };
@@ -72,5 +60,5 @@ export interface SectionProps extends HTMLAttributes<'section'> {
 export type Terms = {
   name: string,
   slug: string,
-  type: string,
+  type: string
 };

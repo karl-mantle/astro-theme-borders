@@ -12,8 +12,8 @@ const listClasses = 'text-black hover:text-true-black dark:text-white dark:hover
     <Button
       class="md:mr-4"
       aria-label="open tags archive"
-      text="Tags"
-      textClass="hidden md:inline-block"
+      buttonText="Tags"
+      buttonTextClass="hidden md:inline-block"
       href={`${Astro.site}${PERMALINK_POSTS_TAG}`}
       icon="tabler:tags"
       iconSize={iconSize}
@@ -40,7 +40,8 @@ const listClasses = 'text-black hover:text-true-black dark:text-white dark:hover
 
   <li class=`${listClasses}`>
     <Button
-      aria-label="open GitHub repository in new tab"
+      buttonText="open GitHub repository in new tab"
+      buttonTextClass="sr-only"
       href="https://github.com/karl-mantle/astro-theme-borders"
       icon="tabler:brand-github"
       iconSize={iconSize}

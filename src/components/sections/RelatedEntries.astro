@@ -1,22 +1,20 @@
 ---
 import type { DataEntryMap } from 'astro:content';
-import type { SectionProps } from '~/types';
+import type { HTMLAttributes } from 'astro/types';
+import type { DefaultTypes } from '~/types';
 import { PERMALINK_POSTS_SINGLE, PERMALINK_CUSTOM_SINGLE, PERMALINK_POSTS_CATEGORY, PERMALINK_CUSTOM_CATEGORY } from '~/consts';
 import { slugify, getEntriesByCategory } from '~/utils';
 import Container from '~/components/sections/Container.astro';
 import PostCard from '~/components/cards/Post.astro';
 import CustomCard from '~/components/cards/Post.astro';
 
-interface Props extends SectionProps {
-  columns: number,
-  contentCollection: keyof DataEntryMap,
-  maxEntries?: number,
+interface Props extends DefaultTypes, HTMLAttributes<'section'> {
   category: string,
-  hideHeader?: boolean,
-  fullWidth?: boolean
+  contentCollection: keyof DataEntryMap,
+  maxEntries?: number
 };
 
-const { title, titleTag = 'h2', description, primaryButtonProps, secondaryButtonProps, backgroundColor = 'transparent', bodyColor = backgroundColor, columns, contentCollection, category, maxEntries = 3, hideHeader, fullWidth, class: className, ...rest }: Partial<Props> = Astro.props;
+const { backgroundColor = 'transparent', bodyColor = backgroundColor, buttonPrimary, buttonSecondary, contentCollection, category,  description, heading, headingOptions = { headingTag: 'h2' }, layoutOptions, maxEntries = 3, class: className, ...rest }: Partial<Props> = Astro.props;
 
 const entries = await getEntriesByCategory(contentCollection, category, maxEntries);
 
@@ -46,30 +44,40 @@ switch (contentCollection) {
 ---
 
 <Container
-  class={className}
-  title={title || defaultTitle }
-  titleTag={titleTag}
-  description={description}
-  primaryButtonProps={primaryButtonProps || { buttonStyle: 'link', href: `${defaultHref}`, text: `View more ${String(contentCollection)}`, textClass: '', icon: 'tabler:arrow-right', iconSize: 21, iconReverse: false, iconRotate: true, ariaLabel: `open ${category} ${String(contentCollection)} archive` }}
-  secondaryButtonProps={secondaryButtonProps}
   backgroundColor={backgroundColor}
-  columns={columns}
+  class={className}
+  description={description}
+  heading={heading || defaultTitle }
+  headingOptions={headingOptions}
+  buttonPrimary={
+    buttonPrimary || {
+      buttonStyle: 'link',
+      class: 'mt-auto mr-auto ml-0 pl-0 focus:pl-2',
+      href: `${defaultHref}`,
+      buttonText: `View more ${String(contentCollection)}`,
+      buttonTextClass: '',
+      icon: 'tabler:arrow-right',
+      iconSize: 21,
+      iconReverse: false,
+      iconAnimate: true,
+      ariaLabel: `open ${category} ${String(contentCollection)} archive`
+  }}
+  buttonSecondary={buttonSecondary}
+  layoutOptions={layoutOptions}
   type="ordered"
-  hideHeader={hideHeader}
-  fullWidth={fullWidth}
   {...rest}
 >
 
   { contentCollection === 'posts' && (
     entries.map((post) =>
       <PostCard
-        title={post.data.title}
-        titleTag="h3"
-        description={post.data.description}
-        date={post.data.pubDate}
-        image={post.data.image?.src}
-        alt={post.data.image?.alt}
         backgroundColor={bodyColor}
+        date={post.data.pubDate}
+        description={post.data.description}
+        heading={post.data.title}
+        headingOptions={{ headingTag: 'h3' }/* fix */}
+        image={post.data.image?.src}
+        imageOptions={{ altText: post.data.image?.alt }}
         href={`${Astro.site}${PERMALINK_POSTS_SINGLE}${post.data.slug}/`}
       />
     )
@@ -78,13 +86,13 @@ switch (contentCollection) {
   { contentCollection === 'custom' && (
     entries.map((custom) =>
       <CustomCard
-        title={custom.data.title}
-        titleTag="h3"
-        description={custom.data.description}
-        date={custom.data.pubDate}
-        image={custom.data.image?.src}
-        alt={custom.data.image?.alt}
         backgroundColor={bodyColor}
+        date={custom.data.pubDate}
+        description={custom.data.description}
+        heading={custom.data.title}
+        headingOptions={{ headingTag: 'h3' }/* fix */}
+        image={custom.data.image?.src}
+        imageOptions={{ altText: custom.data.image?.alt }}
         href={`${Astro.site}${PERMALINK_CUSTOM_SINGLE}${custom.data.slug}/`}
       />
     )

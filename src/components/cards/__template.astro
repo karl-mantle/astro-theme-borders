@@ -1,13 +1,14 @@
 ---
-import type { CardProps } from '~/types';
+import type { HTMLAttributes } from 'astro/types';
+import type { DefaultTypes } from '~/types';
 
-interface Props extends CardProps {
-  example: string
+interface Props extends DefaultTypes, HTMLAttributes<'li'> {
+  example?: string
 };
 
-const { title, description, backgroundColor, class: className, ...rest }: Partial<Props> = Astro.props;
+const { backgroundColor, description, heading, class: className, ...rest }: Partial<Props> = Astro.props;
 ---
 
 <li class:list={['group/card flex flex-col gap-4', className]} {...rest} >
-  {title}
+  {heading}
 </li>

@@ -1,8 +1,13 @@
 ---
-import type { PartialProps } from '~/types';
+import type { HTMLAttributes } from 'astro/types';
+import type { DefaultTypes } from '~/types';
 import { resolveBackgroundColor } from '~/utils';
 
-const { backgroundColor = 'transparent', class: className, ...rest }: Partial<PartialProps> = Astro.props;
+interface Props extends DefaultTypes, HTMLAttributes<'div'> {
+    example?: string
+};
+
+const { backgroundColor = 'transparent', class: className, ...rest }: Partial<Props> = Astro.props;
 ---
 
 <div class:list={['flex flex-col', resolveBackgroundColor(backgroundColor), className]} {...rest} >
