@@ -1,0 +1,40 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import RecentEntries from '~/components/sections/RecentEntries.astro';
+import RelatedEntries from '~/components/sections/RelatedEntries.astro';
+---
+
+<Layout
+  title="Enter the page title here"
+  metaDesc="A fast, accessible, SEO-friendly and easy-to-use starter theme for building static sites with Astro."
+>
+  <RecentEntries
+    titleTag="h2"
+    class="py-12"
+    backgroundColor="dark-grey"
+    columns={3}
+    contentCollection="posts"
+  />
+
+  <RecentEntries
+    class="py-12"
+    title="Recent Posts"
+    titleTag="h2"
+    backgroundColor="white"
+    columns={2}
+    maxEntries={2}
+    contentCollection="posts"
+  />
+
+  <RecentEntries
+    class="py-12"
+    title="Recent Posts"
+    titleTag="h2"
+    backgroundColor="light-grey"
+    bodyColor="white"
+    columns={3}
+    maxEntries={3}
+    contentCollection="posts"
+  />
+
+</Layout>

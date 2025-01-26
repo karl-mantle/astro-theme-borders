@@ -1,61 +1,121 @@
 ---
 import Layout from '~/layouts/Layout.astro';
-import Banner from '~/components/sections/Banner.astro';
-import Container from '~/components/sections/Container.astro';
-import HeroImage from '~/content/custom/images/blog-placeholder-1.jpg';
-import Image from '~/components/ui/Image.astro';
+import Image1 from '~/content/custom/images/blog-placeholder-1.jpg';
+import ImageBanner from '~/components/sections/ImageBanner.astro';
+import CtaBanner from '~/components/sections/CtaBanner.astro';
 import RecentEntries from '~/components/sections/RecentEntries.astro';
-import RelatedEntries from '~/components/sections/RelatedEntries.astro';
 ---
 
 <Layout
-  title="Homepage"
-  metaDesc="Welcome to the homepage!"
+  title="Astro Base Starter Theme"
+  metaDesc="A fast, accessible, SEO-friendly and easy-to-use starter theme for building static sites with Astro."
 >
 
-  <Banner
-    class="mb-8"
-    title="Astro Basic Theme"
-    titleTag="h1"
-    description="Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non tellus. Habitasse platea dictumst quisque sagittis purus sit amet."
-    image={HeroImage}
-    alt=""
-    primaryButtonProps={{ buttonStyle: 'primary', href: '/deadlink', text: 'View the repo', textClass: '', icon: 'tabler:brand-github', iconSize: 21, iconReverse: true, iconRotate: false }}
-    secondaryButtonProps={{ buttonStyle: 'link', href: '/deadlink', text: 'Read more', textClass: '', icon: 'tabler:arrow-right', iconSize: 21, iconReverse: false, iconRotate: true }}
-    aspectRatio="landscape"
+  <ImageBanner
+    backgroundColor="transparent"
+    bodyColor="transparent"
+    buttonPrimary={{
+      buttonStyle: 'primary',
+      buttonText: 'View the repo',
+      buttonTextClass: '',
+      buttonTextWrap: false,
+      icon: 'tabler:brand-github',
+      iconAnimate: false,
+      iconReverse: true,
+      iconSize: 21,
+      ariaLabel: '',
+      class: '',
+      href: 'https://github.com/karl-mantle/astro-theme-borders'
+    }}
+    buttonSecondary={{
+      buttonStyle: 'secondary',
+      buttonText: 'Learn more',
+      buttonTextClass: '',
+      buttonTextWrap: false,
+      icon: 'tabler:arrow-right',
+      iconAnimate: true,
+      iconReverse: false,
+      iconSize: 21,
+      ariaLabel: '',
+      class: '',
+      href: `${Astro.site}about/`
+    }}
+    class="py-12"
+    heading="Lorem ipsum dolor sit amet consectetur adipiscing elit"
+    headingOptions={{
+        headingTag: 'h2',
+        subtitle: 'Subtitle example'
+    }}
+    description="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate."
+    image={Image1}
+    imageOptions={{
+      altText: '',
+      aspectRatio: 'square',
+      imageMask: 'hexagon',
+      objectFit: 'cover',
+      padded: true
+    }}
+    layoutOptions={{
+      padded: true,
+      reverseColumns: true,
+    }}
   />
 
-  <Container
-    columns={3}
-    title="Image cards test"
-    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    primaryButtonProps={{ buttonStyle: 'primary', href: '/deadlink', text: 'View the repo', textClass: '', icon: 'tabler:brand-github', iconSize: 21, iconReverse: true, iconRotate: false }}
-    secondaryButtonProps={{ buttonStyle: 'link', href: '/deadlink', text: 'Read more', textClass: '', icon: 'tabler:arrow-right', iconSize: 21, iconReverse: false, iconRotate: true }}
-  >
-    <Image image={HeroImage} containImage={true} aspectRatio="portrait"/>
-    <Image image={HeroImage} containImage={true} aspectRatio="square"/>
-    <Image image={HeroImage} containImage={true} aspectRatio="landscape"/>
-  </Container>
+  <CtaBanner
+    backgroundColor="transparent"
+    bodyColor="light-grey"
+    buttonPrimary={{
+      buttonStyle: 'primary',
+      buttonText: 'View the repo',
+      buttonTextClass: '',
+      buttonTextWrap: false,
+      icon: 'tabler:brand-github',
+      iconAnimate: false,
+      iconReverse: true,
+      iconSize: 21,
+      ariaLabel: '',
+      class: '',
+      href: 'https://github.com/karl-mantle/astro-theme-borders'
+    }}
+    buttonSecondary={{
+      buttonStyle: 'secondary',
+      buttonText: 'Learn more',
+      buttonTextClass: '',
+      buttonTextWrap: false,
+      icon: 'tabler:arrow-right',
+      iconAnimate: true,
+      iconReverse: false,
+      iconSize: 21,
+      ariaLabel: '',
+      class: '',
+      href: `${Astro.site}about/`
+    }}
+    class="py-6"
+    heading="Lorem ipsum dolor sit amet consectetur adipiscing elit"
+    headingOptions={{
+        headingTag: 'h2',
+        subtitle: 'Subtitle example'
+    }}
+    description="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate."
+    layoutOptions={{
+      padded: true
+    }}
+  />
 
   <RecentEntries
-    columns={3}
+    backgroundColor="white"
+    bodyColor="transparent"
+    class="py-12"
     contentCollection="posts"
+    description="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate."
+    heading="Recent Posts"
+    headingOptions={{
+      headingTag: 'h2'
+    }}
+    layoutOptions={{
+      columns: 3
+    }}
+    maxEntries={3}
   />
-
-  <RelatedEntries
-    columns={3}
-    contentCollection="posts"
-    category="Nature"
-    title="Posts categorised as 'Nature'"
-    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    primaryButtonProps={{ buttonStyle: 'primary', href: '/deadlink', text: 'View the repo', textClass: '', icon: 'tabler:brand-github', iconSize: 21, iconReverse: true, iconRotate: false }}
-    secondaryButtonProps={{ buttonStyle: 'link', href: '/deadlink', text: 'Read more', textClass: '', icon: 'tabler:arrow-right', iconSize: 21, iconReverse: false, iconRotate: true }}
-  />
-
-  <RecentEntries
-  columns={3}
-  contentCollection="custom"
-/>
-
 
 </Layout>

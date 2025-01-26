@@ -30,21 +30,27 @@ const { page }: Partial<Props> = Astro.props;
   <section class={`flex flex-col py-8 ${THEME_CONTAINER_DESKTOP} ${THEME_CONTAINER_MOBILE}`}>
 
     <SectionHeader
-      class="border-b-2 border-light-grey dark:border-dark-grey mb-8"
-      title="Archive"
-      titleTag="h1"
+      class="pb-8 border-b-2 border-light-grey dark:border-dark-grey mb-8"
       description={`Showing ${page.start + 1} to ${page.end + 1} posts out of ${page.total} posts.`}
+      heading="Archive"
+      headingOptions={{
+        headingTag: 'h1'
+      }}
     />
 
     <div class="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
       {page.data.map((post) =>
         <PostCard
-          title={post.data.title}
-          titleTag="h3"
-          description={post.data.description}
           date={post.data.pubDate}
+          description={post.data.description}
+          heading={post.data.title}
+          headingOptions={{
+            headingTag: 'h3'
+          }}
           image={post.data.image?.src}
-          alt={post.data.image?.alt}
+          imageOptions={{
+            altText: `${post.data.image?.alt}`
+          }}
           href={`${Astro.site}${PERMALINK_POSTS_SINGLE}${post.data.slug}/`}
         />
       )}

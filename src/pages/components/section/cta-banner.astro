@@ -1,0 +1,52 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import CtaBannerDemo from '~/components/sections/CtaBanner.astro';
+
+---
+
+<Layout
+  title="Enter the page title here"
+  metaDesc="A fast, accessible, SEO-friendly and easy-to-use starter theme for building static sites with Astro."
+>
+
+  <CtaBannerDemo
+    backgroundColor="transparent"
+    bodyColor="light-grey"
+    buttonPrimary={{
+      buttonStyle: 'primary',
+      buttonText: 'View the repo',
+      buttonTextClass: '',
+      buttonTextWrap: false,
+      icon: 'tabler:brand-github',
+      iconAnimate: false,
+      iconReverse: true,
+      iconSize: 21,
+      ariaLabel: '',
+      class: '',
+      href: 'https://github.com/karl-mantle/astro-theme-borders'
+    }}
+    buttonSecondary={{
+      buttonStyle: 'secondary',
+      buttonText: 'Learn more',
+      buttonTextClass: '',
+      icon: 'tabler:arrow-right',
+      iconAnimate: true,
+      iconReverse: false,
+      iconSize: 21,
+      ariaLabel: '',
+      class: '',
+      href: `${Astro.site}about/`
+    }}
+    class="py-12"
+    heading="Lorem ipsum dolor sit amet consectetur adipiscing elit"
+    headingOptions={{
+        headingTag: 'h2',
+        subtitle: 'Subtitle example'
+    }}
+    description="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate."
+    layoutOptions={{
+      padded: true
+    }}
+  />
+
+</Layout>

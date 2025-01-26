@@ -1,14 +1,15 @@
 ---
 import { type CollectionEntry, getEntry, render } from 'astro:content';
-import { PERMALINK_POSTS_CATEGORY, PERMALINK_POSTS_SINGLE, PERMALINK_POSTS_TAG, THEME_CONTAINER_DESKTOP, THEME_CONTAINER_MOBILE } from '../../consts';
-import { slugify, getEntries } from '../../utils';
-import Layout from '../../layouts/Layout.astro';
-import Button from '../../components/ui/Button.astro';
-import Date from '../../components/ui/Date.astro';
-import Heading from '../../components/ui/Heading.astro';
-import Banner from '../../components/sections/Banner.astro';
-import Profile from '../../components/partials/Profile.astro';
-import TagList from '../../components/partials/TagList.astro';
+import { PERMALINK_POSTS_CATEGORY, PERMALINK_POSTS_SINGLE, PERMALINK_POSTS_TAG, THEME_CONTAINER_DESKTOP, THEME_CONTAINER_MOBILE } from '~/consts';
+import { slugify, getEntries } from '~/utils';
+import Layout from '~/layouts/Layout.astro';
+import Button from '~/components/ui/Button.astro';
+import Date from '~/components/ui/Date.astro';
+import Heading from '~/components/ui/Heading.astro';
+import ImageBanner from '~/components/sections/ImageBanner.astro';
+import Profile from '~/components/partials/Profile.astro';
+import TagList from '~/components/partials/TagList.astro';
+import RelatedEntries from '~/components/sections/RelatedEntries.astro';
 
 type Props = { 
   entry: CollectionEntry<'posts'>,
@@ -36,78 +37,115 @@ const authorData = author?.data;
 ---
 
 <Layout title={entry.data.seo?.title || entry.data.title} metaDesc={entry.data.seo?.description || entry.data.description}>
-  <div class={`prose dark:prose-invert prose-theme ${THEME_CONTAINER_DESKTOP} ${THEME_CONTAINER_MOBILE}`}>
+
+  <div class={`${THEME_CONTAINER_DESKTOP}`}>
+
     <header>
-      <Banner
-        title={entry.data.title}
-        titleTag="h1"
+      <ImageBanner
+        backgroundColor="transparent"
+        bodyColor="light-grey"
+        class="mb-8"
+        heading={entry.data.title}
+        headingOptions={{
+          headingTag: 'h1'
+        }}
+        date={entry.data.updatedDate ? entry.data.updatedDate : entry.data.pubDate}
+        dateOptions={{
+          description: 'Last updated'
+        }}
         description={entry.data.description}
         image={entry.data.image?.src}
-        alt={entry.data.image?.alt}
-        aspectRatio="landscape"
-        class="not-prose px-0"
+        imageOptions={{
+          altText: `${entry.data.image?.alt}`,
+          aspectRatio: 'landscape'
+        }}
+        layoutOptions={{
+          padded: true
+        }}
       />
     </header>
 
-    <div class="flex flex-col md:flex-row gap-12 md:gap-24 md:mb-8">
-      <article class="md:py-8">
+    <div class={`${THEME_CONTAINER_MOBILE} grid grid-cols-1 lg:grid-flow-col lg:auto-cols-auto gap-8 lg:gap-16 lg:mb-8`}>
+
+      <div class="ml-auto">
+        sticky menu
+        placeholder
+      </div>
+
+      <article class="prose dark:prose-invert prose-theme max-w-[75ch] md:py-8">
+
         <Content />
+
+        <div class="not-prose flex flex-col gap-4 mt-8 pt-4 border-t-2 border-light-grey dark:border-dark-grey">
+
+          <div class="flex justify-between">
+            { nextEntry && (
+              <Button buttonStyle="link" href={`${Astro.site}${PERMALINK_POSTS_SINGLE}${nextEntry.data.slug}/`} buttonText="Next post" icon="tabler:arrow-left" iconSize={21} iconReverse={true} class="w-fit text-sm" />
+            )}
+            { prevEntry &&  (
+              <Button buttonStyle="link" href={`${Astro.site}${PERMALINK_POSTS_SINGLE}${prevEntry.data.slug}/`} buttonText="Previous post" icon="tabler:arrow-right" iconSize={21} iconReverse={false} class="w-fit text-sm" />
+            )}
+          </div>
+
+          <div class="bg-light-grey dark:bg-dark-grey p-4">
+            <Heading headingTag="h5">Share this post:</Heading>
+          </div>
+
+        </div>
+
       </article>
 
-      <aside class="not-prose flex flex-col flex-shrink-0 gap-4 md:w-72 md:py-8">
+      <aside class="flex flex-col flex-shrink-0 gap-4 md:w-72 md:py-8">
+
         <div class="relative flex flex-col">
-          <Heading titleTag="h2" class="md:text-xl mb-2">About this post</Heading>
+          <Heading headingTag="h2" class="md:text-xl mb-2">About this post</Heading>
           <div class="absolute bottom-0 -z-40 block w-full border-b-2 border-light-grey dark:border-dark-grey" aria-hidden="true"></div>
         </div>
 
         { entry.data.author.id !== 'default' && (
-          <Heading titleTag="h3" class="md:text-lg">Author</Heading>
+          <Heading headingTag="h3" class="sr-only">Author</Heading>
           <Profile
-            title={authorData?.title}
+            heading={authorData?.title}
             description={authorData?.description}
             image={authorData?.image?.src}
-            alt={authorData?.image?.alt}
+            imageOptions={{
+              altText: `${authorData?.image?.alt}`
+            }}
           />
         )}
 
-        <Heading titleTag="h3" class="sr-only">Post Details</Heading>
-        <div class="-mb-2">
+        <Heading headingTag="h3" class="sr-only">Post Details</Heading>
+
+        <div class="text-black dark:text-white">
           Posted in the
             <a
-              class="pb-2 font-medium border-b-2 border-transparent hover:border-dark-grey hover:dark:border-light-grey transition ease-in-out duration-300"
+              class="pb-2 font-medium hover:text-true-black dark:hover:text-true-white border-b-2 border-transparent hover:border-dark-grey hover:dark:border-light-grey transition ease-in-out duration-300"
               href={`${Astro.site}${PERMALINK_POSTS_CATEGORY}${slugify(entry.data.category)}/`}>
                 {entry.data.category}
             </a> 
           category.
         </div>
 
-        <div class="flex flex-col text-sm gap-1">
-          <h4 class="font-medium">Published on</h4>
-          <Date class="text-sm" date={entry.data.pubDate} description="post first published on" />
-        </div>
-        { entry.data.updatedDate &&  (
-          <div class="flex flex-col text-sm gap-1">
-            <h4 class="font-medium">Last updated</h4>
-            <Date class="text-sm" date={entry.data.updatedDate} description="post last updated on"/>
-          </div>
-        )}
+        <Heading headingTag="h3" class="sr-only">Tags</Heading>
+        <TagList tags={entry.data.tags} permalink={`${PERMALINK_POSTS_TAG}`} class="mb-2"/>
 
-        <Heading titleTag="h3" class="md:text-lg -mb-2">Tags</Heading>
-        <TagList tags={entry.data.tags} permalink={`${PERMALINK_POSTS_TAG}`} />
+        <Date class="text-sm" date={entry.data.pubDate} description="First published on" />
 
-        <div class="flex justify-between">
-          { nextEntry && (
-            <Button buttonStyle="link" href={`${Astro.site}${PERMALINK_POSTS_SINGLE}${nextEntry.data.slug}/`} text="Next post" icon="tabler:arrow-left" iconSize={21} iconReverse={true} class="w-fit text-sm" />
-          )}
-          { prevEntry &&  (
-            <Button buttonStyle="link" href={`${Astro.site}${PERMALINK_POSTS_SINGLE}${prevEntry.data.slug}/`} text="Previous post" icon="tabler:arrow-right" iconSize={21} iconReverse={false} class="w-fit text-sm" />
-          )}
+        <div class="relative flex flex-col">
+          <Heading headingTag="h2" class="md:text-xl mb-2">Related Posts</Heading>
+          <div class="absolute bottom-0 block w-full border-b-2 border-light-grey dark:border-dark-grey" aria-hidden="true"></div>
         </div>
 
-        <div class="relative flex flex-col mb-2">
-          <Heading titleTag="h2" class="md:text-xl mb-2">Recent Posts</Heading>
-          <div class="absolute bottom-0 -z-40 block w-full border-b-2 border-light-grey dark:border-dark-grey" aria-hidden="true"></div>
-        </div>
+        <RelatedEntries
+          category={entry.data.category}
+          contentCollection="posts"
+          layoutOptions={{
+            columns: 1,
+            hideHeader: true
+          }}
+          maxEntries={2}
+        />
+
       </aside>
     </div>
   </article>

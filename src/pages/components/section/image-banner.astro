@@ -1,0 +1,70 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import ImageBannerDemo from '~/components/sections/ImageBanner.astro'; // page name & component name conflict
+import Image1 from '~/assets/unsplash/jonathan-korner-pRU-VnBVJMQ-unsplash.jpg';
+import Image2 from '~/assets/unsplash/yvon-hoogers-e0YOht7NgyE-unsplash.jpg';
+import Image3 from '~/assets/unsplash/john-towner-Hf4Ap1-ef40-unsplash.jpg';
+import Image4 from '~/assets/unsplash/rafael-hoyos-weht-ck84niU-EHU-unsplash.jpg';
+---
+
+<Layout
+  title="Astro Boilerplate"
+  metaDesc="A fast, accessible, SEO-friendly and easy-to-use starter theme for building static sites with Astro."
+>
+
+  <ImageBannerDemo
+    backgroundColor="transparent"
+    bodyColor="transparent"
+    buttonPrimary={{
+      buttonStyle: 'primary',
+      buttonText: 'View the repo',
+      buttonTextClass: '',
+      buttonTextWrap: false,
+      icon: 'tabler:brand-github',
+      iconAnimate: false,
+      iconReverse: true,
+      iconSize: 21,
+      ariaLabel: '',
+      class: '',
+      href: 'https://github.com/karl-mantle/astro-theme-borders'
+    }}
+    buttonSecondary={{
+      buttonStyle: 'secondary',
+      buttonText: 'Learn more',
+      buttonTextClass: '',
+      icon: 'tabler:arrow-right',
+      iconAnimate: true,
+      iconReverse: false,
+      iconSize: 21,
+      ariaLabel: '',
+      class: '',
+      href: `${Astro.site}about/`
+    }}
+    class="py-12"
+    date={new Date('2025-01-26T12:04:57Z')}
+    dateOptions={{
+      description: 'Ex ea commodo',
+      hideDescription: true,
+      showTime: true
+    }}
+    heading="Lorem ipsum dolor sit amet consectetur adipiscing elit"
+    headingOptions={{
+        headingTag: 'h2',
+        subtitle: 'Subtitle example'
+    }}
+    description="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate."
+    image={Image1}
+    imageOptions={{
+      altText: '',
+      aspectRatio: 'landscape',
+      imageMask: 'hexagon',
+      objectFit: 'cover',
+      padded: false,
+    }}
+    layoutOptions={{
+      padded: true,
+      reverseColumns: false,
+    }}
+  />
+
+</Layout>
