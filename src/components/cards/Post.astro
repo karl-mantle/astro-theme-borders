@@ -19,7 +19,7 @@ const uniqueId = Math.random().toString(36).slice(2, 11);
 
 <li
   aria-label={heading}
-  class:list={['group/card h-full flex flex-col-reverse hover:shadow-lg transition duration-300', className]}
+  class:list={['group/card h-full flex flex-col-reverse hover:shadow-lg transition duration-300 ease-in-out', className]}
   :class="{'cursor-pointer': !preventClick}"
   tabindex="-1"
   x-data="{ clickTimeout: null, preventClick: false }"
@@ -35,7 +35,7 @@ const uniqueId = Math.random().toString(36).slice(2, 11);
     <Heading
       backgroundColor={backgroundColor}
       id={uniqueId}
-      class:list={['md:text-xl underline underline-offset-8 decoration-transparent transition duration-300', resolveLinkColor(backgroundColor)]}
+      class:list={['md:text-xl underline underline-offset-8 decoration-transparent transition duration-300 ease-in-out', resolveLinkColor(backgroundColor)]}
       {...headingOptions}
     >
       {heading}

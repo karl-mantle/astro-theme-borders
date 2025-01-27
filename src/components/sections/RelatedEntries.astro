@@ -75,7 +75,7 @@ switch (contentCollection) {
         date={post.data.pubDate}
         description={post.data.description}
         heading={post.data.title}
-        headingOptions={{ headingTag: 'h3' }/* fix */}
+        headingOptions={headingOptions.headingTag === 'h2' ? { headingTag: 'h3' } : { headingTag: 'h4' }}
         image={post.data.image?.src}
         imageOptions={{ altText: post.data.image?.alt }}
         href={`${Astro.site}${PERMALINK_POSTS_SINGLE}${post.data.slug}/`}
@@ -90,7 +90,7 @@ switch (contentCollection) {
         date={custom.data.pubDate}
         description={custom.data.description}
         heading={custom.data.title}
-        headingOptions={{ headingTag: 'h3' }/* fix */}
+        headingOptions={headingOptions.headingTag === 'h2' ? { headingTag: 'h3' } : { headingTag: 'h4' }}
         image={custom.data.image?.src}
         imageOptions={{ altText: custom.data.image?.alt }}
         href={`${Astro.site}${PERMALINK_CUSTOM_SINGLE}${custom.data.slug}/`}

@@ -33,7 +33,7 @@ const { title, description, image } = Astro.props;
     <Head title={title} description={description} image={image} />
   </head>
 
-  <body class="bg-white dark:bg-black">
+  <body class="bg-white dark:bg-black transition duration-300 ease-in-out">
     <SiteHeader />
     <main id="main">
       <slot />

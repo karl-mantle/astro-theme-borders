@@ -4,11 +4,11 @@ import { PERMALINK_POSTS_TAG } from '~/consts';
 import Button from '~/components/ui/Button.astro';
 
 const iconSize = 28;
-const listClasses = 'px-2 py-2 hover:backdrop-brightness-110 text-black hover:text-true-black dark:text-white dark:hover:text-true-white transition duration-300';
+const listClasses = 'px-2 py-2 text-black hover:text-true-black dark:text-white dark:hover:text-true-white hover:backdrop-brightness-90 dark:hover:backdrop-brightness-150 transition duration-300';
 ---
 <ul class="inline-flex gap-2 justify-end items-center px-4 py-2 my-auto md:my-0 pb-2 md:pb-0 leading-none" aria-label="toolbar">
 
-  <li class=`px-2 md:border-r-2 border-light-grey dark:border-dark-grey`>
+  <li class="px-2 md:border-r-2 border-light-grey dark:border-dark-grey !duration-0">
     <Button
       class="md:mr-4 text-black hover:text-true-black dark:text-white dark:hover:text-true-white transition duration-300"
       aria-label="open tags archive"
@@ -42,6 +42,7 @@ const listClasses = 'px-2 py-2 hover:backdrop-brightness-110 text-black hover:te
     <Button
       buttonText="open GitHub repository in new tab"
       buttonTextClass="sr-only"
+      class="!duration-0"
       href="https://github.com/karl-mantle/astro-theme-borders"
       icon="carbon:logo-github"
       iconSize={iconSize}
